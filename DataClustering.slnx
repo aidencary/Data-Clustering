@@ -3,5 +3,5 @@
     <Platform Name="x64" />
     <Platform Name="x86" />
   </Configurations>
-  <Project Path="DataClustering/DataClustering.vcxproj" />
+  <Project Path="DataClustering/DataClustering.vcxproj" Id="f4381639-6eb1-4448-9717-edb77ed3f6e5" />
 </Solution>

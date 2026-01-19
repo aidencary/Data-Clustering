@@ -129,6 +129,21 @@
   <ItemGroup>
     <ClCompile Include="main.cpp" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Phase_1.pdf" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="phase1_data_sets\ecoli.txt" />
+    <Text Include="phase1_data_sets\glass.txt" />
+    <Text Include="phase1_data_sets\ionosphere.txt" />
+    <Text Include="phase1_data_sets\iris_bezdek.txt" />
+    <Text Include="phase1_data_sets\landsat.txt" />
+    <Text Include="phase1_data_sets\letter_recognition.txt" />
+    <Text Include="phase1_data_sets\segmentation.txt" />
+    <Text Include="phase1_data_sets\vehicle.txt" />
+    <Text Include="phase1_data_sets\wine.txt" />
+    <Text Include="phase1_data_sets\yeast.txt" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
