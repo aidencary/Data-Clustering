@@ -144,6 +144,9 @@
     <Text Include="phase1_data_sets\wine.txt" />
     <Text Include="phase1_data_sets\yeast.txt" />
   </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Point.h" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

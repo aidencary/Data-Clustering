@@ -3,7 +3,7 @@ Author: Aiden Cary
 Professor: Dr. Emre Celebi
 CSC1 4372 Data Clustering
 Date: 18 January 2026
-
+https://google.github.io/styleguide/cppguide.html
 */
 #include <iostream>
 #include <string>

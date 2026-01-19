@@ -34,4 +34,9 @@
     <Text Include="phase1_data_sets\wine.txt" />
     <Text Include="phase1_data_sets\yeast.txt" />
   </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Point.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+  </ItemGroup>
 </Project>
