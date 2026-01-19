@@ -24,12 +24,16 @@ public:
 	// Print the point
 	void print() const {
 		for (size_t i = 0; i < dimensions.size(); ++i) {
-			
-			if (i > 0) {
-				// Using the '?' ternary operator to avoid trailing space
-				std::cout << dimensions[i] << (i < dimensions.size() - 1 ? " " : "");
+			// Print the value
+			std::cout << dimensions[i];
+			// Print a space only if it's not the last dimension
+			if (i < dimensions.size() - 1) {
+				std::cout << " ";
 			}
-			std::cout << std::endl;
+			// Otherwise, print a newline
+			else {
+				std::cout << std::endl;
+			}
 		}
 	}
 

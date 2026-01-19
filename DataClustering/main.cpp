@@ -3,10 +3,23 @@ Author: Aiden Cary
 Professor: Dr. Emre Celebi
 CSC1 4372 Data Clustering
 Date: 18 January 2026
-https://google.github.io/styleguide/cppguide.html
+Programming Practices: https://google.github.io/styleguide/cppguide.html
 */
 #include <iostream>
 #include <string>
+#include "Kmeans.h"
+#include "Point.h"
+
+void printExpectedParameters(const char* programName)
+{
+    std::cerr
+        << "Usage: " << programName << " <F> <K> <I> <T> <R>\n"
+        << "  <F>: data file name\n"
+        << "  <K>: number of clusters (> 1)\n"
+        << "  <I>: maximum number of iterations (positive int)\n"
+        << "  <T>: convergence threshold (non-negative real)\n"
+        << "  <R>: number of runs (positive int)\n";
+}
 
 bool setParameters(
     int argc,
@@ -17,19 +30,6 @@ bool setParameters(
     double& convergenceThreshold,
     int& numRuns)
 {
-    // Expect: program + 5 args
-    if (argc != 6)
-    {
-        std::cerr
-            << "Usage: " << argv[0] << " <F> <K> <I> <T> <R>\n"
-            << "  <F>: data file name\n"
-            << "  <K>: number of clusters (> 1)\n"
-            << "  <I>: maximum number of iterations (positive int)\n"
-            << "  <T>: convergence threshold (non-negative real)\n"
-            << "  <R>: number of runs (positive int)\n";
-        return false;
-    }
-
 	// Parse arguments
     try
     {
@@ -56,6 +56,20 @@ bool setParameters(
     return true;
 }
 
+void printParameters(
+    const std::string& dataFileName,
+    int numClusters,
+    int maxIterations,
+    double convergenceThreshold,
+    int numRuns)
+{
+    std::cout << "Data File Name <F>: " << dataFileName << std::endl;
+    std::cout << "Number of Clusters <K>: " << numClusters << std::endl;
+    std::cout << "Maximum Iterations <I>: " << maxIterations << std::endl;
+    std::cout << "Convergence Threshold <T>: " << convergenceThreshold << std::endl;
+    std::cout << "Number of Runs <R>: " << numRuns << std::endl;
+}
+
 
 
 /*
@@ -72,7 +86,11 @@ argv - Argument vector for five command line arguments (not hard-coded):
 */
 int main(int argc, char* argv[])
 {
-    // testPrintArgs(argc, argv);
+
+	if (argc != 6)
+    {
+        printExpectedParameters(argv[0]);
+    }
 
 	// Declare parameters
     std::string dataFileName;
@@ -95,11 +113,31 @@ int main(int argc, char* argv[])
     }
 
 	// Print parameters to verify
-    std::cout << "Data File Name <F>: " << dataFileName << std::endl;
-    std::cout << "Number of Clusters <K>: " << numClusters << std::endl;
-    std::cout << "Maximum Iterations <I>: " << maxIterations << std::endl;
-    std::cout << "Convergence Threshold <T>: " << convergenceThreshold << std::endl;
-    std::cout << "Number of Runs <R>: " << numRuns << std::endl;
+    printParameters(dataFileName, numClusters, maxIterations, convergenceThreshold, numRuns);
+
+	// Create Kmeans object with the provided parameters
+    Kmeans kmeans(
+        dataFileName,
+        numClusters,
+        maxIterations,
+        convergenceThreshold,
+		numRuns);
+    
+	// Read data from the specified file
+    if (!kmeans.readData())
+    {
+        return 1;
+	}
+
+	// Print dataset dimensionality and number of points
+	int dimensionality = 0;
+	int numOfPoints = 0;
+	std::cout << "Dataset Dimensionality: " << dimensionality << std::endl;
+	std::cout << "Number of Data Points: " << numOfPoints << std::endl;
+
+	// Select and print initial random cluster centers
+	kmeans.selectAndPrintCenters();
+
 
     return 0;
 }
