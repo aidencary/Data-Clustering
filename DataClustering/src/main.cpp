@@ -1,18 +1,20 @@
 /*
 Author: Aiden Cary
 Professor: Dr. Emre Celebi
-CSC1 4372 Data Clustering
-Date: 18 January 2026
+CSCI 4372 Data Clustering
+Date: 21 January 2026
+
 Programming Practices: https://google.github.io/styleguide/cppguide.html
+
 How to Compile: Use a C++17 compatible compiler
-Compile: g++ main.cpp -o main.exe -std=c++17
+Compile: g++ main.cpp ../src/Kmeans.cpp ../src/Point.cpp -o main.exe -std=c++17 -I../include
 Run: ./main.exe <filename> <K> <I> <T> <R>
 Example: ./main.exe iris_bezdek.txt 3 100 0.000001 100
 */
 #include <iostream>
 #include <string>
-#include "include/Kmeans.h"
-#include "include/Point.h"
+#include "../include/Kmeans.h"
+#include "../include/Point.h"
 
 void printExpectedParameters(const char* programName)
 {
@@ -40,7 +42,7 @@ bool setParameters(
         // Set parameters from command line arguments
         // Prepend relative path to data directory
         dataFileName = argv[1];
-        dataFileName = "datasets/" + dataFileName; // Prepend relative path to data directory
+        dataFileName = dataFileName; // Prepend relative path to data directory
 
         numClusters = std::stoi(argv[2]);
         maxIterations = std::stoi(argv[3]);
@@ -94,7 +96,7 @@ argv - Argument vector for five command line arguments (not hard-coded):
 */
 int main(int argc, char* argv[])
 {
-
+    // Check for correct number of arguments
 	if (argc != 6)
     {
         printExpectedParameters(argv[0]);
@@ -107,7 +109,7 @@ int main(int argc, char* argv[])
     double convergenceThreshold;
     int numRuns;
 
-	// Set parameters from command line arguments
+	// Set parameters (from command line arguments)
     if (!setParameters(
             argc,
             argv,
@@ -137,9 +139,11 @@ int main(int argc, char* argv[])
         return 1;
 	}
 
+    // Test if data was read correctly by printing it
+    // kmeans.printData();
+    
 	// Select and print initial random cluster centers
-    kmeans.printData();
-	//kmeans.selectAndPrintCenters();
+	kmeans.selectAndPrintCenters();
 
 
     return 0;
