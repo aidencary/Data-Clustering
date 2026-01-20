@@ -4,8 +4,8 @@
 #include <iostream>
 #include <fstream>
 #include <random>
+#include <ctime>
 #include "Point.h"
-
 class Kmeans {
 private:
 	std::string fileName; // <F>
@@ -47,7 +47,7 @@ public:
 		}
 
 		// Print number of points and dimensionality
-		std::cout << "Number of Points: " << numOfPoints << ", Dimensionality: " << dimensionality << std::endl;
+		// std::cout << "Number of Points: " << numOfPoints << ", Dimensionality: " << dimensionality << std::endl;
 
 		// Read the number of data points
 		for (int i = 0; i < numOfPoints; ++i) {
@@ -69,7 +69,13 @@ public:
 		return true;
 	}
 
-	// Utility function to check if a vector contains a value
+	void printData() const {
+		for (const auto& point : dataset) {
+			point.print();
+		}
+	}
+
+	// Utility function to test if a vector contains a value
 	template <typename T>
 	// Returns true if value is found in vec, false otherwise
 	bool contains(const std::vector<T>& vec, const T& value) {
@@ -81,14 +87,14 @@ public:
 
 	// Selects K centers uniformly at random from the existing data points
 	void selectAndPrintCenters() {
-		// Seed RNG
-		std::srand(static_cast<unsigned int>(std::time(0)));
+		// Seed RNG with random_device for better randomness
+		std::srand(static_cast<unsigned int>(std::time(nullptr)));
 
 		std::vector<int> selectedIndices;
 
 		// Loop until we have found K unique centers
 		while (selectedIndices.size() < (size_t)numClusters) {
-			// Select index uniformly at random [cite: 26]
+			// Select index uniformly at random
 			int randomIndex = std::rand() % numOfPoints;
 
 			// Ensure we don't pick the same point twice

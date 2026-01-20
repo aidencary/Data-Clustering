@@ -30,12 +30,8 @@ public:
 			if (i < dimensions.size() - 1) {
 				std::cout << " ";
 			}
-			// Otherwise, print a newline
-			else {
-				std::cout << std::endl;
-			}
 		}
+		std::cout << std::endl;
 	}
-
 
 };

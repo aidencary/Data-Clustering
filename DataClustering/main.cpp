@@ -4,11 +4,15 @@ Professor: Dr. Emre Celebi
 CSC1 4372 Data Clustering
 Date: 18 January 2026
 Programming Practices: https://google.github.io/styleguide/cppguide.html
+How to Compile: Use a C++17 compatible compiler
+Compile: g++ main.cpp -o main.exe -std=c++17
+Run: ./main.exe <filename> <K> <I> <T> <R>
+Example: ./main.exe iris_bezdek.txt 3 100 0.000001 100
 */
 #include <iostream>
 #include <string>
-#include "Kmeans.h"
-#include "Point.h"
+#include "include/Kmeans.h"
+#include "include/Point.h"
 
 void printExpectedParameters(const char* programName)
 {
@@ -30,10 +34,14 @@ bool setParameters(
     double& convergenceThreshold,
     int& numRuns)
 {
-	// Parse arguments
+    // Parse arguments
     try
     {
+        // Set parameters from command line arguments
+        // Prepend relative path to data directory
         dataFileName = argv[1];
+        dataFileName = "datasets/" + dataFileName; // Prepend relative path to data directory
+
         numClusters = std::stoi(argv[2]);
         maxIterations = std::stoi(argv[3]);
         convergenceThreshold = std::stod(argv[4]);
@@ -113,7 +121,7 @@ int main(int argc, char* argv[])
     }
 
 	// Print parameters to verify
-    printParameters(dataFileName, numClusters, maxIterations, convergenceThreshold, numRuns);
+    // printParameters(dataFileName, numClusters, maxIterations, convergenceThreshold, numRuns);
 
 	// Create Kmeans object with the provided parameters
     Kmeans kmeans(
@@ -129,16 +137,12 @@ int main(int argc, char* argv[])
         return 1;
 	}
 
-	// Print dataset dimensionality and number of points
-	int dimensionality = 0;
-	int numOfPoints = 0;
-	std::cout << "Dataset Dimensionality: " << dimensionality << std::endl;
-	std::cout << "Number of Data Points: " << numOfPoints << std::endl;
-
 	// Select and print initial random cluster centers
-	kmeans.selectAndPrintCenters();
+    kmeans.printData();
+	//kmeans.selectAndPrintCenters();
 
 
     return 0;
 }
+
 
