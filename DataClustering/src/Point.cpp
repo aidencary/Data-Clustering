@@ -1,6 +1,6 @@
 #include "../include/Point.h"
 
-// Constructor implementation
+// Constructor
 Point::Point() {}
 
 // Add a dimension value to the point
@@ -24,4 +24,17 @@ void Point::print() const {
 		}
 	}
 	std::cout << std::endl;
+}
+
+// Print the point to an output stream
+void Point::print(std::ostream& os) const {
+	for (size_t i = 0; i < dimensions.size(); ++i) {
+		// Print the value
+		os << dimensions[i];
+		// Print a space only if it's not the last dimension
+		if (i < dimensions.size() - 1) {
+			os << " ";
+		}
+	}
+	os << std::endl;
 }

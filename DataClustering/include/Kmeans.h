@@ -18,20 +18,15 @@ private:
 	std::vector<Point> dataset;
 
 public:
-	// Constructor
 	Kmeans(
 		const std::string& fileName,
 		int numClusters,
 		int maxIterations,
 		double convergenceThreshold,
 		int numOfRuns);
-
-	// Read data from the file
 	bool readData();
-
-	// Print dataset
 	void printData() const;
-
+	void selectAndPrintCenters();
 	// Utility function to test if a vector contains a value
 	template <typename T>
 	// Returns true if value is found in vec, false otherwise
@@ -41,8 +36,4 @@ public:
 		}
 		return false;
 	}
-
-	// Selects K centers uniformly at random from the existing data points
-	void selectAndPrintCenters();
-
 };

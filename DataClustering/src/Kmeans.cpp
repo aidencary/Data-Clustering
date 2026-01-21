@@ -1,6 +1,6 @@
 #include "../include/Kmeans.h"
 
-// Constructor implementation
+// Constructor
 Kmeans::Kmeans(
 	const std::string& fileName,
 	int numClusters,
@@ -54,8 +54,6 @@ bool Kmeans::readData() {
 		}
 		dataset.push_back(point);
 	}
-
-	// Close the input file
 	inputFile.close();
 	return true;
 }
@@ -69,10 +67,18 @@ void Kmeans::printData() const {
 
 // Selects K centers uniformly at random from the existing data points
 void Kmeans::selectAndPrintCenters() {
-	// Seed RNG with random_device for better randomness
+	// Seed rng
 	std::srand(static_cast<unsigned int>(std::time(nullptr)));
 
 	std::vector<int> selectedIndices;
+	
+	// Create output file in the output folder
+	std::string outputFileName = "../output/output_" + fileName;
+	std::ofstream outputFile(outputFileName);
+	
+	if (!outputFile.is_open()) {
+		std::cerr << "Error: Could not create output file: " << outputFileName << std::endl;
+	}
 
 	// Loop until we have found K unique centers
 	while (selectedIndices.size() < (size_t)numClusters) {
@@ -85,6 +91,14 @@ void Kmeans::selectAndPrintCenters() {
 
 			// Print the point immediately
 			dataset[randomIndex].print();
+			
+			// Write to a file
+			if (outputFile.is_open()) {
+				dataset[randomIndex].print(outputFile);
+			}
 		}
+	}
+	if (outputFile.is_open()) {
+		outputFile.close();
 	}
 }

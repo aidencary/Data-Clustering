@@ -2,14 +2,26 @@
 Author: Aiden Cary
 Professor: Dr. Emre Celebi
 CSCI 4372 Data Clustering
+Phase 1
 Date: 21 January 2026
 
 Programming Practices: https://google.github.io/styleguide/cppguide.html
 
 How to Compile: Use a C++17 compatible compiler
-Compile: g++ main.cpp ../src/Kmeans.cpp ../src/Point.cpp -o main.exe -std=c++17 -I../include
+Navigate to the directory containing main.cpp (src) and run the following command:
+Compile (using g++): g++ main.cpp ../src/Kmeans.cpp ../src/Point.cpp -o main.exe -std=c++17 -I../include
 Run: ./main.exe <filename> <K> <I> <T> <R>
-Example: ./main.exe iris_bezdek.txt 3 100 0.000001 100
+Examples: 
+>> ./main.exe iris_bezdek.txt 3 100 0.000001 100
+>> ./main.exe glass.txt 6 100 0.000001 100
+>> ./main.exe ionosphere.txt 2 100 0.000001 100
+>> ./main.exe iris_bezdek.txt 3 100 0.000001 100
+>> ./main.exe landsat.txt 6 100 0.000001 100
+>> ./main.exe letter_recognition.txt 26 100 0.000001 100
+>> ./main.exe segmentation.txt 7 100 0.000001 100
+>> ./main.exe vehicle.txt 4 100 0.000001 100
+>> ./main.exe wine.txt 3 100 0.000001 100
+>> ./main.exe yeast.txt 10 100 0.000001 100
 */
 #include <iostream>
 #include <string>
@@ -19,7 +31,7 @@ Example: ./main.exe iris_bezdek.txt 3 100 0.000001 100
 void printExpectedParameters(const char* programName)
 {
     std::cerr
-        << "Usage: " << programName << " <F> <K> <I> <T> <R>\n"
+        << "  Only 5 parameters expected: " << programName << " <F> <K> <I> <T> <R>\n"
         << "  <F>: data file name\n"
         << "  <K>: number of clusters (> 1)\n"
         << "  <I>: maximum number of iterations (positive int)\n"
@@ -36,14 +48,12 @@ bool setParameters(
     double& convergenceThreshold,
     int& numRuns)
 {
-    // Parse arguments
     try
     {
         // Set parameters from command line arguments
-        // Prepend relative path to data directory
         dataFileName = argv[1];
-        dataFileName = dataFileName; // Prepend relative path to data directory
-
+        // If stoi is given a floating point number, it will only read up to the decimal point (e.g., "3.5" becomes 3)
+        // May change to stod and static_cast<int> if this is not desired
         numClusters = std::stoi(argv[2]);
         maxIterations = std::stoi(argv[3]);
         convergenceThreshold = std::stod(argv[4]);
@@ -139,12 +149,11 @@ int main(int argc, char* argv[])
         return 1;
 	}
 
-    // Test if data was read correctly by printing it
+    // Test if data was read correctly
     // kmeans.printData();
     
 	// Select and print initial random cluster centers
 	kmeans.selectAndPrintCenters();
-
 
     return 0;
 }
