@@ -1,35 +1,42 @@
 #pragma once
+
+#include <ctime>
+#include <fstream>
+#include <iostream>
+#include <random>
 #include <string>
 #include <vector>
-#include <iostream>
-#include <fstream>
-#include <random>
-#include <ctime>
+
 #include "Point.h"
 
+// Implements K-means clustering algorithm.
 class Kmeans {
 private:
-	std::string fileName; // <F>
-	int numClusters, maxIterations, numOfRuns; // <K>, <I>, <R>
-	double convergenceThreshold; // <T>
-	int numOfPoints, dimensionality;
-
-	// Dataset of points
-	std::vector<Point> dataset;
+	std::string file_name_;
+	int num_clusters_;
+	int max_iterations_;
+	int num_of_runs_;
+	double convergence_threshold_;
+	int num_of_points_;
+	int dimensionality_;
+	std::vector<Point> dataset_;
 
 public:
+	// Constructor
 	Kmeans(
-		const std::string& fileName,
-		int numClusters,
-		int maxIterations,
-		double convergenceThreshold,
-		int numOfRuns);
+		const std::string& file_name,
+		int num_clusters,
+		int max_iterations,
+		double convergence_threshold,
+		int num_of_runs);
+	// Reads data from the file specified in the constructor.
 	bool readData();
+	// Prints all data points to standard output.
 	void printData() const;
+	// Selects K random centers and prints them to standard output and file.
 	void selectAndPrintCenters();
-	// Utility function to test if a vector contains a value
+	// Returns true if value is found in vec.
 	template <typename T>
-	// Returns true if value is found in vec, false otherwise
 	bool contains(const std::vector<T>& vec, const T& value) {
 		for (const auto& elem : vec) {
 			if (elem == value) return true;

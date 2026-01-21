@@ -25,13 +25,15 @@ Examples:
 */
 #include <iostream>
 #include <string>
+
 #include "../include/Kmeans.h"
 #include "../include/Point.h"
 
-void printExpectedParameters(const char* programName)
+// Print expected parameters message
+void printExpectedParameters(const char* program_name)
 {
     std::cerr
-        << "  Only 5 parameters expected: " << programName << " <F> <K> <I> <T> <R>\n"
+        << "  Only 5 parameters expected: " << program_name << " <F> <K> <I> <T> <R>\n"
         << "  <F>: data file name\n"
         << "  <K>: number of clusters (> 1)\n"
         << "  <I>: maximum number of iterations (positive int)\n"
@@ -39,35 +41,31 @@ void printExpectedParameters(const char* programName)
         << "  <R>: number of runs (positive int)\n";
 }
 
+// Set parameters from command line arguments
 bool setParameters(
     int argc,
     char* argv[],
-    std::string& dataFileName,
-    int& numClusters,
-    int& maxIterations,
-    double& convergenceThreshold,
-    int& numRuns)
+    std::string& data_file_name,
+    int& num_clusters,
+    int& max_iterations,
+    double& convergence_threshold,
+    int& num_runs)
 {
     try
     {
-        // Set parameters from command line arguments
-        dataFileName = argv[1];
-        // If stoi is given a floating point number, it will only read up to the decimal point (e.g., "3.5" becomes 3)
-        // May change to stod and static_cast<int> if this is not desired
-        numClusters = std::stoi(argv[2]);
-        maxIterations = std::stoi(argv[3]);
-        convergenceThreshold = std::stod(argv[4]);
-        numRuns = std::stoi(argv[5]);
+        data_file_name = argv[1];
+        num_clusters = std::stoi(argv[2]);
+        max_iterations = std::stoi(argv[3]);
+        convergence_threshold = std::stod(argv[4]);
+        num_runs = std::stoi(argv[5]);
     }
-	// Catch conversion errors when input is not valid
     catch (const std::exception& ex)
     {
         std::cerr << "Error parsing arguments: " << ex.what() << std::endl;
         return false;
     }
 
-    // Input validation
-    if (numClusters <= 1 || maxIterations <= 0 || convergenceThreshold < 0.0 || numRuns <= 0)
+    if (num_clusters <= 1 || max_iterations <= 0 || convergence_threshold < 0.0 || num_runs <= 0)
     {
         std::cerr << "Invalid values: require K>1, I>0, T>=0, R>0." << std::endl;
         return false;
@@ -76,18 +74,19 @@ bool setParameters(
     return true;
 }
 
+// Print the parameters to standard output
 void printParameters(
-    const std::string& dataFileName,
-    int numClusters,
-    int maxIterations,
-    double convergenceThreshold,
-    int numRuns)
+    const std::string& data_file_name,
+    int num_clusters,
+    int max_iterations,
+    double convergence_threshold,
+    int num_runs)
 {
-    std::cout << "Data File Name <F>: " << dataFileName << std::endl;
-    std::cout << "Number of Clusters <K>: " << numClusters << std::endl;
-    std::cout << "Maximum Iterations <I>: " << maxIterations << std::endl;
-    std::cout << "Convergence Threshold <T>: " << convergenceThreshold << std::endl;
-    std::cout << "Number of Runs <R>: " << numRuns << std::endl;
+    std::cout << "Data File Name <F>: " << data_file_name << std::endl;
+    std::cout << "Number of Clusters <K>: " << num_clusters << std::endl;
+    std::cout << "Maximum Iterations <I>: " << max_iterations << std::endl;
+    std::cout << "Convergence Threshold <T>: " << convergence_threshold << std::endl;
+    std::cout << "Number of Runs <R>: " << num_runs << std::endl;
 }
 
 
@@ -106,56 +105,43 @@ argv - Argument vector for five command line arguments (not hard-coded):
 */
 int main(int argc, char* argv[])
 {
-    // Check for correct number of arguments
 	if (argc != 6)
     {
         printExpectedParameters(argv[0]);
+        return 1;
     }
 
-	// Declare parameters
-    std::string dataFileName;
-    int numClusters;
-    int maxIterations;
-    double convergenceThreshold;
-    int numRuns;
+    std::string data_file_name;
+    int num_clusters;
+    int max_iterations;
+    double convergence_threshold;
+    int num_runs;
 
-	// Set parameters (from command line arguments)
     if (!setParameters(
             argc,
             argv,
-            dataFileName,
-            numClusters,
-            maxIterations,
-            convergenceThreshold,
-            numRuns))
+            data_file_name,
+            num_clusters,
+            max_iterations,
+            convergence_threshold,
+            num_runs))
     {
         return 1;
     }
 
-	// Print parameters to verify
-    // printParameters(dataFileName, numClusters, maxIterations, convergenceThreshold, numRuns);
-
-	// Create Kmeans object with the provided parameters
     Kmeans kmeans(
-        dataFileName,
-        numClusters,
-        maxIterations,
-        convergenceThreshold,
-		numRuns);
+        data_file_name,
+        num_clusters,
+        max_iterations,
+        convergence_threshold,
+		num_runs);
     
-	// Read data from the specified file
     if (!kmeans.readData())
     {
         return 1;
 	}
-
-    // Test if data was read correctly
-    // kmeans.printData();
     
-	// Select and print initial random cluster centers
 	kmeans.selectAndPrintCenters();
 
     return 0;
 }
-
-

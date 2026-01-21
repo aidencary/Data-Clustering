@@ -1,66 +1,55 @@
 #include "../include/Kmeans.h"
 
-// Constructor
 Kmeans::Kmeans(
-	const std::string& fileName,
-	int numClusters,
-	int maxIterations,
-	double convergenceThreshold,
-	int numOfRuns)
-	: fileName(fileName),
-	  numClusters(numClusters),
-	  maxIterations(maxIterations),
-	  convergenceThreshold(convergenceThreshold),
-	  numOfRuns(numOfRuns),
-	  numOfPoints(0),
-	  dimensionality(0) {}
+	const std::string& file_name,
+	int num_clusters,
+	int max_iterations,
+	double convergence_threshold,
+	int num_of_runs)
+	: file_name_(file_name),
+	  num_clusters_(num_clusters),
+	  max_iterations_(max_iterations),
+	  convergence_threshold_(convergence_threshold),
+	  num_of_runs_(num_of_runs),
+	  num_of_points_(0),
+	  dimensionality_(0) {}
 
-// Read data from the file
 bool Kmeans::readData() {
-	std::ifstream inputFile(fileName);
+	std::ifstream inputFile(file_name_);
 	
-	// If file doesn't open, try with datasets/ prefix
 	if (!inputFile.is_open()) {
-		std::string pathWithPrefix = "../datasets/" + fileName;
+		std::string pathWithPrefix = "../datasets/" + file_name_;
 		inputFile.open(pathWithPrefix);
 		
-		// If that also doesn't work, report error
 		if (!inputFile.is_open()) {
-			std::cerr << "Error opening file: " << fileName << " or " << pathWithPrefix << std::endl;
+			std::cerr << "Error opening file: " << file_name_ << " or " << pathWithPrefix << std::endl;
 			return false;
 		}
 	}
 
-	// Read number of data points and dimensionality from the first line and if valid, store them
-	if (!(inputFile >> numOfPoints >> dimensionality)) {
+	if (!(inputFile >> num_of_points_ >> dimensionality_)) {
 		std::cerr << "Error reading number of points and dimensionality." << std::endl;
 		return false;
 	}
 
-	// Print number of points and dimensionality
-	// std::cout << "Number of Points: " << numOfPoints << ", Dimensionality: " << dimensionality << std::endl;
-
-	// Read the number of data points
-	for (int i = 0; i < numOfPoints; ++i) {
+	for (int i = 0; i < num_of_points_; ++i) {
 		Point point;
-		for (int d = 0; d < dimensionality; ++d) {
+		for (int d = 0; d < dimensionality_; ++d) {
 			double val;
-			// Read each dimension value and if valid, add it to the point
 			if (!(inputFile >> val)) {
 				std::cerr << "Error reading data point values." << std::endl;
 				return false;
 			}
 			point.addDimension(val);
 		}
-		dataset.push_back(point);
+		dataset_.push_back(point);
 	}
 	inputFile.close();
 	return true;
 }
 
-// Print dataset
 void Kmeans::printData() const {
-	for (const auto& point : dataset) {
+	for (const auto& point : dataset_) {
 		point.print();
 	}
 }
@@ -73,7 +62,7 @@ void Kmeans::selectAndPrintCenters() {
 	std::vector<int> selectedIndices;
 	
 	// Create output file in the output folder
-	std::string outputFileName = "../output/output_" + fileName;
+	std::string outputFileName = "../output/output_" + file_name_;
 	std::ofstream outputFile(outputFileName);
 	
 	if (!outputFile.is_open()) {
@@ -81,20 +70,20 @@ void Kmeans::selectAndPrintCenters() {
 	}
 
 	// Loop until we have found K unique centers
-	while (selectedIndices.size() < (size_t)numClusters) {
+	while (selectedIndices.size() < (size_t)num_clusters_) {
 		// Select index uniformly at random
-		int randomIndex = std::rand() % numOfPoints;
+		int randomIndex = std::rand() % num_of_points_;
 
 		// Ensure we don't pick the same point twice
 		if (!contains(selectedIndices, randomIndex)) {
 			selectedIndices.push_back(randomIndex);
 
-			// Print the point immediately
-			dataset[randomIndex].print();
+			// Print the point
+			dataset_[randomIndex].print();
 			
 			// Write to a file
 			if (outputFile.is_open()) {
-				dataset[randomIndex].print(outputFile);
+				dataset_[randomIndex].print(outputFile);
 			}
 		}
 	}
