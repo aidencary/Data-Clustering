@@ -56,8 +56,9 @@ void Kmeans::printData() const {
 
 // Selects K centers uniformly at random from the existing data points
 void Kmeans::selectAndPrintCenters() {
-	// Seed rng
-	std::srand(static_cast<unsigned int>(std::time(nullptr)));
+	std::random_device rd; // seed source for the random number engine
+	std::mt19937 gen(rd()); // Mersenne Twister engine seeded with rd()
+	std::uniform_int_distribution<> dis(0, num_of_points_ - 1);
 
 	std::vector<int> selectedIndices;
 	
@@ -72,7 +73,7 @@ void Kmeans::selectAndPrintCenters() {
 	// Loop until we have found K unique centers
 	while (selectedIndices.size() < (size_t)num_clusters_) {
 		// Select index uniformly at random
-		int randomIndex = std::rand() % num_of_points_;
+		int randomIndex = dis(gen);
 
 		// Ensure we don't pick the same point twice
 		if (!contains(selectedIndices, randomIndex)) {
