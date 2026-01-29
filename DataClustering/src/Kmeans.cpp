@@ -102,42 +102,124 @@ void Kmeans::KmeansAlgorithm() {
 
 	for (int run = 0; run < num_of_runs_; ++run) {
 		std::cout << "Run " << (run + 1) << std::endl;
-		std::cout << "----" << std::endl;
+		std::cout << "-----" << std::endl;
 
-	std::vector<int> selectedIndices;
-	
-	// Create output file in the output folder
-	std::string outputFileName = "../output/output_" + file_name_;
-	std::ofstream outputFile(outputFileName);
-	
-	if (!outputFile.is_open()) {
-		std::cerr << "Error: Could not create output file: " << outputFileName << std::endl;
-	}
-	// Loop until we have found K unique centers
-	while (selectedIndices.size() < (size_t)num_clusters_) {
-		// Select index uniformly at random
-		int randomIndex = dis(gen);
+		// Vector to hold K cluster centers (Points)
+		std::vector<Point> clusterCenters;
+		
+		// Vector to hold cluster assignments for each point
+		std::vector<int> assignments(num_of_points_);
 
-		// Ensure we don't pick the same point twice
-		if (!contains(selectedIndices, randomIndex)) {
-			selectedIndices.push_back(randomIndex);
+		// Select K unique random points as initial cluster centers
+		std::vector<int> selectedIndices;
+		while (selectedIndices.size() < (size_t)num_clusters_) {
+			int randomIndex = dis(gen);
+			if (!contains(selectedIndices, randomIndex)) {
+				selectedIndices.push_back(randomIndex);
+				clusterCenters.push_back(dataset_[randomIndex]);
+			}
 		}
-	}
-	// Close the output file
-	if (outputFile.is_open()) {
-		outputFile.close();
-	}
+		// K-means iterations (using max() to not round or truncate double vals)
+		double previousSSE = std::numeric_limits<double>::max();
 
-	double previousSSE = std::numeric_limits<double>::max();
+		for (int iteration = 0; iteration < max_iterations_; ++iteration) {
+			// Assignment Step: Assign each point to the nearest cluster center
+			for (int i = 0; i < num_of_points_; ++i) {
+				double minDistance = std::numeric_limits<double>::max();
+				int nearestCluster = 0;
+				
+				for (int k = 0; k < num_clusters_; ++k) {
+					// Calculate squared Euclidean distance (L2)
+					double squaredDist = 0.0;
+					for (int d = 0; d < dimensionality_; ++d) {
+						double diff = dataset_[i].getVal(d) - clusterCenters[k].getVal(d);
+						squaredDist += diff * diff;
+					}
+					
+					// Find the nearest cluster center
+					if (squaredDist < minDistance) {
+						minDistance = squaredDist;
+						nearestCluster = k;
+					}
+				}
+				// Assign point to nearest cluster
+				assignments[i] = nearestCluster;
+			}
 
-	for (int iter = 0; iter < max_iterations_; ++iter) {
-		// Convergence Check: Calculate SSE and check for convergence
-		double currentSSE = 0.0;
-		if (std::abs(previousSSE - currentSSE) < convergence_threshold_) {
-			break; // Converged
+			// Update Step: Recalculate cluster centers
+			std::vector<Point> newCenters;
+			std::vector<int> clusterSizes(num_clusters_, 0);
+			
+			// Count points in each cluster
+			for (int i = 0; i < num_of_points_; ++i) {
+				clusterSizes[assignments[i]]++;
+			}
+			
+			// Calculate new centers
+			for (int k = 0; k < num_clusters_; ++k) {
+				// Sum dimensions of points assigned to this cluster
+				std::vector<double> sums(dimensionality_, 0.0);
+
+				for (int i = 0; i < num_of_points_; ++i) {
+					if (assignments[i] == k) {
+						for (int d = 0; d < dimensionality_; ++d) {
+							sums[d] += dataset_[i].getVal(d);
+						}
+					}
+				}
+				
+				Point newCenter;
+				for (int d = 0; d < dimensionality_; ++d) {
+					if (clusterSizes[k] > 0) {
+						newCenter.addDimension(sums[d] / clusterSizes[k]);
+					} else {
+						// If a cluster has no points assigned, retain the old center
+						newCenter.addDimension(clusterCenters[k].getVal(d));
+					}
+				}
+				newCenters.push_back(newCenter);
+			}
+			
+			clusterCenters = newCenters;
+
+			// Calculate SSE (Sum of Squared Error)
+			double currentSSE = 0.0;
+			for (int i = 0; i < num_of_points_; ++i) {
+				int cluster = assignments[i];
+				for (int d = 0; d < dimensionality_; ++d) {
+					double diff = dataset_[i].getVal(d) - clusterCenters[cluster].getVal(d);
+					currentSSE += diff * diff;
+				}
+			}
+			
+			std::cout << "Iteration " << (iteration + 1) << ": SSE = " << currentSSE << std::endl;
+
+			/*
+			// A test condition for the Iris Bezdek dataset for if the SSE is lower than the known global optimum
+			if (currentSSE < 78.8514) {
+				std::cerr << "Lower than global optimum for Iris Bezdek dataset, something is wrong." << std::endl;
+			}
+			*/
+			
+			/*
+			// Perfect Clustering Check for Iris Bezdek dataset
+			double temp = currentSSE = std::round(currentSSE * 10000.0) / 10000.0;
+			if (currentSSE == 78.8514) {
+				std::cout << "----\nGlobal opt (78.8514) reached\n----" << std::endl;
+				break; // Perfect clustering
+			}
+			*/
+
+			// Convergence Check: Check relative improvement in SSE
+			if (previousSSE != std::numeric_limits<double>::max()) {
+				double relativeImprovement = (previousSSE - currentSSE) / previousSSE;
+				if (relativeImprovement < convergence_threshold_) {
+					break; // Converged
+				}
+			}
+			
+			previousSSE = currentSSE;
 		}
-
-		previousSSE = currentSSE;
 	}
 
 }

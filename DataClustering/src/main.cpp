@@ -12,7 +12,7 @@ Navigate to the directory containing main.cpp (src) and run the following comman
 Compile (using g++): g++ main.cpp ../src/Kmeans.cpp ../src/Point.cpp -o main.exe -std=c++17 -I../include
 Run: ./main.exe <filename> <K> <I> <T> <R>
 Examples: 
->> ./main.exe iris_bezdek.txt 3 100 0.000001 100
+>> ./main.exe iris_bezdek.txt 3 100 0.0001 100
 >> ./main.exe glass.txt 6 100 0.000001 100
 >> ./main.exe ionosphere.txt 2 100 0.000001 100
 >> ./main.exe iris_bezdek.txt 3 100 0.000001 100
