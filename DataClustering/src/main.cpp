@@ -141,7 +141,11 @@ int main(int argc, char* argv[])
         return 1;
 	}
     
-	kmeans.selectAndPrintCenters();
+    // Phase 1: Select and print K random centers
+	// kmeans.selectAndPrintCenters();
+
+    // Phase 2: Implement K-means algorithm
+    kmeans.KmeansAlgorithm();
 
     return 0;
 }

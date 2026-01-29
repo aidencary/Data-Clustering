@@ -91,4 +91,53 @@ void Kmeans::selectAndPrintCenters() {
 	if (outputFile.is_open()) {
 		outputFile.close();
 	}
+
+}
+
+void Kmeans::KmeansAlgorithm() {
+	// Implementation of the K-means algorithm would go here
+	std::random_device rd; // seed source for the random number engine
+	std::mt19937 gen(rd()); // Mersenne Twister engine seeded with rd()
+	std::uniform_int_distribution<> dis(0, num_of_points_ - 1);
+
+	for (int run = 0; run < num_of_runs_; ++run) {
+		std::cout << "Run " << (run + 1) << std::endl;
+		std::cout << "----" << std::endl;
+
+	std::vector<int> selectedIndices;
+	
+	// Create output file in the output folder
+	std::string outputFileName = "../output/output_" + file_name_;
+	std::ofstream outputFile(outputFileName);
+	
+	if (!outputFile.is_open()) {
+		std::cerr << "Error: Could not create output file: " << outputFileName << std::endl;
+	}
+	// Loop until we have found K unique centers
+	while (selectedIndices.size() < (size_t)num_clusters_) {
+		// Select index uniformly at random
+		int randomIndex = dis(gen);
+
+		// Ensure we don't pick the same point twice
+		if (!contains(selectedIndices, randomIndex)) {
+			selectedIndices.push_back(randomIndex);
+		}
+	}
+	// Close the output file
+	if (outputFile.is_open()) {
+		outputFile.close();
+	}
+
+	double previousSSE = std::numeric_limits<double>::max();
+
+	for (int iter = 0; iter < max_iterations_; ++iter) {
+		// Convergence Check: Calculate SSE and check for convergence
+		double currentSSE = 0.0;
+		if (std::abs(previousSSE - currentSSE) < convergence_threshold_) {
+			break; // Converged
+		}
+
+		previousSSE = currentSSE;
+	}
+
 }

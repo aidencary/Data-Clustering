@@ -35,6 +35,8 @@ public:
 	void printData() const;
 	// Selects K random centers and prints them to standard output and file.
 	void selectAndPrintCenters();
+	// Implements the K-means algorithm.
+	void KmeansAlgorithm();
 	// Returns true if value is found in vec.
 	template <typename T>
 	bool contains(const std::vector<T>& vec, const T& value) {
