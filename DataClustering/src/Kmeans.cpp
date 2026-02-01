@@ -54,21 +54,15 @@ void Kmeans::printData() const {
 	}
 }
 
-// Selects K centers uniformly at random from the existing data points
-void Kmeans::selectAndPrintCenters() {
+std::vector<Point> Kmeans::selectCenters() {
+	// Step 1 of K-means Algorithm: Select K points as initial centroids
+	// Centroids are selected uniformly at random from the dataset using C++11 <random> library
 	std::random_device rd; // seed source for the random number engine
 	std::mt19937 gen(rd()); // Mersenne Twister engine seeded with rd()
 	std::uniform_int_distribution<> dis(0, num_of_points_ - 1);
 
 	std::vector<int> selectedIndices;
-	
-	// Create output file in the output folder
-	std::string outputFileName = "../output/output_" + file_name_;
-	std::ofstream outputFile(outputFileName);
-	
-	if (!outputFile.is_open()) {
-		std::cerr << "Error: Could not create output file: " << outputFileName << std::endl;
-	}
+	std::vector<Point> centers;
 
 	// Loop until we have found K unique centers
 	while (selectedIndices.size() < (size_t)num_clusters_) {
@@ -78,61 +72,57 @@ void Kmeans::selectAndPrintCenters() {
 		// Ensure we don't pick the same point twice
 		if (!contains(selectedIndices, randomIndex)) {
 			selectedIndices.push_back(randomIndex);
-
-			// Print the point
-			dataset_[randomIndex].print();
-			
-			// Write to a file
-			if (outputFile.is_open()) {
-				dataset_[randomIndex].print(outputFile);
-			}
+			centers.push_back(dataset_[randomIndex]);
 		}
 	}
-	if (outputFile.is_open()) {
-		outputFile.close();
-	}
+	return centers;
+}
 
+bool Kmeans::checkIrisBezdekOptimum(double currentSSE) const {
+	// Test condition for the Iris Bezdek dataset
+	// Check if SSE is lower than the known global optimum
+	if (currentSSE < 78.8514) {
+		std::cerr << "Lower than global optimum for Iris Bezdek dataset, something is wrong." << std::endl;
+	}
+	
+	// Perfect Clustering Check for Iris Bezdek dataset
+	double roundedSSE = std::round(currentSSE * 10000.0) / 10000.0;
+	if (roundedSSE == 78.8514) {
+		std::cout << "----\nGlobal opt (78.8514) reached\n----" << std::endl;
+		return true; // Perfect clustering - signal to break
+	}
+	return false;
 }
 
 void Kmeans::KmeansAlgorithm() {
-	// Implementation of the K-means algorithm would go here
-	std::random_device rd; // seed source for the random number engine
-	std::mt19937 gen(rd()); // Mersenne Twister engine seeded with rd()
-	std::uniform_int_distribution<> dis(0, num_of_points_ - 1);
+	// Algorithm 7.1 Basic K-means Algorithm (from Cluster Analysis Basic Concepts and Algorithms)
+	// Do not use pow() or sqrt()!
+	// Double variables use max() to not round or truncate double vals
 
 	for (int run = 0; run < num_of_runs_; ++run) {
 		std::cout << "Run " << (run + 1) << std::endl;
 		std::cout << "-----" << std::endl;
 
-		// Vector to hold K cluster centers (Points)
-		std::vector<Point> clusterCenters;
+		// Step 1: Select K points as initial centroids
+		std::vector<Point> centroids = selectCenters();
 		
 		// Vector to hold cluster assignments for each point
 		std::vector<int> assignments(num_of_points_);
 
-		// Select K unique random points as initial cluster centers
-		std::vector<int> selectedIndices;
-		while (selectedIndices.size() < (size_t)num_clusters_) {
-			int randomIndex = dis(gen);
-			if (!contains(selectedIndices, randomIndex)) {
-				selectedIndices.push_back(randomIndex);
-				clusterCenters.push_back(dataset_[randomIndex]);
-			}
-		}
-		// K-means iterations (using max() to not round or truncate double vals)
+		// Step 2: Repeat until convergence
 		double previousSSE = std::numeric_limits<double>::max();
 
 		for (int iteration = 0; iteration < max_iterations_; ++iteration) {
-			// Assignment Step: Assign each point to the nearest cluster center
+			// Step 3: Form K clusters by assigning each point to its closest centroid
 			for (int i = 0; i < num_of_points_; ++i) {
 				double minDistance = std::numeric_limits<double>::max();
 				int nearestCluster = 0;
 				
 				for (int k = 0; k < num_clusters_; ++k) {
-					// Calculate squared Euclidean distance (L2)
+					// Calculate squared Euclidean distance (no sqrt needed for comparison)
 					double squaredDist = 0.0;
 					for (int d = 0; d < dimensionality_; ++d) {
-						double diff = dataset_[i].getVal(d) - clusterCenters[k].getVal(d);
+						double diff = dataset_[i].getVal(d) - centroids[k].getVal(d);
 						squaredDist += diff * diff;
 					}
 					
@@ -146,7 +136,7 @@ void Kmeans::KmeansAlgorithm() {
 				assignments[i] = nearestCluster;
 			}
 
-			// Update Step: Recalculate cluster centers
+			// Step 4: Recompute the centroid of each cluster
 			std::vector<Point> newCenters;
 			std::vector<int> clusterSizes(num_clusters_, 0);
 			
@@ -161,6 +151,7 @@ void Kmeans::KmeansAlgorithm() {
 				std::vector<double> sums(dimensionality_, 0.0);
 
 				for (int i = 0; i < num_of_points_; ++i) {
+					// If point i is assigned to cluster k, add its dimensions to sums
 					if (assignments[i] == k) {
 						for (int d = 0; d < dimensionality_; ++d) {
 							sums[d] += dataset_[i].getVal(d);
@@ -168,48 +159,43 @@ void Kmeans::KmeansAlgorithm() {
 					}
 				}
 				
+				// Calculate mean for each dimension to get new center
 				Point newCenter;
+
 				for (int d = 0; d < dimensionality_; ++d) {
+					// Avoid dividing by zero
 					if (clusterSizes[k] > 0) {
 						newCenter.addDimension(sums[d] / clusterSizes[k]);
 					} else {
 						// If a cluster has no points assigned, retain the old center
-						newCenter.addDimension(clusterCenters[k].getVal(d));
+						newCenter.addDimension(centroids[k].getVal(d));
 					}
 				}
 				newCenters.push_back(newCenter);
 			}
 			
-			clusterCenters = newCenters;
+			centroids = newCenters;
 
-			// Calculate SSE (Sum of Squared Error)
+			// Calculate SSE (Sum of Squared Error)/Scatter
 			double currentSSE = 0.0;
+			// Calculate the error of each data point to its assigned centroid and then compute the total SSE.
 			for (int i = 0; i < num_of_points_; ++i) {
 				int cluster = assignments[i];
 				for (int d = 0; d < dimensionality_; ++d) {
-					double diff = dataset_[i].getVal(d) - clusterCenters[cluster].getVal(d);
+					double diff = dataset_[i].getVal(d) - centroids[cluster].getVal(d);
 					currentSSE += diff * diff;
 				}
 			}
 			
 			std::cout << "Iteration " << (iteration + 1) << ": SSE = " << currentSSE << std::endl;
 
-			/*
-			// A test condition for the Iris Bezdek dataset for if the SSE is lower than the known global optimum
-			if (currentSSE < 78.8514) {
-				std::cerr << "Lower than global optimum for Iris Bezdek dataset, something is wrong." << std::endl;
-			}
-			*/
-			
-			/*
-			// Perfect Clustering Check for Iris Bezdek dataset
-			double temp = currentSSE = std::round(currentSSE * 10000.0) / 10000.0;
-			if (currentSSE == 78.8514) {
-				std::cout << "----\nGlobal opt (78.8514) reached\n----" << std::endl;
-				break; // Perfect clustering
+			/* Uncomment to enable Iris Bezdek dataset test
+			if (checkIrisBezdekOptimum(currentSSE)) {
+			     break; // Perfect clustering reached
 			}
 			*/
 
+			// Step 5: Check if centroids have converged (until centroids do not change)
 			// Convergence Check: Check relative improvement in SSE
 			if (previousSSE != std::numeric_limits<double>::max()) {
 				double relativeImprovement = (previousSSE - currentSSE) / previousSSE;
@@ -217,7 +203,6 @@ void Kmeans::KmeansAlgorithm() {
 					break; // Converged
 				}
 			}
-			
 			previousSSE = currentSSE;
 		}
 	}

@@ -33,10 +33,13 @@ public:
 	bool readData();
 	// Prints all data points to standard output.
 	void printData() const;
-	// Selects K random centers and prints them to standard output and file.
-	void selectAndPrintCenters();
+	// Selects K random centers and returns them.
+	std::vector<Point> selectCenters();
 	// Implements the K-means algorithm.
 	void KmeansAlgorithm();
+	// Test method for Iris Bezdek dataset: checks if SSE is at or below global optimum (which should not be possible).
+	// Returns true if perfect clustering (78.8514) is reached and algorithm should break.
+	bool checkIrisBezdekOptimum(double currentSSE) const;
 	// Returns true if value is found in vec.
 	template <typename T>
 	bool contains(const std::vector<T>& vec, const T& value) {
