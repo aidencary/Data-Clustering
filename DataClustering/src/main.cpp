@@ -2,8 +2,8 @@
 Author: Aiden Cary
 Professor: Dr. Emre Celebi
 CSCI 4372 Data Clustering
-Phase 1
-Date: 21 January 2026
+Phase 2
+Date: 17 February 2026
 
 Programming Practices: https://google.github.io/styleguide/cppguide.html
 
@@ -11,17 +11,17 @@ How to Compile: Use a C++17 compatible compiler
 Navigate to the directory containing main.cpp (src) and run the following command:
 Compile (using g++): g++ main.cpp ../src/Kmeans.cpp ../src/Point.cpp -o main.exe -std=c++17 -I../include
 Run: ./main.exe <filename> <K> <I> <T> <R>
-Examples: 
->> ./main.exe iris_bezdek.txt 3 100 0.0001 100
->> ./main.exe glass.txt 6 100 0.000001 100
->> ./main.exe ionosphere.txt 2 100 0.000001 100
->> ./main.exe iris_bezdek.txt 3 100 0.000001 100
->> ./main.exe landsat.txt 6 100 0.000001 100
->> ./main.exe letter_recognition.txt 26 100 0.000001 100
->> ./main.exe segmentation.txt 7 100 0.000001 100
->> ./main.exe vehicle.txt 4 100 0.000001 100
->> ./main.exe wine.txt 3 100 0.000001 100
->> ./main.exe yeast.txt 10 100 0.000001 100
+Phase 2 Examples: 
+./main.exe ecoli.txt 8 100 0.0001 100
+./main.exe glass.txt 6 100 0.0001 100
+./main.exe ionosphere.txt 2 100 0.0001 100
+./main.exe iris_bezdek.txt 3 100 0.0001 100
+./main.exe landsat.txt 6 100 0.0001 100
+./main.exe letter_recognition.txt 26 100 0.0001 100
+./main.exe segmentation.txt 7 100 0.0001 100
+./main.exe vehicle.txt 4 100 0.0001 100
+./main.exe wine.txt 3 100 0.0001 100
+./main.exe yeast.txt 10 100 0.0001 100
 */
 #include <iostream>
 #include <string>
@@ -129,23 +129,23 @@ int main(int argc, char* argv[])
         return 1;
     }
 
-    Kmeans kmeans(
+    Kmeans k_means(
         data_file_name,
         num_clusters,
         max_iterations,
         convergence_threshold,
 		num_runs);
     
-    if (!kmeans.readData())
+    if (!k_means.readData())
     {
         return 1;
 	}
     
     // Phase 1: Select and print K random centers
-	// kmeans.selectAndPrintCenters();
+	// k_means.selectAndPrintCenters();
 
     // Phase 2: Implement K-means algorithm
-    kmeans.KmeansAlgorithm();
+    k_means.runKmeans();
 
     return 0;
 }

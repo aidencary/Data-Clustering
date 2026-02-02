@@ -15,19 +15,19 @@ Kmeans::Kmeans(
 	  dimensionality_(0) {}
 
 bool Kmeans::readData() {
-	std::ifstream inputFile(file_name_);
+	std::ifstream input_file(file_name_);
 	
-	if (!inputFile.is_open()) {
-		std::string pathWithPrefix = "../datasets/" + file_name_;
-		inputFile.open(pathWithPrefix);
+	if (!input_file.is_open()) {
+		std::string path_with_prefix = "../datasets/" + file_name_;
+		input_file.open(path_with_prefix);
 		
-		if (!inputFile.is_open()) {
-			std::cerr << "Error opening file: " << file_name_ << " or " << pathWithPrefix << std::endl;
+		if (!input_file.is_open()) {
+			std::cerr << "Error opening file: " << file_name_ << " or " << path_with_prefix << std::endl;
 			return false;
 		}
 	}
 
-	if (!(inputFile >> num_of_points_ >> dimensionality_)) {
+	if (!(input_file >> num_of_points_ >> dimensionality_)) {
 		std::cerr << "Error reading number of points and dimensionality." << std::endl;
 		return false;
 	}
@@ -36,7 +36,7 @@ bool Kmeans::readData() {
 		Point point;
 		for (int d = 0; d < dimensionality_; ++d) {
 			double val;
-			if (!(inputFile >> val)) {
+			if (!(input_file >> val)) {
 				std::cerr << "Error reading data point values." << std::endl;
 				return false;
 			}
@@ -44,7 +44,7 @@ bool Kmeans::readData() {
 		}
 		dataset_.push_back(point);
 	}
-	inputFile.close();
+	input_file.close();
 	return true;
 }
 
@@ -61,18 +61,18 @@ std::vector<Point> Kmeans::selectCenters() {
 	std::mt19937 gen(rd()); // Mersenne Twister engine seeded with rd()
 	std::uniform_int_distribution<> dis(0, num_of_points_ - 1);
 
-	std::vector<int> selectedIndices;
+	std::vector<int> selected_indices;
 	std::vector<Point> centers;
 
 	// Loop until we have found K unique centers
-	while (selectedIndices.size() < (size_t)num_clusters_) {
+	while (selected_indices.size() < (size_t)num_clusters_) {
 		// Select index uniformly at random
-		int randomIndex = dis(gen);
+		int random_index = dis(gen);
 
 		// Ensure we don't pick the same point twice
-		if (!contains(selectedIndices, randomIndex)) {
-			selectedIndices.push_back(randomIndex);
-			centers.push_back(dataset_[randomIndex]);
+		if (!contains(selected_indices, random_index)) {
+			selected_indices.push_back(random_index);
+			centers.push_back(dataset_[random_index]);
 		}
 	}
 	return centers;
@@ -86,22 +86,38 @@ bool Kmeans::checkIrisBezdekOptimum(double currentSSE) const {
 	}
 	
 	// Perfect Clustering Check for Iris Bezdek dataset
-	double roundedSSE = std::round(currentSSE * 10000.0) / 10000.0;
-	if (roundedSSE == 78.8514) {
+	double rounded_sse = std::round(currentSSE * 10000.0) / 10000.0;
+	if (rounded_sse == 78.8514) {
 		std::cout << "----\nGlobal opt (78.8514) reached\n----" << std::endl;
 		return true; // Perfect clustering - signal to break
 	}
 	return false;
 }
 
-void Kmeans::KmeansAlgorithm() {
+void Kmeans::runKmeans() {
 	// Algorithm 7.1 Basic K-means Algorithm (from Cluster Analysis Basic Concepts and Algorithms)
 	// Do not use pow() or sqrt()!
 	// Double variables use max() to not round or truncate double vals
 
+	// Create output file in the output folder
+	std::string output_file_name = "../output/output_" + file_name_;
+	std::ofstream output_file(output_file_name);
+	
+	if (!output_file.is_open()) {
+		std::cerr << "Error: Could not create output file: " << output_file_name << std::endl;
+	}
+
+	// Track best run across all executions
+	double best_sse = std::numeric_limits<double>::max();
+	int best_run = 0;
+
 	for (int run = 0; run < num_of_runs_; ++run) {
 		std::cout << "Run " << (run + 1) << std::endl;
 		std::cout << "-----" << std::endl;
+		if (output_file.is_open()) {
+			output_file << "Run " << (run + 1) << std::endl;
+			output_file << "-----" << std::endl;
+		}
 
 		// Step 1: Select K points as initial centroids
 		std::vector<Point> centroids = selectCenters();
@@ -110,39 +126,39 @@ void Kmeans::KmeansAlgorithm() {
 		std::vector<int> assignments(num_of_points_);
 
 		// Step 2: Repeat until convergence
-		double previousSSE = std::numeric_limits<double>::max();
+		double previous_sse = std::numeric_limits<double>::max();
 
 		for (int iteration = 0; iteration < max_iterations_; ++iteration) {
 			// Step 3: Form K clusters by assigning each point to its closest centroid
 			for (int i = 0; i < num_of_points_; ++i) {
-				double minDistance = std::numeric_limits<double>::max();
-				int nearestCluster = 0;
+				double min_distance = std::numeric_limits<double>::max();
+				int nearest_cluster = 0;
 				
 				for (int k = 0; k < num_clusters_; ++k) {
 					// Calculate squared Euclidean distance (no sqrt needed for comparison)
-					double squaredDist = 0.0;
+					double squared_dist = 0.0;
 					for (int d = 0; d < dimensionality_; ++d) {
 						double diff = dataset_[i].getVal(d) - centroids[k].getVal(d);
-						squaredDist += diff * diff;
+						squared_dist += diff * diff;
 					}
 					
 					// Find the nearest cluster center
-					if (squaredDist < minDistance) {
-						minDistance = squaredDist;
-						nearestCluster = k;
+					if (squared_dist < min_distance) {
+						min_distance = squared_dist;
+						nearest_cluster = k;
 					}
 				}
 				// Assign point to nearest cluster
-				assignments[i] = nearestCluster;
+				assignments[i] = nearest_cluster;
 			}
 
 			// Step 4: Recompute the centroid of each cluster
-			std::vector<Point> newCenters;
-			std::vector<int> clusterSizes(num_clusters_, 0);
+			std::vector<Point> new_centers;
+			std::vector<int> cluster_sizes(num_clusters_, 0);
 			
 			// Count points in each cluster
 			for (int i = 0; i < num_of_points_; ++i) {
-				clusterSizes[assignments[i]]++;
+				cluster_sizes[assignments[i]]++;
 			}
 			
 			// Calculate new centers
@@ -160,51 +176,67 @@ void Kmeans::KmeansAlgorithm() {
 				}
 				
 				// Calculate mean for each dimension to get new center
-				Point newCenter;
+				Point new_center;
 
 				for (int d = 0; d < dimensionality_; ++d) {
 					// Avoid dividing by zero
-					if (clusterSizes[k] > 0) {
-						newCenter.addDimension(sums[d] / clusterSizes[k]);
+					if (cluster_sizes[k] > 0) {
+						new_center.addDimension(sums[d] / cluster_sizes[k]);
 					} else {
 						// If a cluster has no points assigned, retain the old center
-						newCenter.addDimension(centroids[k].getVal(d));
+						new_center.addDimension(centroids[k].getVal(d));
 					}
 				}
-				newCenters.push_back(newCenter);
+				new_centers.push_back(new_center);
 			}
 			
-			centroids = newCenters;
+			centroids = new_centers;
 
 			// Calculate SSE (Sum of Squared Error)/Scatter
-			double currentSSE = 0.0;
+			double current_sse = 0.0;
 			// Calculate the error of each data point to its assigned centroid and then compute the total SSE.
 			for (int i = 0; i < num_of_points_; ++i) {
 				int cluster = assignments[i];
 				for (int d = 0; d < dimensionality_; ++d) {
 					double diff = dataset_[i].getVal(d) - centroids[cluster].getVal(d);
-					currentSSE += diff * diff;
+					current_sse += diff * diff;
 				}
 			}
 			
-			std::cout << "Iteration " << (iteration + 1) << ": SSE = " << currentSSE << std::endl;
+			std::cout << "Iteration " << (iteration + 1) << ": SSE = " << current_sse << std::endl;
+			if (output_file.is_open()) {
+				output_file << "Iteration " << (iteration + 1) << ": SSE = " << current_sse << std::endl;
+			}
 
 			/* Uncomment to enable Iris Bezdek dataset test
-			if (checkIrisBezdekOptimum(currentSSE)) {
+			if (checkIrisBezdekOptimum(current_sse)) {
 			     break; // Perfect clustering reached
 			}
 			*/
 
 			// Step 5: Check if centroids have converged (until centroids do not change)
 			// Convergence Check: Check relative improvement in SSE
-			if (previousSSE != std::numeric_limits<double>::max()) {
-				double relativeImprovement = (previousSSE - currentSSE) / previousSSE;
-				if (relativeImprovement < convergence_threshold_) {
+			if (previous_sse != std::numeric_limits<double>::max()) {
+				double relative_improvement = (previous_sse - current_sse) / previous_sse;
+				if (relative_improvement < convergence_threshold_) {
 					break; // Converged
 				}
 			}
-			previousSSE = currentSSE;
+			previous_sse = current_sse;
 		}
+		
+		// Track if this run achieved the best SSE
+		if (previous_sse < best_sse) {
+			best_sse = previous_sse;
+			best_run = run + 1;
+		}
+	}
+	
+	// Display best run after all runs complete
+	std::cout << "\nBest Run: " << best_run << ": SSE = " << best_sse << std::endl;
+	if (output_file.is_open()) {
+		output_file << "\nBest Run: " << best_run << ": SSE = " << best_sse;
+		output_file.close();
 	}
 
 }

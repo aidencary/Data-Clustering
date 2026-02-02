@@ -36,7 +36,7 @@ public:
 	// Selects K random centers and returns them.
 	std::vector<Point> selectCenters();
 	// Implements the K-means algorithm.
-	void KmeansAlgorithm();
+	void runKmeans();
 	// Test method for Iris Bezdek dataset: checks if SSE is at or below global optimum (which should not be possible).
 	// Returns true if perfect clustering (78.8514) is reached and algorithm should break.
 	bool checkIrisBezdekOptimum(double currentSSE) const;

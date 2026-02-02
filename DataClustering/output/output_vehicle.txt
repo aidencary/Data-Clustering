@@ -1,4 +1,1570 @@
-93 42 98 192 63 9 185 36 22 138 206 508 173 70 10 21 189 197
-106 49 107 194 57 11 214 31 24 161 224 670 172 67 0 39 192 206
-89 40 79 154 64 9 144 46 19 139 168 311 149 71 8 7 188 197
-86 40 75 146 62 6 140 48 18 135 158 290 162 72 3 21 183 190
+Run 1
+-----
+Iteration 1: SSE = 5.15272e+06
+Iteration 2: SSE = 4.27747e+06
+Iteration 3: SSE = 3.88997e+06
+Iteration 4: SSE = 3.77075e+06
+Iteration 5: SSE = 3.68131e+06
+Iteration 6: SSE = 3.65044e+06
+Iteration 7: SSE = 3.61681e+06
+Iteration 8: SSE = 3.59661e+06
+Iteration 9: SSE = 3.57439e+06
+Iteration 10: SSE = 3.55737e+06
+Iteration 11: SSE = 3.55652e+06
+Iteration 12: SSE = 3.55616e+06
+Iteration 13: SSE = 3.55583e+06
+Run 2
+-----
+Iteration 1: SSE = 4.52231e+06
+Iteration 2: SSE = 3.88742e+06
+Iteration 3: SSE = 3.71928e+06
+Iteration 4: SSE = 3.61704e+06
+Iteration 5: SSE = 3.5627e+06
+Iteration 6: SSE = 3.55573e+06
+Iteration 7: SSE = 3.55566e+06
+Run 3
+-----
+Iteration 1: SSE = 6.12692e+06
+Iteration 2: SSE = 5.09221e+06
+Iteration 3: SSE = 4.65207e+06
+Iteration 4: SSE = 4.29101e+06
+Iteration 5: SSE = 4.00707e+06
+Iteration 6: SSE = 3.84412e+06
+Iteration 7: SSE = 3.73159e+06
+Iteration 8: SSE = 3.66752e+06
+Iteration 9: SSE = 3.63103e+06
+Iteration 10: SSE = 3.60337e+06
+Iteration 11: SSE = 3.57658e+06
+Iteration 12: SSE = 3.55907e+06
+Iteration 13: SSE = 3.55652e+06
+Iteration 14: SSE = 3.55616e+06
+Iteration 15: SSE = 3.55583e+06
+Run 4
+-----
+Iteration 1: SSE = 5.11285e+06
+Iteration 2: SSE = 4.52541e+06
+Iteration 3: SSE = 4.1542e+06
+Iteration 4: SSE = 3.92138e+06
+Iteration 5: SSE = 3.79304e+06
+Iteration 6: SSE = 3.6986e+06
+Iteration 7: SSE = 3.65708e+06
+Iteration 8: SSE = 3.62269e+06
+Iteration 9: SSE = 3.59964e+06
+Iteration 10: SSE = 3.57439e+06
+Iteration 11: SSE = 3.55737e+06
+Iteration 12: SSE = 3.55652e+06
+Iteration 13: SSE = 3.55616e+06
+Iteration 14: SSE = 3.55583e+06
+Run 5
+-----
+Iteration 1: SSE = 5.38545e+06
+Iteration 2: SSE = 5.18641e+06
+Iteration 3: SSE = 5.03552e+06
+Iteration 4: SSE = 4.8879e+06
+Iteration 5: SSE = 4.82351e+06
+Iteration 6: SSE = 4.78762e+06
+Iteration 7: SSE = 4.74897e+06
+Iteration 8: SSE = 4.69991e+06
+Iteration 9: SSE = 4.67993e+06
+Iteration 10: SSE = 4.6708e+06
+Iteration 11: SSE = 4.66668e+06
+Iteration 12: SSE = 4.66395e+06
+Iteration 13: SSE = 4.66395e+06
+Run 6
+-----
+Iteration 1: SSE = 1.02509e+07
+Iteration 2: SSE = 5.33821e+06
+Iteration 3: SSE = 4.34305e+06
+Iteration 4: SSE = 3.99191e+06
+Iteration 5: SSE = 3.82984e+06
+Iteration 6: SSE = 3.72186e+06
+Iteration 7: SSE = 3.664e+06
+Iteration 8: SSE = 3.63103e+06
+Iteration 9: SSE = 3.60337e+06
+Iteration 10: SSE = 3.57658e+06
+Iteration 11: SSE = 3.55907e+06
+Iteration 12: SSE = 3.55652e+06
+Iteration 13: SSE = 3.55616e+06
+Iteration 14: SSE = 3.55583e+06
+Run 7
+-----
+Iteration 1: SSE = 8.82702e+06
+Iteration 2: SSE = 5.72603e+06
+Iteration 3: SSE = 4.77572e+06
+Iteration 4: SSE = 4.17367e+06
+Iteration 5: SSE = 3.89591e+06
+Iteration 6: SSE = 3.7761e+06
+Iteration 7: SSE = 3.68131e+06
+Iteration 8: SSE = 3.65044e+06
+Iteration 9: SSE = 3.61681e+06
+Iteration 10: SSE = 3.59661e+06
+Iteration 11: SSE = 3.57439e+06
+Iteration 12: SSE = 3.55737e+06
+Iteration 13: SSE = 3.55652e+06
+Iteration 14: SSE = 3.55616e+06
+Iteration 15: SSE = 3.55583e+06
+Run 8
+-----
+Iteration 1: SSE = 1.37717e+07
+Iteration 2: SSE = 6.14623e+06
+Iteration 3: SSE = 4.97921e+06
+Iteration 4: SSE = 4.48894e+06
+Iteration 5: SSE = 4.12585e+06
+Iteration 6: SSE = 3.89808e+06
+Iteration 7: SSE = 3.78121e+06
+Iteration 8: SSE = 3.68449e+06
+Iteration 9: SSE = 3.65044e+06
+Iteration 10: SSE = 3.61681e+06
+Iteration 11: SSE = 3.59661e+06
+Iteration 12: SSE = 3.57439e+06
+Iteration 13: SSE = 3.55737e+06
+Iteration 14: SSE = 3.55652e+06
+Iteration 15: SSE = 3.55616e+06
+Iteration 16: SSE = 3.55583e+06
+Run 9
+-----
+Iteration 1: SSE = 5.49351e+06
+Iteration 2: SSE = 4.011e+06
+Iteration 3: SSE = 3.80971e+06
+Iteration 4: SSE = 3.69797e+06
+Iteration 5: SSE = 3.65682e+06
+Iteration 6: SSE = 3.62269e+06
+Iteration 7: SSE = 3.59964e+06
+Iteration 8: SSE = 3.57439e+06
+Iteration 9: SSE = 3.55737e+06
+Iteration 10: SSE = 3.55652e+06
+Iteration 11: SSE = 3.55616e+06
+Iteration 12: SSE = 3.55583e+06
+Run 10
+-----
+Iteration 1: SSE = 4.152e+06
+Iteration 2: SSE = 3.87857e+06
+Iteration 3: SSE = 3.75298e+06
+Iteration 4: SSE = 3.67172e+06
+Iteration 5: SSE = 3.62013e+06
+Iteration 6: SSE = 3.59328e+06
+Iteration 7: SSE = 3.5829e+06
+Iteration 8: SSE = 3.57678e+06
+Iteration 9: SSE = 3.57286e+06
+Iteration 10: SSE = 3.56857e+06
+Iteration 11: SSE = 3.56575e+06
+Iteration 12: SSE = 3.56464e+06
+Iteration 13: SSE = 3.56446e+06
+Run 11
+-----
+Iteration 1: SSE = 4.08365e+06
+Iteration 2: SSE = 3.84562e+06
+Iteration 3: SSE = 3.74423e+06
+Iteration 4: SSE = 3.67446e+06
+Iteration 5: SSE = 3.63977e+06
+Iteration 6: SSE = 3.6138e+06
+Iteration 7: SSE = 3.59309e+06
+Iteration 8: SSE = 3.5707e+06
+Iteration 9: SSE = 3.55737e+06
+Iteration 10: SSE = 3.55652e+06
+Iteration 11: SSE = 3.55616e+06
+Iteration 12: SSE = 3.55583e+06
+Run 12
+-----
+Iteration 1: SSE = 3.80965e+06
+Iteration 2: SSE = 3.60124e+06
+Iteration 3: SSE = 3.5616e+06
+Iteration 4: SSE = 3.55697e+06
+Iteration 5: SSE = 3.55697e+06
+Run 13
+-----
+Iteration 1: SSE = 5.08981e+06
+Iteration 2: SSE = 4.43134e+06
+Iteration 3: SSE = 4.0618e+06
+Iteration 4: SSE = 3.86667e+06
+Iteration 5: SSE = 3.75436e+06
+Iteration 6: SSE = 3.67674e+06
+Iteration 7: SSE = 3.64356e+06
+Iteration 8: SSE = 3.61422e+06
+Iteration 9: SSE = 3.59337e+06
+Iteration 10: SSE = 3.5707e+06
+Iteration 11: SSE = 3.55737e+06
+Iteration 12: SSE = 3.55652e+06
+Iteration 13: SSE = 3.55616e+06
+Iteration 14: SSE = 3.55583e+06
+Run 14
+-----
+Iteration 1: SSE = 7.19873e+06
+Iteration 2: SSE = 4.78779e+06
+Iteration 3: SSE = 4.3127e+06
+Iteration 4: SSE = 4.00267e+06
+Iteration 5: SSE = 3.84412e+06
+Iteration 6: SSE = 3.73946e+06
+Iteration 7: SSE = 3.67066e+06
+Iteration 8: SSE = 3.63696e+06
+Iteration 9: SSE = 3.61178e+06
+Iteration 10: SSE = 3.59097e+06
+Iteration 11: SSE = 3.5707e+06
+Iteration 12: SSE = 3.55737e+06
+Iteration 13: SSE = 3.55652e+06
+Iteration 14: SSE = 3.55616e+06
+Iteration 15: SSE = 3.55583e+06
+Run 15
+-----
+Iteration 1: SSE = 6.2694e+06
+Iteration 2: SSE = 4.93093e+06
+Iteration 3: SSE = 4.49473e+06
+Iteration 4: SSE = 4.14479e+06
+Iteration 5: SSE = 3.91886e+06
+Iteration 6: SSE = 3.78589e+06
+Iteration 7: SSE = 3.68767e+06
+Iteration 8: SSE = 3.65075e+06
+Iteration 9: SSE = 3.61902e+06
+Iteration 10: SSE = 3.59964e+06
+Iteration 11: SSE = 3.57439e+06
+Iteration 12: SSE = 3.55737e+06
+Iteration 13: SSE = 3.55652e+06
+Iteration 14: SSE = 3.55616e+06
+Iteration 15: SSE = 3.55583e+06
+Run 16
+-----
+Iteration 1: SSE = 5.01452e+06
+Iteration 2: SSE = 4.29508e+06
+Iteration 3: SSE = 3.94788e+06
+Iteration 4: SSE = 3.79747e+06
+Iteration 5: SSE = 3.70623e+06
+Iteration 6: SSE = 3.63348e+06
+Iteration 7: SSE = 3.59908e+06
+Iteration 8: SSE = 3.58398e+06
+Iteration 9: SSE = 3.57982e+06
+Iteration 10: SSE = 3.57409e+06
+Iteration 11: SSE = 3.57074e+06
+Iteration 12: SSE = 3.5665e+06
+Iteration 13: SSE = 3.56514e+06
+Iteration 14: SSE = 3.56464e+06
+Iteration 15: SSE = 3.56446e+06
+Run 17
+-----
+Iteration 1: SSE = 3.64458e+06
+Iteration 2: SSE = 3.61851e+06
+Iteration 3: SSE = 3.61154e+06
+Iteration 4: SSE = 3.60339e+06
+Iteration 5: SSE = 3.59799e+06
+Iteration 6: SSE = 3.58845e+06
+Iteration 7: SSE = 3.57604e+06
+Iteration 8: SSE = 3.56748e+06
+Iteration 9: SSE = 3.5639e+06
+Iteration 10: SSE = 3.56176e+06
+Iteration 11: SSE = 3.56046e+06
+Iteration 12: SSE = 3.55914e+06
+Iteration 13: SSE = 3.55788e+06
+Iteration 14: SSE = 3.55743e+06
+Iteration 15: SSE = 3.55707e+06
+Iteration 16: SSE = 3.55695e+06
+Run 18
+-----
+Iteration 1: SSE = 4.70574e+06
+Iteration 2: SSE = 4.17209e+06
+Iteration 3: SSE = 3.92507e+06
+Iteration 4: SSE = 3.80252e+06
+Iteration 5: SSE = 3.69821e+06
+Iteration 6: SSE = 3.65708e+06
+Iteration 7: SSE = 3.62269e+06
+Iteration 8: SSE = 3.59964e+06
+Iteration 9: SSE = 3.57439e+06
+Iteration 10: SSE = 3.55737e+06
+Iteration 11: SSE = 3.55652e+06
+Iteration 12: SSE = 3.55616e+06
+Iteration 13: SSE = 3.55583e+06
+Run 19
+-----
+Iteration 1: SSE = 4.05471e+06
+Iteration 2: SSE = 3.86198e+06
+Iteration 3: SSE = 3.77623e+06
+Iteration 4: SSE = 3.67497e+06
+Iteration 5: SSE = 3.64862e+06
+Iteration 6: SSE = 3.6357e+06
+Iteration 7: SSE = 3.62602e+06
+Iteration 8: SSE = 3.62108e+06
+Iteration 9: SSE = 3.61717e+06
+Iteration 10: SSE = 3.61587e+06
+Iteration 11: SSE = 3.61271e+06
+Iteration 12: SSE = 3.60429e+06
+Iteration 13: SSE = 3.59916e+06
+Iteration 14: SSE = 3.59241e+06
+Iteration 15: SSE = 3.5781e+06
+Iteration 16: SSE = 3.56939e+06
+Iteration 17: SSE = 3.5639e+06
+Iteration 18: SSE = 3.56176e+06
+Iteration 19: SSE = 3.56046e+06
+Iteration 20: SSE = 3.55914e+06
+Iteration 21: SSE = 3.55788e+06
+Iteration 22: SSE = 3.55743e+06
+Iteration 23: SSE = 3.55707e+06
+Iteration 24: SSE = 3.55695e+06
+Run 20
+-----
+Iteration 1: SSE = 5.64538e+06
+Iteration 2: SSE = 4.07265e+06
+Iteration 3: SSE = 3.74301e+06
+Iteration 4: SSE = 3.65736e+06
+Iteration 5: SSE = 3.60864e+06
+Iteration 6: SSE = 3.58545e+06
+Iteration 7: SSE = 3.57982e+06
+Iteration 8: SSE = 3.57409e+06
+Iteration 9: SSE = 3.57074e+06
+Iteration 10: SSE = 3.5665e+06
+Iteration 11: SSE = 3.56514e+06
+Iteration 12: SSE = 3.56464e+06
+Iteration 13: SSE = 3.56446e+06
+Run 21
+-----
+Iteration 1: SSE = 4.20584e+06
+Iteration 2: SSE = 3.83283e+06
+Iteration 3: SSE = 3.72171e+06
+Iteration 4: SSE = 3.66382e+06
+Iteration 5: SSE = 3.63103e+06
+Iteration 6: SSE = 3.60337e+06
+Iteration 7: SSE = 3.57658e+06
+Iteration 8: SSE = 3.55907e+06
+Iteration 9: SSE = 3.55652e+06
+Iteration 10: SSE = 3.55616e+06
+Iteration 11: SSE = 3.55583e+06
+Run 22
+-----
+Iteration 1: SSE = 1.62373e+07
+Iteration 2: SSE = 6.88175e+06
+Iteration 3: SSE = 5.0983e+06
+Iteration 4: SSE = 4.32841e+06
+Iteration 5: SSE = 3.98913e+06
+Iteration 6: SSE = 3.82595e+06
+Iteration 7: SSE = 3.7163e+06
+Iteration 8: SSE = 3.664e+06
+Iteration 9: SSE = 3.63103e+06
+Iteration 10: SSE = 3.60337e+06
+Iteration 11: SSE = 3.57658e+06
+Iteration 12: SSE = 3.55907e+06
+Iteration 13: SSE = 3.55652e+06
+Iteration 14: SSE = 3.55616e+06
+Iteration 15: SSE = 3.55583e+06
+Run 23
+-----
+Iteration 1: SSE = 4.61482e+06
+Iteration 2: SSE = 4.21464e+06
+Iteration 3: SSE = 3.95034e+06
+Iteration 4: SSE = 3.81098e+06
+Iteration 5: SSE = 3.70158e+06
+Iteration 6: SSE = 3.65708e+06
+Iteration 7: SSE = 3.62269e+06
+Iteration 8: SSE = 3.59964e+06
+Iteration 9: SSE = 3.57439e+06
+Iteration 10: SSE = 3.55737e+06
+Iteration 11: SSE = 3.55652e+06
+Iteration 12: SSE = 3.55616e+06
+Iteration 13: SSE = 3.55583e+06
+Run 24
+-----
+Iteration 1: SSE = 4.02517e+06
+Iteration 2: SSE = 3.80679e+06
+Iteration 3: SSE = 3.7586e+06
+Iteration 4: SSE = 3.72109e+06
+Iteration 5: SSE = 3.68872e+06
+Iteration 6: SSE = 3.64787e+06
+Iteration 7: SSE = 3.58797e+06
+Iteration 8: SSE = 3.56083e+06
+Iteration 9: SSE = 3.55941e+06
+Iteration 10: SSE = 3.55898e+06
+Iteration 11: SSE = 3.55898e+06
+Run 25
+-----
+Iteration 1: SSE = 4.01568e+06
+Iteration 2: SSE = 3.77514e+06
+Iteration 3: SSE = 3.71917e+06
+Iteration 4: SSE = 3.68378e+06
+Iteration 5: SSE = 3.6282e+06
+Iteration 6: SSE = 3.56788e+06
+Iteration 7: SSE = 3.55676e+06
+Iteration 8: SSE = 3.55573e+06
+Iteration 9: SSE = 3.55566e+06
+Run 26
+-----
+Iteration 1: SSE = 4.35915e+06
+Iteration 2: SSE = 3.8212e+06
+Iteration 3: SSE = 3.73446e+06
+Iteration 4: SSE = 3.6946e+06
+Iteration 5: SSE = 3.64638e+06
+Iteration 6: SSE = 3.57892e+06
+Iteration 7: SSE = 3.55676e+06
+Iteration 8: SSE = 3.55573e+06
+Iteration 9: SSE = 3.55566e+06
+Run 27
+-----
+Iteration 1: SSE = 4.26292e+06
+Iteration 2: SSE = 4.03134e+06
+Iteration 3: SSE = 3.93343e+06
+Iteration 4: SSE = 3.89337e+06
+Iteration 5: SSE = 3.84446e+06
+Iteration 6: SSE = 3.82234e+06
+Iteration 7: SSE = 3.79943e+06
+Iteration 8: SSE = 3.7802e+06
+Iteration 9: SSE = 3.7717e+06
+Iteration 10: SSE = 3.76465e+06
+Iteration 11: SSE = 3.75674e+06
+Iteration 12: SSE = 3.74277e+06
+Iteration 13: SSE = 3.72736e+06
+Iteration 14: SSE = 3.71291e+06
+Iteration 15: SSE = 3.69778e+06
+Iteration 16: SSE = 3.67362e+06
+Iteration 17: SSE = 3.63324e+06
+Iteration 18: SSE = 3.59278e+06
+Iteration 19: SSE = 3.57459e+06
+Iteration 20: SSE = 3.56815e+06
+Iteration 21: SSE = 3.56349e+06
+Iteration 22: SSE = 3.56106e+06
+Iteration 23: SSE = 3.55988e+06
+Iteration 24: SSE = 3.55898e+06
+Iteration 25: SSE = 3.55898e+06
+Run 28
+-----
+Iteration 1: SSE = 5.20948e+06
+Iteration 2: SSE = 4.77622e+06
+Iteration 3: SSE = 4.38877e+06
+Iteration 4: SSE = 4.07889e+06
+Iteration 5: SSE = 3.87568e+06
+Iteration 6: SSE = 3.75733e+06
+Iteration 7: SSE = 3.67741e+06
+Iteration 8: SSE = 3.64356e+06
+Iteration 9: SSE = 3.61422e+06
+Iteration 10: SSE = 3.59337e+06
+Iteration 11: SSE = 3.5707e+06
+Iteration 12: SSE = 3.55737e+06
+Iteration 13: SSE = 3.55652e+06
+Iteration 14: SSE = 3.55616e+06
+Iteration 15: SSE = 3.55583e+06
+Run 29
+-----
+Iteration 1: SSE = 5.3132e+06
+Iteration 2: SSE = 4.27676e+06
+Iteration 3: SSE = 3.94647e+06
+Iteration 4: SSE = 3.80613e+06
+Iteration 5: SSE = 3.69803e+06
+Iteration 6: SSE = 3.65682e+06
+Iteration 7: SSE = 3.62269e+06
+Iteration 8: SSE = 3.59964e+06
+Iteration 9: SSE = 3.57439e+06
+Iteration 10: SSE = 3.55737e+06
+Iteration 11: SSE = 3.55652e+06
+Iteration 12: SSE = 3.55616e+06
+Iteration 13: SSE = 3.55583e+06
+Run 30
+-----
+Iteration 1: SSE = 4.69395e+06
+Iteration 2: SSE = 4.3181e+06
+Iteration 3: SSE = 4.02854e+06
+Iteration 4: SSE = 3.86582e+06
+Iteration 5: SSE = 3.75733e+06
+Iteration 6: SSE = 3.67741e+06
+Iteration 7: SSE = 3.64356e+06
+Iteration 8: SSE = 3.61422e+06
+Iteration 9: SSE = 3.59337e+06
+Iteration 10: SSE = 3.5707e+06
+Iteration 11: SSE = 3.55737e+06
+Iteration 12: SSE = 3.55652e+06
+Iteration 13: SSE = 3.55616e+06
+Iteration 14: SSE = 3.55583e+06
+Run 31
+-----
+Iteration 1: SSE = 1.052e+07
+Iteration 2: SSE = 5.94624e+06
+Iteration 3: SSE = 5.28911e+06
+Iteration 4: SSE = 5.17666e+06
+Iteration 5: SSE = 5.05475e+06
+Iteration 6: SSE = 4.78439e+06
+Iteration 7: SSE = 4.44136e+06
+Iteration 8: SSE = 4.14695e+06
+Iteration 9: SSE = 3.91877e+06
+Iteration 10: SSE = 3.79266e+06
+Iteration 11: SSE = 3.69571e+06
+Iteration 12: SSE = 3.65708e+06
+Iteration 13: SSE = 3.62269e+06
+Iteration 14: SSE = 3.59964e+06
+Iteration 15: SSE = 3.57439e+06
+Iteration 16: SSE = 3.55737e+06
+Iteration 17: SSE = 3.55652e+06
+Iteration 18: SSE = 3.55616e+06
+Iteration 19: SSE = 3.55583e+06
+Run 32
+-----
+Iteration 1: SSE = 5.24761e+06
+Iteration 2: SSE = 5.11969e+06
+Iteration 3: SSE = 4.90776e+06
+Iteration 4: SSE = 4.61832e+06
+Iteration 5: SSE = 4.33021e+06
+Iteration 6: SSE = 4.04543e+06
+Iteration 7: SSE = 3.8692e+06
+Iteration 8: SSE = 3.75733e+06
+Iteration 9: SSE = 3.67741e+06
+Iteration 10: SSE = 3.64356e+06
+Iteration 11: SSE = 3.61422e+06
+Iteration 12: SSE = 3.59337e+06
+Iteration 13: SSE = 3.5707e+06
+Iteration 14: SSE = 3.55737e+06
+Iteration 15: SSE = 3.55652e+06
+Iteration 16: SSE = 3.55616e+06
+Iteration 17: SSE = 3.55583e+06
+Run 33
+-----
+Iteration 1: SSE = 4.14591e+06
+Iteration 2: SSE = 3.79591e+06
+Iteration 3: SSE = 3.73478e+06
+Iteration 4: SSE = 3.67661e+06
+Iteration 5: SSE = 3.62643e+06
+Iteration 6: SSE = 3.59161e+06
+Iteration 7: SSE = 3.58411e+06
+Iteration 8: SSE = 3.57425e+06
+Iteration 9: SSE = 3.5672e+06
+Iteration 10: SSE = 3.56267e+06
+Iteration 11: SSE = 3.5604e+06
+Iteration 12: SSE = 3.55941e+06
+Iteration 13: SSE = 3.55898e+06
+Iteration 14: SSE = 3.55898e+06
+Run 34
+-----
+Iteration 1: SSE = 5.38687e+06
+Iteration 2: SSE = 4.29126e+06
+Iteration 3: SSE = 3.90047e+06
+Iteration 4: SSE = 3.75946e+06
+Iteration 5: SSE = 3.6882e+06
+Iteration 6: SSE = 3.62614e+06
+Iteration 7: SSE = 3.56788e+06
+Iteration 8: SSE = 3.55676e+06
+Iteration 9: SSE = 3.55573e+06
+Iteration 10: SSE = 3.55566e+06
+Run 35
+-----
+Iteration 1: SSE = 5.31606e+06
+Iteration 2: SSE = 4.60637e+06
+Iteration 3: SSE = 4.13714e+06
+Iteration 4: SSE = 3.89206e+06
+Iteration 5: SSE = 3.77075e+06
+Iteration 6: SSE = 3.68131e+06
+Iteration 7: SSE = 3.65044e+06
+Iteration 8: SSE = 3.61681e+06
+Iteration 9: SSE = 3.59661e+06
+Iteration 10: SSE = 3.57439e+06
+Iteration 11: SSE = 3.55737e+06
+Iteration 12: SSE = 3.55652e+06
+Iteration 13: SSE = 3.55616e+06
+Iteration 14: SSE = 3.55583e+06
+Run 36
+-----
+Iteration 1: SSE = 5.11974e+06
+Iteration 2: SSE = 4.24879e+06
+Iteration 3: SSE = 3.83611e+06
+Iteration 4: SSE = 3.65519e+06
+Iteration 5: SSE = 3.60343e+06
+Iteration 6: SSE = 3.58545e+06
+Iteration 7: SSE = 3.57982e+06
+Iteration 8: SSE = 3.57409e+06
+Iteration 9: SSE = 3.57074e+06
+Iteration 10: SSE = 3.5665e+06
+Iteration 11: SSE = 3.56514e+06
+Iteration 12: SSE = 3.56464e+06
+Iteration 13: SSE = 3.56446e+06
+Run 37
+-----
+Iteration 1: SSE = 5.02913e+06
+Iteration 2: SSE = 3.91108e+06
+Iteration 3: SSE = 3.7287e+06
+Iteration 4: SSE = 3.71761e+06
+Iteration 5: SSE = 3.71519e+06
+Iteration 6: SSE = 3.71438e+06
+Iteration 7: SSE = 3.71433e+06
+Run 38
+-----
+Iteration 1: SSE = 4.43095e+06
+Iteration 2: SSE = 4.00647e+06
+Iteration 3: SSE = 3.84222e+06
+Iteration 4: SSE = 3.73159e+06
+Iteration 5: SSE = 3.66752e+06
+Iteration 6: SSE = 3.63103e+06
+Iteration 7: SSE = 3.60337e+06
+Iteration 8: SSE = 3.57658e+06
+Iteration 9: SSE = 3.55907e+06
+Iteration 10: SSE = 3.55652e+06
+Iteration 11: SSE = 3.55616e+06
+Iteration 12: SSE = 3.55583e+06
+Run 39
+-----
+Iteration 1: SSE = 4.35706e+06
+Iteration 2: SSE = 3.97031e+06
+Iteration 3: SSE = 3.82135e+06
+Iteration 4: SSE = 3.71616e+06
+Iteration 5: SSE = 3.664e+06
+Iteration 6: SSE = 3.63103e+06
+Iteration 7: SSE = 3.60337e+06
+Iteration 8: SSE = 3.57658e+06
+Iteration 9: SSE = 3.55907e+06
+Iteration 10: SSE = 3.55652e+06
+Iteration 11: SSE = 3.55616e+06
+Iteration 12: SSE = 3.55583e+06
+Run 40
+-----
+Iteration 1: SSE = 3.82971e+06
+Iteration 2: SSE = 3.73589e+06
+Iteration 3: SSE = 3.67476e+06
+Iteration 4: SSE = 3.62592e+06
+Iteration 5: SSE = 3.59161e+06
+Iteration 6: SSE = 3.58411e+06
+Iteration 7: SSE = 3.57425e+06
+Iteration 8: SSE = 3.5672e+06
+Iteration 9: SSE = 3.56267e+06
+Iteration 10: SSE = 3.5604e+06
+Iteration 11: SSE = 3.55941e+06
+Iteration 12: SSE = 3.55898e+06
+Iteration 13: SSE = 3.55898e+06
+Run 41
+-----
+Iteration 1: SSE = 4.64854e+06
+Iteration 2: SSE = 4.07965e+06
+Iteration 3: SSE = 3.79075e+06
+Iteration 4: SSE = 3.62806e+06
+Iteration 5: SSE = 3.57092e+06
+Iteration 6: SSE = 3.55725e+06
+Iteration 7: SSE = 3.55652e+06
+Iteration 8: SSE = 3.55616e+06
+Iteration 9: SSE = 3.55583e+06
+Run 42
+-----
+Iteration 1: SSE = 4.78761e+06
+Iteration 2: SSE = 4.71295e+06
+Iteration 3: SSE = 4.68167e+06
+Iteration 4: SSE = 4.67221e+06
+Iteration 5: SSE = 4.669e+06
+Iteration 6: SSE = 4.66668e+06
+Iteration 7: SSE = 4.66395e+06
+Iteration 8: SSE = 4.66395e+06
+Run 43
+-----
+Iteration 1: SSE = 4.02297e+06
+Iteration 2: SSE = 3.94614e+06
+Iteration 3: SSE = 3.91118e+06
+Iteration 4: SSE = 3.87408e+06
+Iteration 5: SSE = 3.83885e+06
+Iteration 6: SSE = 3.81899e+06
+Iteration 7: SSE = 3.79371e+06
+Iteration 8: SSE = 3.77782e+06
+Iteration 9: SSE = 3.7693e+06
+Iteration 10: SSE = 3.76252e+06
+Iteration 11: SSE = 3.75334e+06
+Iteration 12: SSE = 3.73927e+06
+Iteration 13: SSE = 3.72045e+06
+Iteration 14: SSE = 3.70347e+06
+Iteration 15: SSE = 3.68376e+06
+Iteration 16: SSE = 3.64422e+06
+Iteration 17: SSE = 3.59278e+06
+Iteration 18: SSE = 3.57459e+06
+Iteration 19: SSE = 3.56815e+06
+Iteration 20: SSE = 3.56349e+06
+Iteration 21: SSE = 3.56106e+06
+Iteration 22: SSE = 3.55988e+06
+Iteration 23: SSE = 3.55898e+06
+Iteration 24: SSE = 3.55898e+06
+Run 44
+-----
+Iteration 1: SSE = 4.83784e+06
+Iteration 2: SSE = 4.10103e+06
+Iteration 3: SSE = 3.72573e+06
+Iteration 4: SSE = 3.62013e+06
+Iteration 5: SSE = 3.59328e+06
+Iteration 6: SSE = 3.5829e+06
+Iteration 7: SSE = 3.57678e+06
+Iteration 8: SSE = 3.57286e+06
+Iteration 9: SSE = 3.56857e+06
+Iteration 10: SSE = 3.56575e+06
+Iteration 11: SSE = 3.56464e+06
+Iteration 12: SSE = 3.56446e+06
+Run 45
+-----
+Iteration 1: SSE = 4.42133e+06
+Iteration 2: SSE = 4.04168e+06
+Iteration 3: SSE = 3.76019e+06
+Iteration 4: SSE = 3.6037e+06
+Iteration 5: SSE = 3.57761e+06
+Iteration 6: SSE = 3.57409e+06
+Iteration 7: SSE = 3.57074e+06
+Iteration 8: SSE = 3.5665e+06
+Iteration 9: SSE = 3.56514e+06
+Iteration 10: SSE = 3.56464e+06
+Iteration 11: SSE = 3.56446e+06
+Run 46
+-----
+Iteration 1: SSE = 4.39189e+06
+Iteration 2: SSE = 4.05403e+06
+Iteration 3: SSE = 3.86296e+06
+Iteration 4: SSE = 3.75577e+06
+Iteration 5: SSE = 3.67696e+06
+Iteration 6: SSE = 3.64356e+06
+Iteration 7: SSE = 3.61422e+06
+Iteration 8: SSE = 3.59337e+06
+Iteration 9: SSE = 3.5707e+06
+Iteration 10: SSE = 3.55737e+06
+Iteration 11: SSE = 3.55652e+06
+Iteration 12: SSE = 3.55616e+06
+Iteration 13: SSE = 3.55583e+06
+Run 47
+-----
+Iteration 1: SSE = 8.16214e+06
+Iteration 2: SSE = 5.04091e+06
+Iteration 3: SSE = 4.6302e+06
+Iteration 4: SSE = 4.33133e+06
+Iteration 5: SSE = 4.048e+06
+Iteration 6: SSE = 3.8692e+06
+Iteration 7: SSE = 3.75733e+06
+Iteration 8: SSE = 3.67741e+06
+Iteration 9: SSE = 3.64356e+06
+Iteration 10: SSE = 3.61422e+06
+Iteration 11: SSE = 3.59337e+06
+Iteration 12: SSE = 3.5707e+06
+Iteration 13: SSE = 3.55737e+06
+Iteration 14: SSE = 3.55652e+06
+Iteration 15: SSE = 3.55616e+06
+Iteration 16: SSE = 3.55583e+06
+Run 48
+-----
+Iteration 1: SSE = 3.86207e+06
+Iteration 2: SSE = 3.56939e+06
+Iteration 3: SSE = 3.55902e+06
+Iteration 4: SSE = 3.55636e+06
+Iteration 5: SSE = 3.55566e+06
+Iteration 6: SSE = 3.55566e+06
+Run 49
+-----
+Iteration 1: SSE = 5.99798e+06
+Iteration 2: SSE = 3.73054e+06
+Iteration 3: SSE = 3.63555e+06
+Iteration 4: SSE = 3.60663e+06
+Iteration 5: SSE = 3.58331e+06
+Iteration 6: SSE = 3.56285e+06
+Iteration 7: SSE = 3.55664e+06
+Iteration 8: SSE = 3.55616e+06
+Iteration 9: SSE = 3.55583e+06
+Run 50
+-----
+Iteration 1: SSE = 5.9491e+06
+Iteration 2: SSE = 5.2453e+06
+Iteration 3: SSE = 5.20622e+06
+Iteration 4: SSE = 5.20302e+06
+Iteration 5: SSE = 5.20278e+06
+Run 51
+-----
+Iteration 1: SSE = 3.89515e+06
+Iteration 2: SSE = 3.5716e+06
+Iteration 3: SSE = 3.5604e+06
+Iteration 4: SSE = 3.55941e+06
+Iteration 5: SSE = 3.55898e+06
+Iteration 6: SSE = 3.55898e+06
+Run 52
+-----
+Iteration 1: SSE = 9.04669e+06
+Iteration 2: SSE = 4.98147e+06
+Iteration 3: SSE = 4.52577e+06
+Iteration 4: SSE = 4.20841e+06
+Iteration 5: SSE = 3.95628e+06
+Iteration 6: SSE = 3.81242e+06
+Iteration 7: SSE = 3.70466e+06
+Iteration 8: SSE = 3.65937e+06
+Iteration 9: SSE = 3.62483e+06
+Iteration 10: SSE = 3.60135e+06
+Iteration 11: SSE = 3.57658e+06
+Iteration 12: SSE = 3.55907e+06
+Iteration 13: SSE = 3.55652e+06
+Iteration 14: SSE = 3.55616e+06
+Iteration 15: SSE = 3.55583e+06
+Run 53
+-----
+Iteration 1: SSE = 9.67027e+06
+Iteration 2: SSE = 5.54221e+06
+Iteration 3: SSE = 4.79116e+06
+Iteration 4: SSE = 4.39952e+06
+Iteration 5: SSE = 4.07209e+06
+Iteration 6: SSE = 3.87029e+06
+Iteration 7: SSE = 3.75577e+06
+Iteration 8: SSE = 3.67696e+06
+Iteration 9: SSE = 3.64356e+06
+Iteration 10: SSE = 3.61422e+06
+Iteration 11: SSE = 3.59337e+06
+Iteration 12: SSE = 3.5707e+06
+Iteration 13: SSE = 3.55737e+06
+Iteration 14: SSE = 3.55652e+06
+Iteration 15: SSE = 3.55616e+06
+Iteration 16: SSE = 3.55583e+06
+Run 54
+-----
+Iteration 1: SSE = 4.43122e+06
+Iteration 2: SSE = 3.87072e+06
+Iteration 3: SSE = 3.83937e+06
+Iteration 4: SSE = 3.82848e+06
+Iteration 5: SSE = 3.81499e+06
+Iteration 6: SSE = 3.80184e+06
+Iteration 7: SSE = 3.79361e+06
+Iteration 8: SSE = 3.77989e+06
+Iteration 9: SSE = 3.76922e+06
+Iteration 10: SSE = 3.75977e+06
+Iteration 11: SSE = 3.74696e+06
+Iteration 12: SSE = 3.72139e+06
+Iteration 13: SSE = 3.70132e+06
+Iteration 14: SSE = 3.677e+06
+Iteration 15: SSE = 3.63324e+06
+Iteration 16: SSE = 3.59278e+06
+Iteration 17: SSE = 3.57459e+06
+Iteration 18: SSE = 3.56815e+06
+Iteration 19: SSE = 3.56349e+06
+Iteration 20: SSE = 3.56106e+06
+Iteration 21: SSE = 3.55988e+06
+Iteration 22: SSE = 3.55898e+06
+Iteration 23: SSE = 3.55898e+06
+Run 55
+-----
+Iteration 1: SSE = 6.54765e+06
+Iteration 2: SSE = 4.16631e+06
+Iteration 3: SSE = 3.86723e+06
+Iteration 4: SSE = 3.79821e+06
+Iteration 5: SSE = 3.72427e+06
+Iteration 6: SSE = 3.68984e+06
+Iteration 7: SSE = 3.67548e+06
+Iteration 8: SSE = 3.66852e+06
+Iteration 9: SSE = 3.66509e+06
+Iteration 10: SSE = 3.66143e+06
+Iteration 11: SSE = 3.65453e+06
+Iteration 12: SSE = 3.64576e+06
+Iteration 13: SSE = 3.63148e+06
+Iteration 14: SSE = 3.62368e+06
+Iteration 15: SSE = 3.61934e+06
+Iteration 16: SSE = 3.6163e+06
+Iteration 17: SSE = 3.61323e+06
+Iteration 18: SSE = 3.6059e+06
+Iteration 19: SSE = 3.60047e+06
+Iteration 20: SSE = 3.59241e+06
+Iteration 21: SSE = 3.5781e+06
+Iteration 22: SSE = 3.56939e+06
+Iteration 23: SSE = 3.5639e+06
+Iteration 24: SSE = 3.56176e+06
+Iteration 25: SSE = 3.56046e+06
+Iteration 26: SSE = 3.55914e+06
+Iteration 27: SSE = 3.55788e+06
+Iteration 28: SSE = 3.55743e+06
+Iteration 29: SSE = 3.55707e+06
+Iteration 30: SSE = 3.55695e+06
+Run 56
+-----
+Iteration 1: SSE = 5.02297e+06
+Iteration 2: SSE = 4.28296e+06
+Iteration 3: SSE = 3.96058e+06
+Iteration 4: SSE = 3.81428e+06
+Iteration 5: SSE = 3.70158e+06
+Iteration 6: SSE = 3.65708e+06
+Iteration 7: SSE = 3.62269e+06
+Iteration 8: SSE = 3.59964e+06
+Iteration 9: SSE = 3.57439e+06
+Iteration 10: SSE = 3.55737e+06
+Iteration 11: SSE = 3.55652e+06
+Iteration 12: SSE = 3.55616e+06
+Iteration 13: SSE = 3.55583e+06
+Run 57
+-----
+Iteration 1: SSE = 6.0732e+06
+Iteration 2: SSE = 5.40715e+06
+Iteration 3: SSE = 5.23879e+06
+Iteration 4: SSE = 5.17419e+06
+Iteration 5: SSE = 5.04957e+06
+Iteration 6: SSE = 4.78452e+06
+Iteration 7: SSE = 4.44373e+06
+Iteration 8: SSE = 4.15783e+06
+Iteration 9: SSE = 3.92954e+06
+Iteration 10: SSE = 3.79636e+06
+Iteration 11: SSE = 3.6986e+06
+Iteration 12: SSE = 3.65708e+06
+Iteration 13: SSE = 3.62269e+06
+Iteration 14: SSE = 3.59964e+06
+Iteration 15: SSE = 3.57439e+06
+Iteration 16: SSE = 3.55737e+06
+Iteration 17: SSE = 3.55652e+06
+Iteration 18: SSE = 3.55616e+06
+Iteration 19: SSE = 3.55583e+06
+Run 58
+-----
+Iteration 1: SSE = 4.1876e+06
+Iteration 2: SSE = 3.81841e+06
+Iteration 3: SSE = 3.69547e+06
+Iteration 4: SSE = 3.65496e+06
+Iteration 5: SSE = 3.62269e+06
+Iteration 6: SSE = 3.59964e+06
+Iteration 7: SSE = 3.57439e+06
+Iteration 8: SSE = 3.55737e+06
+Iteration 9: SSE = 3.55652e+06
+Iteration 10: SSE = 3.55616e+06
+Iteration 11: SSE = 3.55583e+06
+Run 59
+-----
+Iteration 1: SSE = 3.79764e+06
+Iteration 2: SSE = 3.60244e+06
+Iteration 3: SSE = 3.58398e+06
+Iteration 4: SSE = 3.57982e+06
+Iteration 5: SSE = 3.57409e+06
+Iteration 6: SSE = 3.57074e+06
+Iteration 7: SSE = 3.5665e+06
+Iteration 8: SSE = 3.56514e+06
+Iteration 9: SSE = 3.56464e+06
+Iteration 10: SSE = 3.56446e+06
+Run 60
+-----
+Iteration 1: SSE = 1.33023e+07
+Iteration 2: SSE = 5.89049e+06
+Iteration 3: SSE = 4.72199e+06
+Iteration 4: SSE = 4.23165e+06
+Iteration 5: SSE = 3.95565e+06
+Iteration 6: SSE = 3.80771e+06
+Iteration 7: SSE = 3.69821e+06
+Iteration 8: SSE = 3.65708e+06
+Iteration 9: SSE = 3.62269e+06
+Iteration 10: SSE = 3.59964e+06
+Iteration 11: SSE = 3.57439e+06
+Iteration 12: SSE = 3.55737e+06
+Iteration 13: SSE = 3.55652e+06
+Iteration 14: SSE = 3.55616e+06
+Iteration 15: SSE = 3.55583e+06
+Run 61
+-----
+Iteration 1: SSE = 5.00573e+06
+Iteration 2: SSE = 3.90868e+06
+Iteration 3: SSE = 3.77403e+06
+Iteration 4: SSE = 3.72545e+06
+Iteration 5: SSE = 3.66584e+06
+Iteration 6: SSE = 3.61827e+06
+Iteration 7: SSE = 3.59161e+06
+Iteration 8: SSE = 3.58411e+06
+Iteration 9: SSE = 3.57425e+06
+Iteration 10: SSE = 3.5672e+06
+Iteration 11: SSE = 3.56267e+06
+Iteration 12: SSE = 3.5604e+06
+Iteration 13: SSE = 3.55941e+06
+Iteration 14: SSE = 3.55898e+06
+Iteration 15: SSE = 3.55898e+06
+Run 62
+-----
+Iteration 1: SSE = 3.95135e+06
+Iteration 2: SSE = 3.75789e+06
+Iteration 3: SSE = 3.69608e+06
+Iteration 4: SSE = 3.64272e+06
+Iteration 5: SSE = 3.60173e+06
+Iteration 6: SSE = 3.58622e+06
+Iteration 7: SSE = 3.57949e+06
+Iteration 8: SSE = 3.57325e+06
+Iteration 9: SSE = 3.56579e+06
+Iteration 10: SSE = 3.56189e+06
+Iteration 11: SSE = 3.55988e+06
+Iteration 12: SSE = 3.55898e+06
+Iteration 13: SSE = 3.55898e+06
+Run 63
+-----
+Iteration 1: SSE = 3.98889e+06
+Iteration 2: SSE = 3.92604e+06
+Iteration 3: SSE = 3.92468e+06
+Iteration 4: SSE = 3.92429e+06
+Run 64
+-----
+Iteration 1: SSE = 5.33616e+06
+Iteration 2: SSE = 5.11842e+06
+Iteration 3: SSE = 4.34686e+06
+Iteration 4: SSE = 3.88091e+06
+Iteration 5: SSE = 3.68956e+06
+Iteration 6: SSE = 3.6504e+06
+Iteration 7: SSE = 3.61626e+06
+Iteration 8: SSE = 3.59479e+06
+Iteration 9: SSE = 3.57255e+06
+Iteration 10: SSE = 3.55737e+06
+Iteration 11: SSE = 3.55652e+06
+Iteration 12: SSE = 3.55616e+06
+Iteration 13: SSE = 3.55583e+06
+Run 65
+-----
+Iteration 1: SSE = 3.94028e+06
+Iteration 2: SSE = 3.72853e+06
+Iteration 3: SSE = 3.65717e+06
+Iteration 4: SSE = 3.60864e+06
+Iteration 5: SSE = 3.58545e+06
+Iteration 6: SSE = 3.57982e+06
+Iteration 7: SSE = 3.57409e+06
+Iteration 8: SSE = 3.57074e+06
+Iteration 9: SSE = 3.5665e+06
+Iteration 10: SSE = 3.56514e+06
+Iteration 11: SSE = 3.56464e+06
+Iteration 12: SSE = 3.56446e+06
+Run 66
+-----
+Iteration 1: SSE = 1.06852e+07
+Iteration 2: SSE = 5.86827e+06
+Iteration 3: SSE = 4.82305e+06
+Iteration 4: SSE = 4.26701e+06
+Iteration 5: SSE = 3.94662e+06
+Iteration 6: SSE = 3.80613e+06
+Iteration 7: SSE = 3.69803e+06
+Iteration 8: SSE = 3.65682e+06
+Iteration 9: SSE = 3.62269e+06
+Iteration 10: SSE = 3.59964e+06
+Iteration 11: SSE = 3.57439e+06
+Iteration 12: SSE = 3.55737e+06
+Iteration 13: SSE = 3.55652e+06
+Iteration 14: SSE = 3.55616e+06
+Iteration 15: SSE = 3.55583e+06
+Run 67
+-----
+Iteration 1: SSE = 3.96929e+06
+Iteration 2: SSE = 3.80523e+06
+Iteration 3: SSE = 3.69803e+06
+Iteration 4: SSE = 3.65682e+06
+Iteration 5: SSE = 3.62269e+06
+Iteration 6: SSE = 3.59964e+06
+Iteration 7: SSE = 3.57439e+06
+Iteration 8: SSE = 3.55737e+06
+Iteration 9: SSE = 3.55652e+06
+Iteration 10: SSE = 3.55616e+06
+Iteration 11: SSE = 3.55583e+06
+Run 68
+-----
+Iteration 1: SSE = 4.47939e+06
+Iteration 2: SSE = 3.72478e+06
+Iteration 3: SSE = 3.69487e+06
+Iteration 4: SSE = 3.69127e+06
+Iteration 5: SSE = 3.68717e+06
+Iteration 6: SSE = 3.68267e+06
+Iteration 7: SSE = 3.67254e+06
+Iteration 8: SSE = 3.66852e+06
+Iteration 9: SSE = 3.66509e+06
+Iteration 10: SSE = 3.66143e+06
+Iteration 11: SSE = 3.65453e+06
+Iteration 12: SSE = 3.64576e+06
+Iteration 13: SSE = 3.63148e+06
+Iteration 14: SSE = 3.62368e+06
+Iteration 15: SSE = 3.61934e+06
+Iteration 16: SSE = 3.6163e+06
+Iteration 17: SSE = 3.61323e+06
+Iteration 18: SSE = 3.6059e+06
+Iteration 19: SSE = 3.60047e+06
+Iteration 20: SSE = 3.59241e+06
+Iteration 21: SSE = 3.5781e+06
+Iteration 22: SSE = 3.56939e+06
+Iteration 23: SSE = 3.5639e+06
+Iteration 24: SSE = 3.56176e+06
+Iteration 25: SSE = 3.56046e+06
+Iteration 26: SSE = 3.55914e+06
+Iteration 27: SSE = 3.55788e+06
+Iteration 28: SSE = 3.55743e+06
+Iteration 29: SSE = 3.55707e+06
+Iteration 30: SSE = 3.55695e+06
+Run 69
+-----
+Iteration 1: SSE = 4.70101e+06
+Iteration 2: SSE = 3.95966e+06
+Iteration 3: SSE = 3.74765e+06
+Iteration 4: SSE = 3.67071e+06
+Iteration 5: SSE = 3.63678e+06
+Iteration 6: SSE = 3.61178e+06
+Iteration 7: SSE = 3.59097e+06
+Iteration 8: SSE = 3.5707e+06
+Iteration 9: SSE = 3.55737e+06
+Iteration 10: SSE = 3.55652e+06
+Iteration 11: SSE = 3.55616e+06
+Iteration 12: SSE = 3.55583e+06
+Run 70
+-----
+Iteration 1: SSE = 5.17082e+06
+Iteration 2: SSE = 4.08758e+06
+Iteration 3: SSE = 3.86634e+06
+Iteration 4: SSE = 3.75436e+06
+Iteration 5: SSE = 3.67674e+06
+Iteration 6: SSE = 3.64356e+06
+Iteration 7: SSE = 3.61422e+06
+Iteration 8: SSE = 3.59337e+06
+Iteration 9: SSE = 3.5707e+06
+Iteration 10: SSE = 3.55737e+06
+Iteration 11: SSE = 3.55652e+06
+Iteration 12: SSE = 3.55616e+06
+Iteration 13: SSE = 3.55583e+06
+Run 71
+-----
+Iteration 1: SSE = 4.96527e+06
+Iteration 2: SSE = 4.38833e+06
+Iteration 3: SSE = 4.03326e+06
+Iteration 4: SSE = 3.84926e+06
+Iteration 5: SSE = 3.74924e+06
+Iteration 6: SSE = 3.67674e+06
+Iteration 7: SSE = 3.64356e+06
+Iteration 8: SSE = 3.61422e+06
+Iteration 9: SSE = 3.59337e+06
+Iteration 10: SSE = 3.5707e+06
+Iteration 11: SSE = 3.55737e+06
+Iteration 12: SSE = 3.55652e+06
+Iteration 13: SSE = 3.55616e+06
+Iteration 14: SSE = 3.55583e+06
+Run 72
+-----
+Iteration 1: SSE = 4.12367e+06
+Iteration 2: SSE = 3.85072e+06
+Iteration 3: SSE = 3.80343e+06
+Iteration 4: SSE = 3.78339e+06
+Iteration 5: SSE = 3.75744e+06
+Iteration 6: SSE = 3.72101e+06
+Iteration 7: SSE = 3.65914e+06
+Iteration 8: SSE = 3.61542e+06
+Iteration 9: SSE = 3.59161e+06
+Iteration 10: SSE = 3.58411e+06
+Iteration 11: SSE = 3.57425e+06
+Iteration 12: SSE = 3.5672e+06
+Iteration 13: SSE = 3.56267e+06
+Iteration 14: SSE = 3.5604e+06
+Iteration 15: SSE = 3.55941e+06
+Iteration 16: SSE = 3.55898e+06
+Iteration 17: SSE = 3.55898e+06
+Run 73
+-----
+Iteration 1: SSE = 4.61588e+06
+Iteration 2: SSE = 3.99169e+06
+Iteration 3: SSE = 3.71368e+06
+Iteration 4: SSE = 3.6213e+06
+Iteration 5: SSE = 3.59639e+06
+Iteration 6: SSE = 3.57439e+06
+Iteration 7: SSE = 3.55737e+06
+Iteration 8: SSE = 3.55652e+06
+Iteration 9: SSE = 3.55616e+06
+Iteration 10: SSE = 3.55583e+06
+Run 74
+-----
+Iteration 1: SSE = 5.62933e+06
+Iteration 2: SSE = 4.77204e+06
+Iteration 3: SSE = 4.35979e+06
+Iteration 4: SSE = 4.03142e+06
+Iteration 5: SSE = 3.86014e+06
+Iteration 6: SSE = 3.75577e+06
+Iteration 7: SSE = 3.67696e+06
+Iteration 8: SSE = 3.64356e+06
+Iteration 9: SSE = 3.61422e+06
+Iteration 10: SSE = 3.59337e+06
+Iteration 11: SSE = 3.5707e+06
+Iteration 12: SSE = 3.55737e+06
+Iteration 13: SSE = 3.55652e+06
+Iteration 14: SSE = 3.55616e+06
+Iteration 15: SSE = 3.55583e+06
+Run 75
+-----
+Iteration 1: SSE = 3.9627e+06
+Iteration 2: SSE = 3.6918e+06
+Iteration 3: SSE = 3.6399e+06
+Iteration 4: SSE = 3.61367e+06
+Iteration 5: SSE = 3.59309e+06
+Iteration 6: SSE = 3.5707e+06
+Iteration 7: SSE = 3.55737e+06
+Iteration 8: SSE = 3.55652e+06
+Iteration 9: SSE = 3.55616e+06
+Iteration 10: SSE = 3.55583e+06
+Run 76
+-----
+Iteration 1: SSE = 3.8287e+06
+Iteration 2: SSE = 3.64908e+06
+Iteration 3: SSE = 3.63449e+06
+Iteration 4: SSE = 3.6255e+06
+Iteration 5: SSE = 3.61988e+06
+Iteration 6: SSE = 3.61717e+06
+Iteration 7: SSE = 3.61587e+06
+Iteration 8: SSE = 3.61271e+06
+Iteration 9: SSE = 3.60429e+06
+Iteration 10: SSE = 3.59916e+06
+Iteration 11: SSE = 3.59241e+06
+Iteration 12: SSE = 3.5781e+06
+Iteration 13: SSE = 3.56939e+06
+Iteration 14: SSE = 3.5639e+06
+Iteration 15: SSE = 3.56176e+06
+Iteration 16: SSE = 3.56046e+06
+Iteration 17: SSE = 3.55914e+06
+Iteration 18: SSE = 3.55788e+06
+Iteration 19: SSE = 3.55743e+06
+Iteration 20: SSE = 3.55707e+06
+Iteration 21: SSE = 3.55695e+06
+Run 77
+-----
+Iteration 1: SSE = 3.81288e+06
+Iteration 2: SSE = 3.60435e+06
+Iteration 3: SSE = 3.57081e+06
+Iteration 4: SSE = 3.56349e+06
+Iteration 5: SSE = 3.56106e+06
+Iteration 6: SSE = 3.55988e+06
+Iteration 7: SSE = 3.55898e+06
+Iteration 8: SSE = 3.55898e+06
+Run 78
+-----
+Iteration 1: SSE = 3.63278e+06
+Iteration 2: SSE = 3.57694e+06
+Iteration 3: SSE = 3.55817e+06
+Iteration 4: SSE = 3.55664e+06
+Iteration 5: SSE = 3.55616e+06
+Iteration 6: SSE = 3.55583e+06
+Run 79
+-----
+Iteration 1: SSE = 4.44874e+06
+Iteration 2: SSE = 3.90583e+06
+Iteration 3: SSE = 3.85422e+06
+Iteration 4: SSE = 3.8287e+06
+Iteration 5: SSE = 3.80615e+06
+Iteration 6: SSE = 3.7849e+06
+Iteration 7: SSE = 3.77343e+06
+Iteration 8: SSE = 3.76569e+06
+Iteration 9: SSE = 3.75714e+06
+Iteration 10: SSE = 3.74332e+06
+Iteration 11: SSE = 3.72736e+06
+Iteration 12: SSE = 3.71291e+06
+Iteration 13: SSE = 3.69778e+06
+Iteration 14: SSE = 3.67362e+06
+Iteration 15: SSE = 3.63324e+06
+Iteration 16: SSE = 3.59278e+06
+Iteration 17: SSE = 3.57459e+06
+Iteration 18: SSE = 3.56815e+06
+Iteration 19: SSE = 3.56349e+06
+Iteration 20: SSE = 3.56106e+06
+Iteration 21: SSE = 3.55988e+06
+Iteration 22: SSE = 3.55898e+06
+Iteration 23: SSE = 3.55898e+06
+Run 80
+-----
+Iteration 1: SSE = 7.50315e+06
+Iteration 2: SSE = 5.25295e+06
+Iteration 3: SSE = 4.73149e+06
+Iteration 4: SSE = 4.30185e+06
+Iteration 5: SSE = 4.00536e+06
+Iteration 6: SSE = 3.84149e+06
+Iteration 7: SSE = 3.7299e+06
+Iteration 8: SSE = 3.66752e+06
+Iteration 9: SSE = 3.63103e+06
+Iteration 10: SSE = 3.60337e+06
+Iteration 11: SSE = 3.57658e+06
+Iteration 12: SSE = 3.55907e+06
+Iteration 13: SSE = 3.55652e+06
+Iteration 14: SSE = 3.55616e+06
+Iteration 15: SSE = 3.55583e+06
+Run 81
+-----
+Iteration 1: SSE = 3.98066e+06
+Iteration 2: SSE = 3.95424e+06
+Iteration 3: SSE = 3.92715e+06
+Iteration 4: SSE = 3.91055e+06
+Iteration 5: SSE = 3.88653e+06
+Iteration 6: SSE = 3.86424e+06
+Iteration 7: SSE = 3.85405e+06
+Iteration 8: SSE = 3.83856e+06
+Iteration 9: SSE = 3.80971e+06
+Iteration 10: SSE = 3.78968e+06
+Iteration 11: SSE = 3.77829e+06
+Iteration 12: SSE = 3.76772e+06
+Iteration 13: SSE = 3.76115e+06
+Iteration 14: SSE = 3.75161e+06
+Iteration 15: SSE = 3.73374e+06
+Iteration 16: SSE = 3.71683e+06
+Iteration 17: SSE = 3.69935e+06
+Iteration 18: SSE = 3.67477e+06
+Iteration 19: SSE = 3.63324e+06
+Iteration 20: SSE = 3.59278e+06
+Iteration 21: SSE = 3.57459e+06
+Iteration 22: SSE = 3.56815e+06
+Iteration 23: SSE = 3.56349e+06
+Iteration 24: SSE = 3.56106e+06
+Iteration 25: SSE = 3.55988e+06
+Iteration 26: SSE = 3.55898e+06
+Iteration 27: SSE = 3.55898e+06
+Run 82
+-----
+Iteration 1: SSE = 8.41179e+06
+Iteration 2: SSE = 4.6252e+06
+Iteration 3: SSE = 4.01824e+06
+Iteration 4: SSE = 3.84195e+06
+Iteration 5: SSE = 3.7361e+06
+Iteration 6: SSE = 3.67066e+06
+Iteration 7: SSE = 3.63696e+06
+Iteration 8: SSE = 3.61178e+06
+Iteration 9: SSE = 3.59097e+06
+Iteration 10: SSE = 3.5707e+06
+Iteration 11: SSE = 3.55737e+06
+Iteration 12: SSE = 3.55652e+06
+Iteration 13: SSE = 3.55616e+06
+Iteration 14: SSE = 3.55583e+06
+Run 83
+-----
+Iteration 1: SSE = 5.41179e+06
+Iteration 2: SSE = 4.04411e+06
+Iteration 3: SSE = 3.79118e+06
+Iteration 4: SSE = 3.68632e+06
+Iteration 5: SSE = 3.65044e+06
+Iteration 6: SSE = 3.61681e+06
+Iteration 7: SSE = 3.59661e+06
+Iteration 8: SSE = 3.57439e+06
+Iteration 9: SSE = 3.55737e+06
+Iteration 10: SSE = 3.55652e+06
+Iteration 11: SSE = 3.55616e+06
+Iteration 12: SSE = 3.55583e+06
+Run 84
+-----
+Iteration 1: SSE = 4.9072e+06
+Iteration 2: SSE = 4.50178e+06
+Iteration 3: SSE = 4.19645e+06
+Iteration 4: SSE = 3.94499e+06
+Iteration 5: SSE = 3.80867e+06
+Iteration 6: SSE = 3.7011e+06
+Iteration 7: SSE = 3.65735e+06
+Iteration 8: SSE = 3.62269e+06
+Iteration 9: SSE = 3.59964e+06
+Iteration 10: SSE = 3.57439e+06
+Iteration 11: SSE = 3.55737e+06
+Iteration 12: SSE = 3.55652e+06
+Iteration 13: SSE = 3.55616e+06
+Iteration 14: SSE = 3.55583e+06
+Run 85
+-----
+Iteration 1: SSE = 1.37727e+07
+Iteration 2: SSE = 6.09751e+06
+Iteration 3: SSE = 4.7663e+06
+Iteration 4: SSE = 4.31502e+06
+Iteration 5: SSE = 4.00929e+06
+Iteration 6: SSE = 3.84376e+06
+Iteration 7: SSE = 3.73946e+06
+Iteration 8: SSE = 3.67066e+06
+Iteration 9: SSE = 3.63696e+06
+Iteration 10: SSE = 3.61178e+06
+Iteration 11: SSE = 3.59097e+06
+Iteration 12: SSE = 3.5707e+06
+Iteration 13: SSE = 3.55737e+06
+Iteration 14: SSE = 3.55652e+06
+Iteration 15: SSE = 3.55616e+06
+Iteration 16: SSE = 3.55583e+06
+Run 86
+-----
+Iteration 1: SSE = 5.77087e+06
+Iteration 2: SSE = 3.93779e+06
+Iteration 3: SSE = 3.67704e+06
+Iteration 4: SSE = 3.61992e+06
+Iteration 5: SSE = 3.59945e+06
+Iteration 6: SSE = 3.57439e+06
+Iteration 7: SSE = 3.55737e+06
+Iteration 8: SSE = 3.55652e+06
+Iteration 9: SSE = 3.55616e+06
+Iteration 10: SSE = 3.55583e+06
+Run 87
+-----
+Iteration 1: SSE = 4.02915e+06
+Iteration 2: SSE = 3.6601e+06
+Iteration 3: SSE = 3.60343e+06
+Iteration 4: SSE = 3.58545e+06
+Iteration 5: SSE = 3.57982e+06
+Iteration 6: SSE = 3.57409e+06
+Iteration 7: SSE = 3.57074e+06
+Iteration 8: SSE = 3.5665e+06
+Iteration 9: SSE = 3.56514e+06
+Iteration 10: SSE = 3.56464e+06
+Iteration 11: SSE = 3.56446e+06
+Run 88
+-----
+Iteration 1: SSE = 6.10455e+06
+Iteration 2: SSE = 3.72803e+06
+Iteration 3: SSE = 3.62525e+06
+Iteration 4: SSE = 3.60162e+06
+Iteration 5: SSE = 3.57658e+06
+Iteration 6: SSE = 3.55907e+06
+Iteration 7: SSE = 3.55652e+06
+Iteration 8: SSE = 3.55616e+06
+Iteration 9: SSE = 3.55583e+06
+Run 89
+-----
+Iteration 1: SSE = 5.51498e+06
+Iteration 2: SSE = 4.71358e+06
+Iteration 3: SSE = 4.06364e+06
+Iteration 4: SSE = 3.73968e+06
+Iteration 5: SSE = 3.64406e+06
+Iteration 6: SSE = 3.60116e+06
+Iteration 7: SSE = 3.58398e+06
+Iteration 8: SSE = 3.57982e+06
+Iteration 9: SSE = 3.57409e+06
+Iteration 10: SSE = 3.57074e+06
+Iteration 11: SSE = 3.5665e+06
+Iteration 12: SSE = 3.56514e+06
+Iteration 13: SSE = 3.56464e+06
+Iteration 14: SSE = 3.56446e+06
+Run 90
+-----
+Iteration 1: SSE = 5.69702e+06
+Iteration 2: SSE = 4.50752e+06
+Iteration 3: SSE = 4.15032e+06
+Iteration 4: SSE = 3.88355e+06
+Iteration 5: SSE = 3.64414e+06
+Iteration 6: SSE = 3.57795e+06
+Iteration 7: SSE = 3.56974e+06
+Iteration 8: SSE = 3.5665e+06
+Iteration 9: SSE = 3.56514e+06
+Iteration 10: SSE = 3.56464e+06
+Iteration 11: SSE = 3.56446e+06
+Run 91
+-----
+Iteration 1: SSE = 4.69146e+06
+Iteration 2: SSE = 4.20043e+06
+Iteration 3: SSE = 3.93911e+06
+Iteration 4: SSE = 3.80004e+06
+Iteration 5: SSE = 3.7011e+06
+Iteration 6: SSE = 3.65735e+06
+Iteration 7: SSE = 3.62269e+06
+Iteration 8: SSE = 3.59964e+06
+Iteration 9: SSE = 3.57439e+06
+Iteration 10: SSE = 3.55737e+06
+Iteration 11: SSE = 3.55652e+06
+Iteration 12: SSE = 3.55616e+06
+Iteration 13: SSE = 3.55583e+06
+Run 92
+-----
+Iteration 1: SSE = 8.93293e+06
+Iteration 2: SSE = 5.28238e+06
+Iteration 3: SSE = 4.70137e+06
+Iteration 4: SSE = 4.27942e+06
+Iteration 5: SSE = 3.99426e+06
+Iteration 6: SSE = 3.83688e+06
+Iteration 7: SSE = 3.72564e+06
+Iteration 8: SSE = 3.66728e+06
+Iteration 9: SSE = 3.63103e+06
+Iteration 10: SSE = 3.60337e+06
+Iteration 11: SSE = 3.57658e+06
+Iteration 12: SSE = 3.55907e+06
+Iteration 13: SSE = 3.55652e+06
+Iteration 14: SSE = 3.55616e+06
+Iteration 15: SSE = 3.55583e+06
+Run 93
+-----
+Iteration 1: SSE = 4.79635e+06
+Iteration 2: SSE = 3.85662e+06
+Iteration 3: SSE = 3.80435e+06
+Iteration 4: SSE = 3.78208e+06
+Iteration 5: SSE = 3.77096e+06
+Iteration 6: SSE = 3.75994e+06
+Iteration 7: SSE = 3.74871e+06
+Iteration 8: SSE = 3.73349e+06
+Iteration 9: SSE = 3.71683e+06
+Iteration 10: SSE = 3.69935e+06
+Iteration 11: SSE = 3.67477e+06
+Iteration 12: SSE = 3.63324e+06
+Iteration 13: SSE = 3.59278e+06
+Iteration 14: SSE = 3.57459e+06
+Iteration 15: SSE = 3.56815e+06
+Iteration 16: SSE = 3.56349e+06
+Iteration 17: SSE = 3.56106e+06
+Iteration 18: SSE = 3.55988e+06
+Iteration 19: SSE = 3.55898e+06
+Iteration 20: SSE = 3.55898e+06
+Run 94
+-----
+Iteration 1: SSE = 5.1588e+06
+Iteration 2: SSE = 4.69566e+06
+Iteration 3: SSE = 4.36979e+06
+Iteration 4: SSE = 4.0742e+06
+Iteration 5: SSE = 3.8692e+06
+Iteration 6: SSE = 3.75733e+06
+Iteration 7: SSE = 3.67741e+06
+Iteration 8: SSE = 3.64356e+06
+Iteration 9: SSE = 3.61422e+06
+Iteration 10: SSE = 3.59337e+06
+Iteration 11: SSE = 3.5707e+06
+Iteration 12: SSE = 3.55737e+06
+Iteration 13: SSE = 3.55652e+06
+Iteration 14: SSE = 3.55616e+06
+Iteration 15: SSE = 3.55583e+06
+Run 95
+-----
+Iteration 1: SSE = 4.05489e+06
+Iteration 2: SSE = 3.77241e+06
+Iteration 3: SSE = 3.73763e+06
+Iteration 4: SSE = 3.6898e+06
+Iteration 5: SSE = 3.64007e+06
+Iteration 6: SSE = 3.59926e+06
+Iteration 7: SSE = 3.58622e+06
+Iteration 8: SSE = 3.57949e+06
+Iteration 9: SSE = 3.57325e+06
+Iteration 10: SSE = 3.56579e+06
+Iteration 11: SSE = 3.56189e+06
+Iteration 12: SSE = 3.55988e+06
+Iteration 13: SSE = 3.55898e+06
+Iteration 14: SSE = 3.55898e+06
+Run 96
+-----
+Iteration 1: SSE = 1.87229e+07
+Iteration 2: SSE = 6.24975e+06
+Iteration 3: SSE = 5.08156e+06
+Iteration 4: SSE = 4.76553e+06
+Iteration 5: SSE = 4.41627e+06
+Iteration 6: SSE = 4.11783e+06
+Iteration 7: SSE = 3.90176e+06
+Iteration 8: SSE = 3.77839e+06
+Iteration 9: SSE = 3.68198e+06
+Iteration 10: SSE = 3.65044e+06
+Iteration 11: SSE = 3.61681e+06
+Iteration 12: SSE = 3.59661e+06
+Iteration 13: SSE = 3.57439e+06
+Iteration 14: SSE = 3.55737e+06
+Iteration 15: SSE = 3.55652e+06
+Iteration 16: SSE = 3.55616e+06
+Iteration 17: SSE = 3.55583e+06
+Run 97
+-----
+Iteration 1: SSE = 4.11607e+06
+Iteration 2: SSE = 3.81105e+06
+Iteration 3: SSE = 3.75091e+06
+Iteration 4: SSE = 3.71259e+06
+Iteration 5: SSE = 3.67812e+06
+Iteration 6: SSE = 3.62071e+06
+Iteration 7: SSE = 3.56788e+06
+Iteration 8: SSE = 3.55676e+06
+Iteration 9: SSE = 3.55573e+06
+Iteration 10: SSE = 3.55566e+06
+Run 98
+-----
+Iteration 1: SSE = 6.41071e+06
+Iteration 2: SSE = 3.89746e+06
+Iteration 3: SSE = 3.72325e+06
+Iteration 4: SSE = 3.66471e+06
+Iteration 5: SSE = 3.63103e+06
+Iteration 6: SSE = 3.60337e+06
+Iteration 7: SSE = 3.57658e+06
+Iteration 8: SSE = 3.55907e+06
+Iteration 9: SSE = 3.55652e+06
+Iteration 10: SSE = 3.55616e+06
+Iteration 11: SSE = 3.55583e+06
+Run 99
+-----
+Iteration 1: SSE = 5.25199e+06
+Iteration 2: SSE = 4.19478e+06
+Iteration 3: SSE = 3.85009e+06
+Iteration 4: SSE = 3.73656e+06
+Iteration 5: SSE = 3.66055e+06
+Iteration 6: SSE = 3.61145e+06
+Iteration 7: SSE = 3.58962e+06
+Iteration 8: SSE = 3.58079e+06
+Iteration 9: SSE = 3.57409e+06
+Iteration 10: SSE = 3.57074e+06
+Iteration 11: SSE = 3.5665e+06
+Iteration 12: SSE = 3.56514e+06
+Iteration 13: SSE = 3.56464e+06
+Iteration 14: SSE = 3.56446e+06
+Run 100
+-----
+Iteration 1: SSE = 6.03685e+06
+Iteration 2: SSE = 5.00634e+06
+Iteration 3: SSE = 4.34539e+06
+Iteration 4: SSE = 3.86205e+06
+Iteration 5: SSE = 3.6879e+06
+Iteration 6: SSE = 3.6504e+06
+Iteration 7: SSE = 3.61626e+06
+Iteration 8: SSE = 3.59479e+06
+Iteration 9: SSE = 3.57255e+06
+Iteration 10: SSE = 3.55737e+06
+Iteration 11: SSE = 3.55652e+06
+Iteration 12: SSE = 3.55616e+06
+Iteration 13: SSE = 3.55583e+06
+
+Best Run: 48: SSE = 3.55566e+06
