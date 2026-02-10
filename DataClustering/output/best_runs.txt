@@ -1,0 +1,10 @@
+ecoli.txt: Best Run = 15, SSE = 13.876035
+glass.txt: Best Run = 7, SSE = 336.268650
+ionosphere.txt: Best Run = 1, SSE = 2419.364807
+iris_bezdek.txt: Best Run = 10, SSE = 78.851441
+landsat.txt: Best Run = 78, SSE = 16261354.584515
+letter_recognition.txt: Best Run = 90, SSE = 612485.427653
+segmentation.txt: Best Run = 2, SSE = 13955536.185620
+vehicle.txt: Best Run = 29, SSE = 3555655.595657
+wine.txt: Best Run = 2, SSE = 2370689.686783
+yeast.txt: Best Run = 18, SSE = 45.272270

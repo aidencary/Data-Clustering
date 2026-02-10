@@ -127,6 +127,7 @@ void Kmeans::runKmeans() {
 
 		// Step 2: Repeat until convergence
 		double previous_sse = std::numeric_limits<double>::max();
+		double current_sse = 0.0;
 
 		for (int iteration = 0; iteration < max_iterations_; ++iteration) {
 			// Step 3: Form K clusters by assigning each point to its closest centroid
@@ -153,35 +154,37 @@ void Kmeans::runKmeans() {
 			}
 
 			// Step 4: Recompute the centroid of each cluster
-			std::vector<Point> new_centers;
+			// Initialize sums for each cluster and dimension
+			std::vector<std::vector<double>> sums(
+				num_clusters_,
+				std::vector<double>(dimensionality_, 0.0)
+			);
+			
+			// Initialize cluster sizes
 			std::vector<int> cluster_sizes(num_clusters_, 0);
 			
-			// Count points in each cluster
+			// Accumulate sums and counts in one pass
 			for (int i = 0; i < num_of_points_; ++i) {
-				cluster_sizes[assignments[i]]++;
+				int cluster = assignments[i];
+				cluster_sizes[cluster]++;
+				
+				// Add this point's dimensions to its cluster sum
+				for (int d = 0; d < dimensionality_; ++d) {
+					sums[cluster][d] += dataset_[i].getVal(d);
+				}
 			}
 			
-			// Calculate new centers
+			// Compute new centroids
+			std::vector<Point> new_centers;
+			
 			for (int k = 0; k < num_clusters_; ++k) {
-				// Sum dimensions of points assigned to this cluster
-				std::vector<double> sums(dimensionality_, 0.0);
-
-				for (int i = 0; i < num_of_points_; ++i) {
-					// If point i is assigned to cluster k, add its dimensions to sums
-					if (assignments[i] == k) {
-						for (int d = 0; d < dimensionality_; ++d) {
-							sums[d] += dataset_[i].getVal(d);
-						}
-					}
-				}
-				
 				// Calculate mean for each dimension to get new center
 				Point new_center;
-
+				
 				for (int d = 0; d < dimensionality_; ++d) {
 					// Avoid dividing by zero
 					if (cluster_sizes[k] > 0) {
-						new_center.addDimension(sums[d] / cluster_sizes[k]);
+						new_center.addDimension(sums[k][d] / cluster_sizes[k]);
 					} else {
 						// If a cluster has no points assigned, retain the old center
 						new_center.addDimension(centroids[k].getVal(d));
@@ -193,7 +196,7 @@ void Kmeans::runKmeans() {
 			centroids = new_centers;
 
 			// Calculate SSE (Sum of Squared Error) aka Scatter
-			double current_sse = 0.0;
+			current_sse = 0.0;
 			// Calculate the error of each data point to its assigned centroid and then compute the total SSE.
 			for (int i = 0; i < num_of_points_; ++i) {
 				int cluster = assignments[i];
@@ -203,9 +206,9 @@ void Kmeans::runKmeans() {
 				}
 			}
 			
-			std::cout << "Iteration " << (iteration + 1) << ": SSE = " << current_sse << std::endl;
+			std::cout << "Iteration " << (iteration + 1) << ": SSE = " << std::fixed << current_sse << std::endl;
 			if (output_file.is_open()) {
-				output_file << "Iteration " << (iteration + 1) << ": SSE = " << current_sse << std::endl;
+				output_file << "Iteration " << (iteration + 1) << ": SSE = " << std::fixed << current_sse << std::endl;
 			}
 
 			/* Uncomment to enable Iris Bezdek dataset test
@@ -216,6 +219,12 @@ void Kmeans::runKmeans() {
 
 			// Step 5: Check if SSE improvement is below the convergence threshold
 			if (previous_sse != std::numeric_limits<double>::max()) {
+				// Check if SSE hasn't changed at all (converged perfectly)
+				if (current_sse == previous_sse) {
+					break; // No change, converged
+				}
+				
+				// Check relative improvement
 				double relative_improvement = (previous_sse - current_sse) / previous_sse;
 				if (relative_improvement < convergence_threshold_) {
 					break; // Converged
@@ -225,17 +234,26 @@ void Kmeans::runKmeans() {
 		}
 		
 		// Track if this run achieved the best SSE
-		if (previous_sse < best_sse) {
-			best_sse = previous_sse;
+		if (current_sse < best_sse) {
+			best_sse = current_sse;
 			best_run = run + 1;
 		}
 	}
 	
 	// Display best run after all runs complete
-	std::cout << "\nBest Run: " << best_run << ": SSE = " << best_sse << std::endl;
+	std::cout << "\nBest Run: " << best_run << ": SSE = " << std::fixed << best_sse << std::endl;
 	if (output_file.is_open()) {
-		output_file << "\nBest Run: " << best_run << ": SSE = " << best_sse;
+		output_file << "\nBest Run: " << best_run << ": SSE = " << std::fixed << best_sse;
 		output_file.close();
+	}
+
+	// Write best run to best_runs.txt file
+	std::ofstream best_runs_file("../output/best_runs.txt", std::ios::app);
+	if (best_runs_file.is_open()) {
+		best_runs_file << file_name_ << ": Best Run = " << best_run << ", SSE = " << std::fixed << best_sse << std::endl;
+		best_runs_file.close();
+	} else {
+		std::cerr << "Error: Could not open best_runs.txt file" << std::endl;
 	}
 
 }
