@@ -135,7 +135,7 @@ void Kmeans::runKmeans() {
 				int nearest_cluster = 0;
 				
 				for (int k = 0; k < num_clusters_; ++k) {
-					// Calculate squared Euclidean distance (no sqrt needed for comparison)
+					// Calculate squared Euclidean distance
 					double squared_dist = 0.0;
 					for (int d = 0; d < dimensionality_; ++d) {
 						double diff = dataset_[i].getVal(d) - centroids[k].getVal(d);
@@ -192,7 +192,7 @@ void Kmeans::runKmeans() {
 			
 			centroids = new_centers;
 
-			// Calculate SSE (Sum of Squared Error)/Scatter
+			// Calculate SSE (Sum of Squared Error) aka Scatter
 			double current_sse = 0.0;
 			// Calculate the error of each data point to its assigned centroid and then compute the total SSE.
 			for (int i = 0; i < num_of_points_; ++i) {
@@ -214,8 +214,7 @@ void Kmeans::runKmeans() {
 			}
 			*/
 
-			// Step 5: Check if centroids have converged (until centroids do not change)
-			// Convergence Check: Check relative improvement in SSE
+			// Step 5: Check if SSE improvement is below the convergence threshold
 			if (previous_sse != std::numeric_limits<double>::max()) {
 				double relative_improvement = (previous_sse - current_sse) / previous_sse;
 				if (relative_improvement < convergence_threshold_) {
