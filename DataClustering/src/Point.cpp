@@ -16,7 +16,7 @@ double Point::getVal(int index) const {
 
 // Print the point
 void Point::print() const {
-	std::cout << std::fixed;
+	std::cout << std::fixed << std::setprecision(15);
 	for (size_t i = 0; i < dimensions_.size(); ++i) {
 		// Print the value
 		std::cout << dimensions_[i];

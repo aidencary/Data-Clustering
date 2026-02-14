@@ -206,9 +206,9 @@ void Kmeans::runKmeans() {
 				}
 			}
 			
-			std::cout << "Iteration " << (iteration + 1) << ": SSE = " << std::fixed << current_sse << std::endl;
+			std::cout << "Iteration " << (iteration + 1) << ": SSE = " << std::fixed << std::setprecision(4) << current_sse << std::endl;
 			if (output_file.is_open()) {
-				output_file << "Iteration " << (iteration + 1) << ": SSE = " << std::fixed << current_sse << std::endl;
+				output_file << "Iteration " << (iteration + 1) << ": SSE = " << std::fixed << std::setprecision(4) << current_sse << std::endl;
 			}
 
 			/* Uncomment to enable Iris Bezdek dataset test
@@ -241,16 +241,16 @@ void Kmeans::runKmeans() {
 	}
 	
 	// Display best run after all runs complete
-	std::cout << "\nBest Run: " << best_run << ": SSE = " << std::fixed << best_sse << std::endl;
+	std::cout << "\nBest Run: " << best_run << ": SSE = " << std::fixed << std::setprecision(4) << best_sse << std::endl;
 	if (output_file.is_open()) {
-		output_file << "\nBest Run: " << best_run << ": SSE = " << std::fixed << best_sse;
+		output_file << "\nBest Run: " << best_run << ": SSE = " << std::fixed << std::setprecision(4) << best_sse;
 		output_file.close();
 	}
 
 	// Write best run to best_runs.txt file
 	std::ofstream best_runs_file("../output/best_runs.txt", std::ios::app);
 	if (best_runs_file.is_open()) {
-		best_runs_file << file_name_ << ": Best Run = " << best_run << ", SSE = " << std::fixed << best_sse << std::endl;
+		best_runs_file << file_name_ << ": Best Run = " << best_run << ", SSE = " << std::fixed << std::setprecision(4) << best_sse << std::endl;
 		best_runs_file.close();
 	} else {
 		std::cerr << "Error: Could not open best_runs.txt file" << std::endl;

@@ -2,8 +2,8 @@
 
 #include <ctime>
 #include <fstream>
-#include <iomanip>
 #include <iostream>
+#include <iomanip>
 #include <random>
 #include <string>
 #include <vector>
