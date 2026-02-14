@@ -35,7 +35,7 @@ public:
 	// Prints all data points to standard output.
 	void printData() const;
 	// Selects K random centers and returns them.
-	std::vector<Point> selectCenters();
+	std::vector<Point> selectCentroids();
 	// Implements the K-means algorithm.
 	void runKmeans();
 	// Test method for Iris Bezdek dataset: checks if SSE is at or below global optimum (which should not be possible).

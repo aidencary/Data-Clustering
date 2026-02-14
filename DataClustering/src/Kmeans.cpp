@@ -54,7 +54,7 @@ void Kmeans::printData() const {
 	}
 }
 
-std::vector<Point> Kmeans::selectCenters() {
+std::vector<Point> Kmeans::selectCentroids() {
 	// Step 1 of K-means Algorithm: Select K points as initial centroids
 	// Centroids are selected uniformly at random from the dataset using C++11 <random> library
 	std::random_device rd; // seed source for the random number engine
@@ -110,7 +110,8 @@ void Kmeans::runKmeans() {
 	// Track best run across all executions
 	double best_sse = std::numeric_limits<double>::max();
 	int best_run = 0;
-
+	
+	// Run the K-means algorithm for the specified number of runs
 	for (int run = 0; run < num_of_runs_; ++run) {
 		std::cout << "Run " << (run + 1) << std::endl;
 		std::cout << "-----" << std::endl;
@@ -120,7 +121,7 @@ void Kmeans::runKmeans() {
 		}
 
 		// Step 1: Select K points as initial centroids
-		std::vector<Point> centroids = selectCenters();
+		std::vector<Point> centroids = selectCentroids();
 		
 		// Vector to hold cluster assignments for each point
 		std::vector<int> assignments(num_of_points_);
@@ -136,7 +137,7 @@ void Kmeans::runKmeans() {
 				int nearest_cluster = 0;
 				
 				for (int k = 0; k < num_clusters_; ++k) {
-					// Calculate squared Euclidean distance
+					// Calculate squared Euclidean distance (not using sqrt or pow)
 					double squared_dist = 0.0;
 					for (int d = 0; d < dimensionality_; ++d) {
 						double diff = dataset_[i].getVal(d) - centroids[k].getVal(d);
