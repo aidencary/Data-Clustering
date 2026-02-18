@@ -152,7 +152,7 @@ int main(int argc, char* argv[])
 	// k_means.selectAndPrintCenters();
 
     // Phase 2: Implement K-means algorithm
-    //k_means.runKmeans();
+    // k_means.runKmeans();
     k_means.runKmeansCoincident();
     
     return 0;

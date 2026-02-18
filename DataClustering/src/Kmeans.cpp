@@ -98,6 +98,8 @@ void Kmeans::runKmeans() {
 	// Algorithm 7.1 Basic K-means Algorithm (from Cluster Analysis Basic Concepts and Algorithms)
 	// Do not use pow() or sqrt()!
 	// Double variables use max() to not round or truncate double vals
+	// Does not handle singleton clusters (clusters with only one point, which is their center)
+	// May have issues with coincident centers in datasets with duplicate points
 
 	// Create output file in the output folder
 	std::string output_file_name = "../output/output_" + file_name_;
