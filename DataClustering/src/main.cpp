@@ -3,7 +3,7 @@ Author: Aiden Cary
 Professor: Dr. Emre Celebi
 CSCI 4372 Data Clustering
 Phase 2
-Date: 17 February 2026
+Date: 18 February 2026
 
 Programming Practices: https://google.github.io/styleguide/cppguide.html
 
@@ -16,6 +16,7 @@ Phase 2 Examples:
 ./main.exe glass.txt 6 100 0.0001 100
 ./main.exe ionosphere.txt 2 100 0.0001 100
 ./main.exe iris_bezdek.txt 3 100 0.0001 100
+./main.exe iris_bezdek_mod.txt 3 100 0.0001 100
 ./main.exe landsat.txt 6 100 0.0001 100
 ./main.exe letter_recognition.txt 26 100 0.0001 100
 ./main.exe segmentation.txt 7 100 0.0001 100
@@ -151,7 +152,8 @@ int main(int argc, char* argv[])
 	// k_means.selectAndPrintCenters();
 
     // Phase 2: Implement K-means algorithm
-    k_means.runKmeans();
-
+    //k_means.runKmeans();
+    k_means.runKmeansCoincident();
+    
     return 0;
 }

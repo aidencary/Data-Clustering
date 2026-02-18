@@ -488,13 +488,14 @@ void Kmeans::runKmeansCoincident() {
 	}
 	
 	// Display best run after all runs complete
-	std::cout << "\nBest Run: " << best_run << ": SSE = " << std::fixed << std::setprecision(4) << best_sse << std::endl;
+	std::cout << "Best Run: " << best_run << ": SSE = " << std::fixed << std::setprecision(4) << best_sse << std::endl;
 	if (output_file.is_open()) {
-		output_file << "\nBest Run: " << best_run << ": SSE = " << std::fixed << std::setprecision(4) << best_sse;
+		output_file << "Best Run: " << best_run << ": SSE = " << std::fixed << std::setprecision(4) << best_sse;
 		output_file.close();
 	}
 
-	/* Write best run to best_runs.txt file
+	/*
+	// Write best run to best_runs.txt file
 	std::ofstream best_runs_file("../output/best_runs.txt", std::ios::app);
 	if (best_runs_file.is_open()) {
 		best_runs_file << file_name_ << ": Best Run = " << best_run << ", SSE = " << std::fixed << std::setprecision(4) << best_sse << std::endl;
@@ -503,6 +504,7 @@ void Kmeans::runKmeansCoincident() {
 		std::cerr << "Error: Could not open best_runs.txt file" << std::endl;
 	}
 	*/
+	
 
 }
 
