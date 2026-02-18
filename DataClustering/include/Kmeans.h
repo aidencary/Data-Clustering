@@ -38,6 +38,8 @@ public:
 	std::vector<Point> selectCentroids();
 	// Implements the K-means algorithm.
 	void runKmeans();
+	// Implements the K-means algorithm with singleton cluster handling for coincident centers.
+	void runKmeansCoincident();
 	// Test method for Iris Bezdek dataset: checks if SSE is at or below global optimum (which should not be possible).
 	// Returns true if perfect clustering (78.8514) is reached and algorithm should break.
 	bool checkIrisBezdekOptimum(double currentSSE) const;

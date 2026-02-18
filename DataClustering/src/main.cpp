@@ -9,7 +9,7 @@ Programming Practices: https://google.github.io/styleguide/cppguide.html
 
 How to Compile: Use a C++17 compatible compiler
 Navigate to the directory containing main.cpp (src) and run the following command:
-Compile (using g++): g++ main.cpp ../src/Kmeans.cpp ../src/Point.cpp -o main.exe -std=c++17 -I../include
+Compile (using g++): g++ main.cpp ../src/Kmeans.cpp ../src/Point.cpp -o main.exe -std=c++17 -I../include -O2
 Run: ./main.exe <filename> <K> <I> <T> <R>
 Phase 2 Examples: 
 ./main.exe ecoli.txt 8 100 0.0001 100
@@ -64,10 +64,16 @@ bool setParameters(
         std::cerr << "Error parsing arguments: " << ex.what() << std::endl;
         return false;
     }
-
-    if (num_clusters <= 1 || max_iterations <= 0 || convergence_threshold < 0.0 || num_runs <= 0)
+    /*
+    <F>: Upper Limit = N/A, Lower Limit = file must exist and be readable (handled in Kmeans::readData())
+    <K>: Upper Limit = N/A, Lower Limit = 2 (must be greater than 1)
+    <I>: Upper Limit = N/A, Lower Limit = 1 (must be positive)
+    <T>: Upper Limit = N/A, Lower Limit = 0.0 (must be non-negative) and less than 1.0 (must be less than 1.0 to make sense as a relative improvement threshold)
+    <R>: Upper Limit = N/A, Lower Limit = 1 (must be positive)
+    */
+    if (num_clusters <= 1 || max_iterations <= 0 || convergence_threshold < 0.0 || convergence_threshold >= 1.0 || num_runs <= 0)
     {
-        std::cerr << "Invalid values: require K>1, I>0, T>=0, R>0." << std::endl;
+        std::cerr << "Invalid values: require K>1, I>0, T>=0 and T<1.0, R>0." << std::endl;
         return false;
     }
 
