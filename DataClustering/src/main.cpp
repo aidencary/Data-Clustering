@@ -11,12 +11,16 @@ How to Compile: Use a C++17 compatible compiler
 Navigate to the directory containing main.cpp (src) and run the following command:
 Compile (using g++): g++ main.cpp ../src/Kmeans.cpp ../src/Point.cpp -o main.exe -std=c++17 -I../include -O2
 Run: ./main.exe <filename> <K> <I> <T> <R>
-Phase 2 Examples: 
+Phase 2 Examples:
+// Phase 2 Bonus: Test with modified Iris Bezdek dataset with coincident centers
+// I chose to do 1000 runs for the modified Iris Bezdek dataset 
+// to increase the chances of encountering singleton clusters (clusters with only one point) and testing the handling of coincident centers
+// The "Handling _ singleton cluster(s)..." message will indicate when singleton clusters are being handled
 ./main.exe ecoli.txt 8 100 0.0001 100
 ./main.exe glass.txt 6 100 0.0001 100
 ./main.exe ionosphere.txt 2 100 0.0001 100
+./main.exe iris_bezdek_mod.txt 3 100 0.0001 1000
 ./main.exe iris_bezdek.txt 3 100 0.0001 100
-./main.exe iris_bezdek_mod.txt 3 100 0.0001 100
 ./main.exe landsat.txt 6 100 0.0001 100
 ./main.exe letter_recognition.txt 26 100 0.0001 100
 ./main.exe segmentation.txt 7 100 0.0001 100
@@ -38,7 +42,7 @@ void printExpectedParameters(const char* program_name)
         << "  <F>: data file name\n"
         << "  <K>: number of clusters (> 1)\n"
         << "  <I>: maximum number of iterations (positive int)\n"
-        << "  <T>: convergence threshold (non-negative real)\n"
+        << "  <T>: convergence threshold (non-negative real less than 1.0)\n"
         << "  <R>: number of runs (positive int)\n";
 }
 

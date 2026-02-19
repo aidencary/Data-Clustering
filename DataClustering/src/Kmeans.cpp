@@ -97,7 +97,6 @@ bool Kmeans::checkIrisBezdekOptimum(double currentSSE) const {
 void Kmeans::runKmeans() {
 	// Algorithm 7.1 Basic K-means Algorithm (from Cluster Analysis Basic Concepts and Algorithms)
 	// Do not use pow() or sqrt()!
-	// Double variables use max() to not round or truncate double vals
 	// Does not handle singleton clusters (clusters with only one point, which is their center)
 	// May have issues with coincident centers in datasets with duplicate points
 
@@ -272,7 +271,6 @@ void Kmeans::runKmeansCoincident() {
 	// Algorithm 7.1 Basic K-means Algorithm (from Cluster Analysis Basic Concepts and Algorithms)
 	// with singleton cluster handling for coincident centers
 	// Do not use pow() or sqrt()!
-	// Double variables use max() to not round or truncate double vals
 
 	// Create output file in the output folder
 	std::string output_file_name = "../output/output_" + file_name_;
@@ -348,6 +346,15 @@ void Kmeans::runKmeansCoincident() {
 			if (!singleton_clusters.empty()) {
 				// For each singleton cluster, find the point in non-singleton clusters
 				// that contributes most to its cluster's error
+				
+				
+				// Print that we have singleton clusters and are handling them
+				std::cout << "Handling " << singleton_clusters.size() << " singleton cluster(s)..." << std::endl;
+				if (output_file.is_open()) {
+					output_file << "Handling " << singleton_clusters.size() << " singleton cluster(s)..." << std::endl;
+				}
+				
+
 				for (int s = 0; s < (int)singleton_clusters.size(); ++s) {
 					int singleton_cluster_id = singleton_clusters[s];
 					
@@ -506,7 +513,5 @@ void Kmeans::runKmeansCoincident() {
 		std::cerr << "Error: Could not open best_runs.txt file" << std::endl;
 	}
 	*/
-	
 
 }
-
