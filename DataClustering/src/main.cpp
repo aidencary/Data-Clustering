@@ -147,20 +147,23 @@ int main(int argc, char* argv[])
     {
         return 1;
 	}
-    
-    // Phase 3 Part I: Normalize data using min-max normalization to [0,1]
-    k_means.normalizeData();
-    
-    // Optional: Dump normalized data to file for verification
-    // Uncomment the line below to save normalized data
-    // k_means.dumpDataToFile("normalized_" + data_file_name);
-    
+        
     // Phase 1: Select and print K random centers
 	// k_means.selectAndPrintCenters();
 
     // Phase 2: Implement K-means algorithm
     // k_means.runKmeans();
-    k_means.runKmeansCoincident();
+    // k_means.runKmeansCoincident()
+
+    // Phase 3 Part I: Normalize data using min-max normalization to [0,1]
+    k_means.normalizeData();
+    std::cout << "Normalization complete." << std::endl;
     
+    // Dump normalized data to file for verification
+    // k_means.dumpDataToFile("../normalized_data/normalized_" + data_file_name);
+    
+    // Print first few normalized points to console
+    // k_means.printData();
+
     return 0;
 }

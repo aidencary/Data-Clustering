@@ -54,6 +54,83 @@ void Kmeans::printData() const {
 	}
 }
 
+void Kmeans::normalizeData() {
+	// Min-max normalization to [0,1] range
+	// Formula: v' = (v - min(A)) / (max(A) - min(A))
+	// Normalize across columns (attributes), not rows
+	// https://www.geeksforgeeks.org/machine-learning/data-normalization-in-data-mining/
+
+	// Handle empty dataset
+	if (num_of_points_ == 0 || dimensionality_ == 0) {
+		std::cerr << "Cannot normalize empty dataset." << std::endl;
+		return;
+	}
+
+	// For each attribute (dimension/column)
+	for (int d = 0; d < dimensionality_; ++d) {
+		// Find min and max for this attribute
+		double min_val = dataset_[0].getVal(d);
+		double max_val = dataset_[0].getVal(d);
+		
+		// Loop through all points to find min and max for this attribute
+		for (int i = 1; i < num_of_points_; ++i) {
+			double val = dataset_[i].getVal(d);
+			if (val < min_val) min_val = val;
+			if (val > max_val) max_val = val;
+		}
+
+		// Calculate range
+		double range = max_val - min_val;
+
+		// Normalize all values for this attribute
+		// Handle division by zero: if range is 0, all values are the same
+		// In this case, we can set all normalized values to 0.5 (or any value in [0,1])
+		if (range == 0.0) {
+			// All values are identical for this attribute
+			for (int i = 0; i < num_of_points_; ++i) {
+				dataset_[i].setVal(d, 0.0);
+			}
+		} else {
+			// Apply min-max normalization: v' = (v - min) / (max - min)
+			for (int i = 0; i < num_of_points_; ++i) {
+				double original_val = dataset_[i].getVal(d);
+				double normalized_val = (original_val - min_val) / range;
+				dataset_[i].setVal(d, normalized_val);
+			}
+		}
+	}
+}
+
+void Kmeans::dumpDataToFile(const std::string& filename) const {
+	// Dump the dataset to a file for verification
+	std::ofstream output_file(filename);
+	
+	// Check if file opened successfully
+	if (!output_file.is_open()) {
+		std::cerr << "Error opening file for writing: " << filename << std::endl;
+		return;
+	}
+
+	// Write the header (number of points and dimensionality)
+	output_file << num_of_points_ << " " << dimensionality_ << std::endl;
+
+	// Write each point
+	output_file << std::fixed << std::setprecision(15);
+	// Loop through each point and write its dimensions to the file
+	for (const auto& point : dataset_) {
+		// Loop through each dimension of the point and write it to the file, separated by spaces
+		for (int d = 0; d < dimensionality_; ++d) {
+			output_file << point.getVal(d);
+			if (d < dimensionality_ - 1) {
+				output_file << " ";
+			}
+		}
+		output_file << std::endl;
+	}
+
+	output_file.close();
+	std::cout << "Data dumped to: " << filename << std::endl;
+}
 
 std::vector<Point> Kmeans::selectCentroids() {
 	// Step 1 of K-means Algorithm: Select K points as initial centroids
