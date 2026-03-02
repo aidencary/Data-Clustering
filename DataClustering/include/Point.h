@@ -15,6 +15,8 @@ public:
 	void addDimension(double val);
 	// Returns the value at the specified dimension index.
 	double getVal(int index) const;
+	// Sets the value at the specified dimension index.
+	void setVal(int index, double val);
 	// Prints the point to standard output.
 	void print() const;
 	// Prints the point to the specified output stream.

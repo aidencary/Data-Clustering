@@ -54,6 +54,7 @@ void Kmeans::printData() const {
 	}
 }
 
+
 std::vector<Point> Kmeans::selectCentroids() {
 	// Step 1 of K-means Algorithm: Select K points as initial centroids
 	// Centroids are selected uniformly at random from the dataset using C++11 <random> library

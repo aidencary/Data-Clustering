@@ -32,8 +32,13 @@ public:
 		int num_of_runs);
 	// Reads data from the file specified in the constructor.
 	bool readData();
+	// Normalizes the dataset using min-max normalization to [0,1] range.
+	// Normalizes across columns (attributes), not rows.
+	void normalizeData();
 	// Prints all data points to standard output.
 	void printData() const;
+	// Dumps the dataset to a file for verification.
+	void dumpDataToFile(const std::string& filename) const;
 	// Selects K random centers and returns them.
 	std::vector<Point> selectCentroids();
 	// Implements the K-means algorithm.

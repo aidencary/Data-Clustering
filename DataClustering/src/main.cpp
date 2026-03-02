@@ -2,8 +2,8 @@
 Author: Aiden Cary
 Professor: Dr. Emre Celebi
 CSCI 4372 Data Clustering
-Phase 2
-Date: 18 February 2026
+Phase 3
+Date: 1 March 2026
 
 Programming Practices: https://google.github.io/styleguide/cppguide.html
 
@@ -11,7 +11,7 @@ How to Compile: Use a C++17 compatible compiler
 Navigate to the directory containing main.cpp (src) and run the following command:
 Compile (using g++): g++ main.cpp ../src/Kmeans.cpp ../src/Point.cpp -o main.exe -std=c++17 -I../include -O2
 Run: ./main.exe <filename> <K> <I> <T> <R>
-Phase 2 Examples:
+Phase 3 Examples:
 ./main.exe ecoli.txt 8 100 0.0001 100
 ./main.exe glass.txt 6 100 0.0001 100
 ./main.exe ionosphere.txt 2 100 0.0001 100
@@ -147,6 +147,13 @@ int main(int argc, char* argv[])
     {
         return 1;
 	}
+    
+    // Phase 3 Part I: Normalize data using min-max normalization to [0,1]
+    k_means.normalizeData();
+    
+    // Optional: Dump normalized data to file for verification
+    // Uncomment the line below to save normalized data
+    // k_means.dumpDataToFile("normalized_" + data_file_name);
     
     // Phase 1: Select and print K random centers
 	// k_means.selectAndPrintCenters();

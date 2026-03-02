@@ -14,6 +14,11 @@ double Point::getVal(int index) const {
 	return dimensions_[index];
 }
 
+// Set the value at a specific dimension
+void Point::setVal(int index, double val) {
+	dimensions_[index] = val;
+}
+
 // Print the point
 void Point::print() const {
 	std::cout << std::fixed << std::setprecision(15);
