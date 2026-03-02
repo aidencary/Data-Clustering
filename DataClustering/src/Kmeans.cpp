@@ -347,12 +347,13 @@ void Kmeans::runKmeansCoincident() {
 				// For each singleton cluster, find the point in non-singleton clusters
 				// that contributes most to its cluster's error
 				
-				
+				/*
 				// Print that we have singleton clusters and are handling them
 				std::cout << "Handling " << singleton_clusters.size() << " singleton cluster(s)..." << std::endl;
 				if (output_file.is_open()) {
 					output_file << "Handling " << singleton_clusters.size() << " singleton cluster(s)..." << std::endl;
 				}
+				*/
 				
 
 				for (int s = 0; s < (int)singleton_clusters.size(); ++s) {
