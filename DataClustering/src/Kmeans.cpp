@@ -690,3 +690,219 @@ void Kmeans::runKmeansCoincident() {
 
 }
 
+void Kmeans::runKmeansWithMetrics(bool use_random_partition) {
+	/* Used to compare Random Partition and Random Selection initialization methods on the same dataset with the same parameters
+	* Tracks: Initial SSE, Final SSE, and Number of Iterations
+	* Initial SSE: This is the SSE value computed after the initialization phase, before the
+	* clustering phase. It gives us a measure of the effectiveness of an initialization method by itself.
+	* Final SSE: This is the SSE value computed after the clustering phase. 
+	* It gives us a measure of the effectiveness of an initialization method when its output is refined by kmeans.
+	* Note that this is the objective function of the k-means algorithm
+	* Number of Iterations: This is the number of times k-means iterates until reaching
+	* convergence when initialized by a particular initialization method. 
+	* It is an efficiency measure independent of programming language, implementation style, compiler, andCPU architecture. 
+	*/
+
+	// Create output file in the output folder
+	std::string method_name = use_random_partition ? "Random Partition" : "Random Selection";
+	
+	// Create output file in the output folder with method name in the filename
+	std::string output_file_name;
+	if (use_random_partition) {
+		output_file_name = "../output_random_partition/output_" + file_name_;
+	} else {
+		output_file_name = "../output_random_selection/output_" + file_name_;
+	}
+
+	std::ofstream output_file(output_file_name);
+	
+	if (!output_file.is_open()) {
+		std::cerr << "Error: Could not create output file: " << output_file_name << std::endl;
+	}
+
+	std::cout << "Initialization Method: " << method_name << "\n" << std::endl;
+
+	if (output_file.is_open()) {
+		output_file << "Initialization Method: " << method_name << "\n" << std::endl;
+	}
+
+	// Track best run across all executions
+	double best_final_sse = std::numeric_limits<double>::max();
+	int best_run = 0;
+	double total_initial_sse = 0.0;
+	double total_final_sse = 0.0;
+	int total_iterations = 0;
+	
+	// Run the K-means algorithm for the specified number of runs
+	for (int run = 0; run < num_of_runs_; ++run) {
+		std::cout << "Run " << (run + 1) << std::endl;
+		std::cout << "-----" << std::endl;
+		if (output_file.is_open()) {
+			output_file << "Run " << (run + 1) << std::endl;
+			output_file << "-----" << std::endl;
+		}
+
+		// Step 1: Select K points as initial centroids
+		std::vector<Point> centroids;
+		if (use_random_partition) {
+			centroids = selectRandomPartitionCentroids();
+		} else {
+			centroids = selectRandomCentroids();
+		}
+		
+		// Vector to hold cluster assignments for each point
+		std::vector<int> assignments(num_of_points_);
+		
+		// Calculate Initial SSE using the helper function which assigns points to nearest centroid and computes SSE
+		double initial_sse = calculateSSE(centroids, assignments);
+
+		// Track initial SSE for this run and add to total for averaging later
+		total_initial_sse += initial_sse;
+		
+		// Display initial SSE for this run
+		std::cout << "Initial SSE: " << std::fixed << std::setprecision(4) << initial_sse << "\n" << std::endl;
+		if (output_file.is_open()) {
+			output_file << "Initial SSE: " << std::fixed << std::setprecision(4) << initial_sse << "\n" << std::endl;
+		}
+
+		// Step 2: Repeat until convergence
+		double previous_sse = std::numeric_limits<double>::max();
+		double current_sse = 0.0;
+		int iteration_count = 0;
+
+		// Main k-means loop with convergence checks
+		for (int iteration = 0; iteration < max_iterations_; ++iteration) {
+			iteration_count++;
+			
+			// Step 3: Form K clusters by assigning each point to its closest centroid
+			for (int i = 0; i < num_of_points_; ++i) {
+				double min_distance = std::numeric_limits<double>::max();
+				int nearest_cluster = 0;
+				
+				for (int k = 0; k < num_clusters_; ++k) {
+					// Calculate squared Euclidean distance (not using sqrt or pow)
+					double squared_dist = 0.0;
+					for (int d = 0; d < dimensionality_; ++d) {
+						double diff = dataset_[i].getVal(d) - centroids[k].getVal(d);
+						squared_dist += diff * diff;
+					}
+					
+					// Find the nearest cluster center
+					if (squared_dist < min_distance) {
+						min_distance = squared_dist;
+						nearest_cluster = k;
+					}
+				}
+				// Assign point to nearest cluster
+				assignments[i] = nearest_cluster;
+			}
+
+			// Step 4: Recompute the centroid of each cluster
+			// Initialize sums for each cluster and dimension
+			std::vector<std::vector<double>> sums(
+				num_clusters_,
+				std::vector<double>(dimensionality_, 0.0)
+			);
+			
+			// Initialize cluster sizes
+			std::vector<int> cluster_sizes(num_clusters_, 0);
+			
+			// Accumulate sums and counts
+			for (int i = 0; i < num_of_points_; ++i) {
+				int cluster = assignments[i];
+				cluster_sizes[cluster]++;
+				
+				// Add this point's dimensions to its cluster sum
+				for (int d = 0; d < dimensionality_; ++d) {
+					sums[cluster][d] += dataset_[i].getVal(d);
+				}
+			}
+			
+			// Compute new centroids
+			std::vector<Point> new_centers;
+			
+			for (int k = 0; k < num_clusters_; ++k) {
+				// Calculate mean for each dimension to get new center
+				Point new_center;
+				
+				for (int d = 0; d < dimensionality_; ++d) {
+					// Avoid dividing by zero
+					if (cluster_sizes[k] > 0) {
+						new_center.addDimension(sums[k][d] / cluster_sizes[k]);
+					} else {
+						// If a cluster has no points assigned, retain the old center
+						new_center.addDimension(centroids[k].getVal(d));
+					}
+				}
+				new_centers.push_back(new_center);
+			}
+			
+			centroids = new_centers;
+
+			// Calculate SSE (Sum of Squared Error) aka Scatter
+			current_sse = 0.0;
+			// Calculate the error of each data point to its assigned centroid and then compute the total SSE.
+			for (int i = 0; i < num_of_points_; ++i) {
+				int cluster = assignments[i];
+				for (int d = 0; d < dimensionality_; ++d) {
+					double diff = dataset_[i].getVal(d) - centroids[cluster].getVal(d);
+					current_sse += diff * diff;
+				}
+			}
+			
+			std::cout << "Iteration " << iteration_count << ": SSE = " << std::fixed << std::setprecision(4) << current_sse << std::endl;
+			if (output_file.is_open()) {
+				output_file << "Iteration " << iteration_count << ": SSE = " << std::fixed << std::setprecision(4) << current_sse << std::endl;
+			}
+
+			// Step 5: Check if SSE improvement is below the convergence threshold
+			if (previous_sse != std::numeric_limits<double>::max()) {
+				// Check if SSE hasn't changed at all (converged perfectly)
+				if (current_sse == previous_sse) {
+					break; // No change, converged
+				}
+				
+				// Check relative improvement
+				double relative_improvement = (previous_sse - current_sse) / previous_sse;
+				if (relative_improvement < convergence_threshold_) {
+					break; // Converged
+				}
+			}
+			previous_sse = current_sse;
+		}
+		
+		// Track final SSE and iterations
+		total_final_sse += current_sse;
+		total_iterations += iteration_count;
+		
+		std::cout << "Final SSE: " << std::fixed << std::setprecision(4) << current_sse << std::endl;
+		std::cout << "Number of Iterations: " << iteration_count << "\n" << std::endl;
+		if (output_file.is_open()) {
+			output_file << "Final SSE: " << std::fixed << std::setprecision(4) << current_sse << std::endl;
+			output_file << "Number of Iterations: " << iteration_count << "\n" << std::endl;
+		}
+		
+		// Track if this run achieved the best SSE
+		if (current_sse < best_final_sse) {
+			best_final_sse = current_sse;
+			best_run = run + 1;
+		}
+	}
+	
+	// Display best run after all runs complete
+	std::cout << "SUMMARY STATISTICS (" << method_name << ")" << std::endl;
+	std::cout << "Average Initial SSE: " << std::fixed << std::setprecision(4) << (total_initial_sse / num_of_runs_) << std::endl;
+	std::cout << "Average Final SSE: " << std::fixed << std::setprecision(4) << (total_final_sse / num_of_runs_) << std::endl;
+	std::cout << "Average Iterations: " << std::fixed << std::setprecision(2) << (static_cast<double>(total_iterations) / num_of_runs_) << std::endl;
+	std::cout << "Best Run: " << best_run << " with Final SSE = " << std::fixed << std::setprecision(4) << best_final_sse << std::endl;
+
+	
+	if (output_file.is_open()) {
+		output_file << "SUMMARY STATISTICS (" << method_name << ")" << std::endl;
+		output_file << "Average Initial SSE: " << std::fixed << std::setprecision(4) << (total_initial_sse / num_of_runs_) << std::endl;
+		output_file << "Average Final SSE: " << std::fixed << std::setprecision(4) << (total_final_sse / num_of_runs_) << std::endl;
+		output_file << "Average Iterations: " << std::fixed << std::setprecision(2) << (static_cast<double>(total_iterations) / num_of_runs_) << std::endl;
+		output_file << "Best Run: " << best_run << " with Final SSE = " << std::fixed << std::setprecision(4) << best_final_sse << std::endl;
+		output_file.close();
+	}
+}

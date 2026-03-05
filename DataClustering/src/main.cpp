@@ -154,16 +154,17 @@ int main(int argc, char* argv[])
     // Phase 2: Implement K-means algorithm
     // k_means.runKmeans();
     // k_means.runKmeansCoincident()
-
-    // Phase 3 Part I: Normalize data using min-max normalization to [0,1]
-    k_means.normalizeData();
-    std::cout << "Normalization complete." << std::endl;
     
     // Dump normalized data to file for verification
     // k_means.dumpDataToFile("../normalized_data/normalized_" + data_file_name);
     
     // Print first few normalized points to console
     // k_means.printData();
+
+    // Phase 3: Normalization and Initialization
+    k_means.minmaxNormalize();
+    k_means.runKmeansWithMetrics(false); // Run with standard random initialization
+    k_means.runKmeansWithMetrics(true); // Run with random partition initialization for comparison
 
     return 0;
 }
