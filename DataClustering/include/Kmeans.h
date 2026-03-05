@@ -48,7 +48,7 @@ public:
 	// Implements the K-means algorithm.
 	void runKmeans();
 	// Implements the K-means algorithm with detailed metrics tracking for initialization comparison.
-	void runKmeansWithMetrics(bool use_random_partition = false);
+	void runKmeansWithMetrics(const std::string& initialization_method, const std::string& normalization_method);
 	// Implements the K-means algorithm with singleton cluster handling for coincident centers.
 	void runKmeansCoincident();
 	// Test method for Iris Bezdek dataset: checks if SSE is at or below global optimum (which should not be possible).

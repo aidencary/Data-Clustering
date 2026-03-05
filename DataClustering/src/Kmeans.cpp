@@ -86,6 +86,8 @@ void Kmeans::minmaxNormalize() {
 		// Normalize all values for this attribute
 		// Handle division by zero: if range is 0, all values are the same
 		// In this case, we can set all normalized values to 0.5 (or any value in [0,1])
+		// In C++, dividing by zero for a double results in infinity or NaN (not a number) and does not crash the program,
+		// but it will produce invalid results that propagate through the calculations.
 		if (range == 0.0) {
 			// All values are identical for this attribute
 			for (int i = 0; i < num_of_points_; ++i) {
@@ -690,7 +692,7 @@ void Kmeans::runKmeansCoincident() {
 
 }
 
-void Kmeans::runKmeansWithMetrics(bool use_random_partition) {
+void Kmeans::runKmeansWithMetrics(const std::string& initialization_method, const std::string& normalization_method) {
 	/* Used to compare Random Partition and Random Selection initialization methods on the same dataset with the same parameters
 	* Tracks: Initial SSE, Final SSE, and Number of Iterations
 	* Initial SSE: This is the SSE value computed after the initialization phase, before the
@@ -704,11 +706,11 @@ void Kmeans::runKmeansWithMetrics(bool use_random_partition) {
 	*/
 
 	// Create output file in the output folder
-	std::string method_name = use_random_partition ? "Random Partition" : "Random Selection";
+	std::string method_name = initialization_method;
 	
 	// Create output file in the output folder with method name in the filename
 	std::string output_file_name;
-	if (use_random_partition) {
+	if (initialization_method == "Random Partition") {
 		output_file_name = "../output_random_partition/output_" + file_name_;
 	} else {
 		output_file_name = "../output_random_selection/output_" + file_name_;
@@ -728,6 +730,8 @@ void Kmeans::runKmeansWithMetrics(bool use_random_partition) {
 
 	// Track best run across all executions
 	double best_final_sse = std::numeric_limits<double>::max();
+	double best_initial_sse = std::numeric_limits<double>::max();
+	int best_iterations = std::numeric_limits<int>::max();
 	int best_run = 0;
 	double total_initial_sse = 0.0;
 	double total_final_sse = 0.0;
@@ -744,7 +748,7 @@ void Kmeans::runKmeansWithMetrics(bool use_random_partition) {
 
 		// Step 1: Select K points as initial centroids
 		std::vector<Point> centroids;
-		if (use_random_partition) {
+		if (initialization_method == "Random Partition") {
 			centroids = selectRandomPartitionCentroids();
 		} else {
 			centroids = selectRandomCentroids();
@@ -758,6 +762,11 @@ void Kmeans::runKmeansWithMetrics(bool use_random_partition) {
 
 		// Track initial SSE for this run and add to total for averaging later
 		total_initial_sse += initial_sse;
+		
+		// Track if this is the best initial SSE so far
+		if (initial_sse < best_initial_sse) {
+			best_initial_sse = initial_sse;
+		}
 		
 		// Display initial SSE for this run
 		std::cout << "Initial SSE: " << std::fixed << std::setprecision(4) << initial_sse << "\n" << std::endl;
@@ -887,6 +896,11 @@ void Kmeans::runKmeansWithMetrics(bool use_random_partition) {
 			best_final_sse = current_sse;
 			best_run = run + 1;
 		}
+		
+		// Track if this is the best iteration count
+		if (iteration_count < best_iterations) {
+			best_iterations = iteration_count;
+		}
 	}
 	
 	// Display best run after all runs complete
@@ -895,6 +909,9 @@ void Kmeans::runKmeansWithMetrics(bool use_random_partition) {
 	std::cout << "Average Final SSE: " << std::fixed << std::setprecision(4) << (total_final_sse / num_of_runs_) << std::endl;
 	std::cout << "Average Iterations: " << std::fixed << std::setprecision(2) << (static_cast<double>(total_iterations) / num_of_runs_) << std::endl;
 	std::cout << "Best Run: " << best_run << " with Final SSE = " << std::fixed << std::setprecision(4) << best_final_sse << std::endl;
+	std::cout << "\nSUMMARY: BestInitSSE=" << std::fixed << std::setprecision(4) << best_initial_sse 
+	          << ", BestFinalSSE=" << std::fixed << std::setprecision(4) << best_final_sse 
+	          << ", BestIter=" << best_iterations << std::endl;
 
 	
 	if (output_file.is_open()) {
@@ -903,6 +920,49 @@ void Kmeans::runKmeansWithMetrics(bool use_random_partition) {
 		output_file << "Average Final SSE: " << std::fixed << std::setprecision(4) << (total_final_sse / num_of_runs_) << std::endl;
 		output_file << "Average Iterations: " << std::fixed << std::setprecision(2) << (static_cast<double>(total_iterations) / num_of_runs_) << std::endl;
 		output_file << "Best Run: " << best_run << " with Final SSE = " << std::fixed << std::setprecision(4) << best_final_sse << std::endl;
+		output_file << "\nSUMMARY: BestInitSSE=" << std::fixed << std::setprecision(4) << best_initial_sse 
+		            << ", BestFinalSSE=" << std::fixed << std::setprecision(4) << best_final_sse 
+		            << ", BestIter=" << best_iterations << std::endl;
 		output_file.close();
+	}
+	
+	// Write results to CSV file for easy Excel import
+	std::string csv_file_path = "../phase3_results.csv";
+	bool file_exists = false;
+	
+	// Check if file exists by trying to open it for reading
+	std::ifstream check_file(csv_file_path);
+	if (check_file.good()) {
+		file_exists = true;
+	}
+	check_file.close();
+	
+	// Open CSV file in append mode
+	std::ofstream csv_file(csv_file_path, std::ios::app);
+	if (csv_file.is_open()) {
+		// Write header if file is new
+		if (!file_exists) {
+			csv_file << "Dataset,Normalization Method,Initialization Method,Best Initial SSE,Best Final SSE,Best Iterations" << std::endl;
+		}
+		
+		// Extract dataset name from file_name_ (remove .txt extension)
+		std::string dataset_name = file_name_;
+		size_t dot_pos = dataset_name.find(".txt");
+		if (dot_pos != std::string::npos) {
+			dataset_name = dataset_name.substr(0, dot_pos);
+		}
+		
+		// Write data row
+		csv_file << dataset_name << ","
+		         << normalization_method << ","
+		         << method_name << ","
+		         << std::fixed << std::setprecision(4) << best_initial_sse << ","
+		         << std::fixed << std::setprecision(4) << best_final_sse << ","
+		         << best_iterations << std::endl;
+		
+		csv_file.close();
+		std::cout << "Results appended to " << csv_file_path << std::endl;
+	} else {
+		std::cerr << "Warning: Could not write to CSV file: " << csv_file_path << std::endl;
 	}
 }

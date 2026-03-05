@@ -2,24 +2,242 @@ Initialization Method: Random Partition
 
 Run 1
 -----
-Initial SSE: 85.3551
+Initial SSE: 79.1171
 
-Iteration 1: SSE = 58.8484
-Iteration 2: SSE = 50.4671
-Iteration 3: SSE = 49.1083
-Iteration 4: SSE = 49.0176
+Iteration 1: SSE = 52.0100
+Iteration 2: SSE = 49.3933
+Iteration 3: SSE = 48.9605
+Iteration 4: SSE = 48.9605
+Final SSE: 48.9605
+Number of Iterations: 4
+
+Run 2
+-----
+Initial SSE: 87.3484
+
+Iteration 1: SSE = 55.1217
+Iteration 2: SSE = 49.8151
+Iteration 3: SSE = 48.9605
+Iteration 4: SSE = 48.9605
+Final SSE: 48.9605
+Number of Iterations: 4
+
+Run 3
+-----
+Initial SSE: 87.2128
+
+Iteration 1: SSE = 54.5584
+Iteration 2: SSE = 49.3204
+Iteration 3: SSE = 49.0338
+Iteration 4: SSE = 48.9854
+Iteration 5: SSE = 48.9854
+Final SSE: 48.9854
+Number of Iterations: 5
+
+Run 4
+-----
+Initial SSE: 87.6624
+
+Iteration 1: SSE = 63.9716
+Iteration 2: SSE = 50.6141
+Iteration 3: SSE = 49.0145
+Iteration 4: SSE = 48.9605
+Iteration 5: SSE = 48.9605
+Final SSE: 48.9605
+Number of Iterations: 5
+
+Run 5
+-----
+Initial SSE: 88.8740
+
+Iteration 1: SSE = 56.4895
+Iteration 2: SSE = 50.1878
+Iteration 3: SSE = 49.2711
+Iteration 4: SSE = 48.9605
+Iteration 5: SSE = 48.9605
+Final SSE: 48.9605
+Number of Iterations: 5
+
+Run 6
+-----
+Initial SSE: 82.9843
+
+Iteration 1: SSE = 57.5470
+Iteration 2: SSE = 49.7546
+Iteration 3: SSE = 48.9605
+Iteration 4: SSE = 48.9605
+Final SSE: 48.9605
+Number of Iterations: 4
+
+Run 7
+-----
+Initial SSE: 87.4553
+
+Iteration 1: SSE = 63.0438
+Iteration 2: SSE = 54.4928
+Iteration 3: SSE = 50.6489
+Iteration 4: SSE = 49.3338
 Iteration 5: SSE = 48.9703
 Iteration 6: SSE = 48.9703
 Final SSE: 48.9703
 Number of Iterations: 6
 
-Run 2
+Run 8
 -----
-Initial SSE: 89.4555
+Initial SSE: 87.5981
 
-Iteration 1: SSE = 64.2127
-Iteration 2: SSE = 53.3833
-Iteration 3: SSE = 50.0421
+Iteration 1: SSE = 65.3265
+Iteration 2: SSE = 53.2690
+Iteration 3: SSE = 49.8548
+Iteration 4: SSE = 49.2209
+Iteration 5: SSE = 48.9854
+Iteration 6: SSE = 48.9854
+Final SSE: 48.9854
+Number of Iterations: 6
+
+Run 9
+-----
+Initial SSE: 85.0375
+
+Iteration 1: SSE = 60.5116
+Iteration 2: SSE = 50.9043
+Iteration 3: SSE = 49.2711
+Iteration 4: SSE = 48.9605
+Iteration 5: SSE = 48.9605
+Final SSE: 48.9605
+Number of Iterations: 5
+
+Run 10
+-----
+Initial SSE: 86.0065
+
+Iteration 1: SSE = 63.6654
+Iteration 2: SSE = 58.6075
+Iteration 3: SSE = 50.9864
+Iteration 4: SSE = 49.2271
+Iteration 5: SSE = 49.0154
+Iteration 6: SSE = 49.0154
+Final SSE: 49.0154
+Number of Iterations: 6
+
+Run 11
+-----
+Initial SSE: 92.0646
+
+Iteration 1: SSE = 75.2046
+Iteration 2: SSE = 52.9797
+Iteration 3: SSE = 49.9095
+Iteration 4: SSE = 49.0915
+Iteration 5: SSE = 48.9605
+Iteration 6: SSE = 48.9605
+Final SSE: 48.9605
+Number of Iterations: 6
+
+Run 12
+-----
+Initial SSE: 90.1428
+
+Iteration 1: SSE = 63.1132
+Iteration 2: SSE = 49.5418
+Iteration 3: SSE = 49.0223
+Iteration 4: SSE = 48.9725
+Iteration 5: SSE = 48.9725
+Final SSE: 48.9725
+Number of Iterations: 5
+
+Run 13
+-----
+Initial SSE: 83.5477
+
+Iteration 1: SSE = 59.7404
+Iteration 2: SSE = 52.2521
+Iteration 3: SSE = 50.4145
+Iteration 4: SSE = 49.4416
+Iteration 5: SSE = 48.9703
+Iteration 6: SSE = 48.9703
+Final SSE: 48.9703
+Number of Iterations: 6
+
+Run 14
+-----
+Initial SSE: 87.4970
+
+Iteration 1: SSE = 63.7873
+Iteration 2: SSE = 52.4851
+Iteration 3: SSE = 50.0889
+Iteration 4: SSE = 49.2015
+Iteration 5: SSE = 48.9703
+Iteration 6: SSE = 48.9703
+Final SSE: 48.9703
+Number of Iterations: 6
+
+Run 15
+-----
+Initial SSE: 82.8151
+
+Iteration 1: SSE = 49.9628
+Iteration 2: SSE = 48.9540
+Iteration 3: SSE = 48.9540
+Final SSE: 48.9540
+Number of Iterations: 3
+
+Run 16
+-----
+Initial SSE: 86.8592
+
+Iteration 1: SSE = 52.1280
+Iteration 2: SSE = 49.1686
+Iteration 3: SSE = 49.0102
+Iteration 4: SSE = 48.9888
+Iteration 5: SSE = 48.9888
+Final SSE: 48.9888
+Number of Iterations: 5
+
+Run 17
+-----
+Initial SSE: 87.2485
+
+Iteration 1: SSE = 65.6700
+Iteration 2: SSE = 56.2740
+Iteration 3: SSE = 49.7271
+Iteration 4: SSE = 49.0264
+Iteration 5: SSE = 48.9540
+Iteration 6: SSE = 48.9540
+Final SSE: 48.9540
+Number of Iterations: 6
+
+Run 18
+-----
+Initial SSE: 88.9654
+
+Iteration 1: SSE = 67.2788
+Iteration 2: SSE = 55.8446
+Iteration 3: SSE = 50.5480
+Iteration 4: SSE = 49.2849
+Iteration 5: SSE = 48.9605
+Iteration 6: SSE = 48.9605
+Final SSE: 48.9605
+Number of Iterations: 6
+
+Run 19
+-----
+Initial SSE: 86.9185
+
+Iteration 1: SSE = 58.2366
+Iteration 2: SSE = 50.2650
+Iteration 3: SSE = 49.1960
+Iteration 4: SSE = 48.9605
+Iteration 5: SSE = 48.9605
+Final SSE: 48.9605
+Number of Iterations: 5
+
+Run 20
+-----
+Initial SSE: 78.9447
+
+Iteration 1: SSE = 60.7330
+Iteration 2: SSE = 51.8874
+Iteration 3: SSE = 49.8915
 Iteration 4: SSE = 49.1024
 Iteration 5: SSE = 49.0338
 Iteration 6: SSE = 48.9854
@@ -27,17 +245,161 @@ Iteration 7: SSE = 48.9854
 Final SSE: 48.9854
 Number of Iterations: 7
 
-Run 3
+Run 21
 -----
-Initial SSE: 89.2237
+Initial SSE: 90.4285
 
-Iteration 1: SSE = 69.8711
-Iteration 2: SSE = 64.5226
-Iteration 3: SSE = 61.3201
-Iteration 4: SSE = 59.4872
-Iteration 5: SSE = 57.5696
-Iteration 6: SSE = 54.4973
-Iteration 7: SSE = 51.8394
+Iteration 1: SSE = 68.0521
+Iteration 2: SSE = 61.4680
+Iteration 3: SSE = 55.4591
+Iteration 4: SSE = 49.3922
+Iteration 5: SSE = 49.0154
+Iteration 6: SSE = 49.0154
+Final SSE: 49.0154
+Number of Iterations: 6
+
+Run 22
+-----
+Initial SSE: 87.6884
+
+Iteration 1: SSE = 61.6592
+Iteration 2: SSE = 51.2018
+Iteration 3: SSE = 49.4536
+Iteration 4: SSE = 48.9703
+Iteration 5: SSE = 48.9703
+Final SSE: 48.9703
+Number of Iterations: 5
+
+Run 23
+-----
+Initial SSE: 85.6062
+
+Iteration 1: SSE = 51.7562
+Iteration 2: SSE = 49.1955
+Iteration 3: SSE = 48.9888
+Iteration 4: SSE = 48.9888
+Final SSE: 48.9888
+Number of Iterations: 4
+
+Run 24
+-----
+Initial SSE: 89.8196
+
+Iteration 1: SSE = 62.7569
+Iteration 2: SSE = 51.5615
+Iteration 3: SSE = 49.4971
+Iteration 4: SSE = 48.9703
+Iteration 5: SSE = 48.9703
+Final SSE: 48.9703
+Number of Iterations: 5
+
+Run 25
+-----
+Initial SSE: 87.4316
+
+Iteration 1: SSE = 51.5039
+Iteration 2: SSE = 49.1811
+Iteration 3: SSE = 48.9605
+Iteration 4: SSE = 48.9605
+Final SSE: 48.9605
+Number of Iterations: 4
+
+Run 26
+-----
+Initial SSE: 86.6312
+
+Iteration 1: SSE = 59.6264
+Iteration 2: SSE = 50.7849
+Iteration 3: SSE = 49.0545
+Iteration 4: SSE = 48.9854
+Iteration 5: SSE = 48.9854
+Final SSE: 48.9854
+Number of Iterations: 5
+
+Run 27
+-----
+Initial SSE: 87.0981
+
+Iteration 1: SSE = 52.8884
+Iteration 2: SSE = 49.0197
+Iteration 3: SSE = 48.9703
+Iteration 4: SSE = 48.9703
+Final SSE: 48.9703
+Number of Iterations: 4
+
+Run 28
+-----
+Initial SSE: 88.1675
+
+Iteration 1: SSE = 56.7406
+Iteration 2: SSE = 49.3214
+Iteration 3: SSE = 48.9946
+Iteration 4: SSE = 48.9946
+Final SSE: 48.9946
+Number of Iterations: 4
+
+Run 29
+-----
+Initial SSE: 84.4000
+
+Iteration 1: SSE = 52.6337
+Iteration 2: SSE = 49.0403
+Iteration 3: SSE = 48.9888
+Iteration 4: SSE = 48.9888
+Final SSE: 48.9888
+Number of Iterations: 4
+
+Run 30
+-----
+Initial SSE: 90.7965
+
+Iteration 1: SSE = 77.8276
+Iteration 2: SSE = 58.6045
+Iteration 3: SSE = 50.8374
+Iteration 4: SSE = 49.2096
+Iteration 5: SSE = 49.0097
+Iteration 6: SSE = 49.0097
+Final SSE: 49.0097
+Number of Iterations: 6
+
+Run 31
+-----
+Initial SSE: 86.8790
+
+Iteration 1: SSE = 63.6110
+Iteration 2: SSE = 59.2791
+Iteration 3: SSE = 52.4359
+Iteration 4: SSE = 49.7377
+Iteration 5: SSE = 49.1024
+Iteration 6: SSE = 49.0338
+Iteration 7: SSE = 48.9854
+Iteration 8: SSE = 48.9854
+Final SSE: 48.9854
+Number of Iterations: 8
+
+Run 32
+-----
+Initial SSE: 88.6551
+
+Iteration 1: SSE = 57.7517
+Iteration 2: SSE = 49.9641
+Iteration 3: SSE = 49.2209
+Iteration 4: SSE = 48.9854
+Iteration 5: SSE = 48.9854
+Final SSE: 48.9854
+Number of Iterations: 5
+
+Run 33
+-----
+Initial SSE: 86.4710
+
+Iteration 1: SSE = 66.9021
+Iteration 2: SSE = 62.6795
+Iteration 3: SSE = 62.1475
+Iteration 4: SSE = 61.2337
+Iteration 5: SSE = 58.5070
+Iteration 6: SSE = 54.3537
+Iteration 7: SSE = 51.5199
 Iteration 8: SSE = 49.8502
 Iteration 9: SSE = 49.1024
 Iteration 10: SSE = 49.0338
@@ -46,96 +408,31 @@ Iteration 12: SSE = 48.9854
 Final SSE: 48.9854
 Number of Iterations: 12
 
-Run 4
+Run 34
 -----
-Initial SSE: 89.7297
+Initial SSE: 88.9104
 
-Iteration 1: SSE = 71.1839
-Iteration 2: SSE = 60.3197
-Iteration 3: SSE = 52.9901
-Iteration 4: SSE = 49.8182
-Iteration 5: SSE = 48.9703
-Iteration 6: SSE = 48.9703
-Final SSE: 48.9703
-Number of Iterations: 6
-
-Run 5
------
-Initial SSE: 88.8599
-
-Iteration 1: SSE = 62.6215
-Iteration 2: SSE = 51.3355
-Iteration 3: SSE = 49.5781
-Iteration 4: SSE = 48.9605
-Iteration 5: SSE = 48.9605
-Final SSE: 48.9605
-Number of Iterations: 5
-
-Run 6
------
-Initial SSE: 88.9502
-
-Iteration 1: SSE = 64.1441
-Iteration 2: SSE = 53.5510
-Iteration 3: SSE = 49.7431
-Iteration 4: SSE = 49.0545
-Iteration 5: SSE = 48.9854
-Iteration 6: SSE = 48.9854
+Iteration 1: SSE = 65.5114
+Iteration 2: SSE = 64.4099
+Iteration 3: SSE = 63.3306
+Iteration 4: SSE = 59.5484
+Iteration 5: SSE = 56.0222
+Iteration 6: SSE = 52.8178
+Iteration 7: SSE = 49.9641
+Iteration 8: SSE = 49.2209
+Iteration 9: SSE = 48.9854
+Iteration 10: SSE = 48.9854
 Final SSE: 48.9854
-Number of Iterations: 6
+Number of Iterations: 10
 
-Run 7
+Run 35
 -----
-Initial SSE: 89.8701
+Initial SSE: 89.5844
 
-Iteration 1: SSE = 67.3785
-Iteration 2: SSE = 58.2188
-Iteration 3: SSE = 53.1008
-Iteration 4: SSE = 50.1691
-Iteration 5: SSE = 49.3814
-Iteration 6: SSE = 49.0338
-Iteration 7: SSE = 48.9854
-Iteration 8: SSE = 48.9854
-Final SSE: 48.9854
-Number of Iterations: 8
-
-Run 8
------
-Initial SSE: 85.7337
-
-Iteration 1: SSE = 64.8248
-Iteration 2: SSE = 57.2007
-Iteration 3: SSE = 51.7550
-Iteration 4: SSE = 49.8235
-Iteration 5: SSE = 49.1024
-Iteration 6: SSE = 49.0338
-Iteration 7: SSE = 48.9854
-Iteration 8: SSE = 48.9854
-Final SSE: 48.9854
-Number of Iterations: 8
-
-Run 9
------
-Initial SSE: 82.1708
-
-Iteration 1: SSE = 57.8336
-Iteration 2: SSE = 52.8947
-Iteration 3: SSE = 49.9525
-Iteration 4: SSE = 49.1913
-Iteration 5: SSE = 49.0338
-Iteration 6: SSE = 48.9854
-Iteration 7: SSE = 48.9854
-Final SSE: 48.9854
-Number of Iterations: 7
-
-Run 10
------
-Initial SSE: 90.3514
-
-Iteration 1: SSE = 64.7484
-Iteration 2: SSE = 58.6123
-Iteration 3: SSE = 55.3146
-Iteration 4: SSE = 52.1540
+Iteration 1: SSE = 74.1277
+Iteration 2: SSE = 60.2827
+Iteration 3: SSE = 55.8861
+Iteration 4: SSE = 52.5088
 Iteration 5: SSE = 49.9641
 Iteration 6: SSE = 49.2209
 Iteration 7: SSE = 48.9854
@@ -143,185 +440,115 @@ Iteration 8: SSE = 48.9854
 Final SSE: 48.9854
 Number of Iterations: 8
 
-Run 11
+Run 36
 -----
-Initial SSE: 82.6958
+Initial SSE: 91.9077
 
-Iteration 1: SSE = 51.7633
-Iteration 2: SSE = 49.0703
-Iteration 3: SSE = 48.9854
-Iteration 4: SSE = 48.9854
-Final SSE: 48.9854
-Number of Iterations: 4
-
-Run 12
------
-Initial SSE: 88.6372
-
-Iteration 1: SSE = 73.1590
-Iteration 2: SSE = 62.8521
-Iteration 3: SSE = 54.0604
-Iteration 4: SSE = 50.0018
+Iteration 1: SSE = 71.4480
+Iteration 2: SSE = 56.5109
+Iteration 3: SSE = 50.1258
+Iteration 4: SSE = 48.9703
 Iteration 5: SSE = 48.9703
-Iteration 6: SSE = 48.9703
 Final SSE: 48.9703
-Number of Iterations: 6
+Number of Iterations: 5
 
-Run 13
+Run 37
 -----
-Initial SSE: 78.6294
+Initial SSE: 86.5306
 
-Iteration 1: SSE = 58.8366
-Iteration 2: SSE = 51.6408
-Iteration 3: SSE = 49.8760
-Iteration 4: SSE = 49.1913
-Iteration 5: SSE = 49.0338
-Iteration 6: SSE = 48.9854
-Iteration 7: SSE = 48.9854
-Final SSE: 48.9854
+Iteration 1: SSE = 62.1247
+Iteration 2: SSE = 54.1768
+Iteration 3: SSE = 50.7053
+Iteration 4: SSE = 49.4843
+Iteration 5: SSE = 49.0176
+Iteration 6: SSE = 48.9703
+Iteration 7: SSE = 48.9703
+Final SSE: 48.9703
 Number of Iterations: 7
 
-Run 14
+Run 38
 -----
-Initial SSE: 88.7320
+Initial SSE: 88.2825
 
-Iteration 1: SSE = 79.6000
-Iteration 2: SSE = 55.1247
-Iteration 3: SSE = 49.0322
-Iteration 4: SSE = 48.9918
-Iteration 5: SSE = 48.9918
-Final SSE: 48.9918
-Number of Iterations: 5
-
-Run 15
------
-Initial SSE: 86.2070
-
-Iteration 1: SSE = 62.2283
-Iteration 2: SSE = 52.0887
-Iteration 3: SSE = 50.1415
-Iteration 4: SSE = 49.2849
-Iteration 5: SSE = 48.9605
-Iteration 6: SSE = 48.9605
-Final SSE: 48.9605
-Number of Iterations: 6
-
-Run 16
------
-Initial SSE: 86.7870
-
-Iteration 1: SSE = 67.0733
-Iteration 2: SSE = 62.2539
-Iteration 3: SSE = 57.3182
-Iteration 4: SSE = 54.3576
-Iteration 5: SSE = 50.8850
-Iteration 6: SSE = 49.7724
-Iteration 7: SSE = 49.1024
-Iteration 8: SSE = 49.0338
-Iteration 9: SSE = 48.9854
-Iteration 10: SSE = 48.9854
-Final SSE: 48.9854
-Number of Iterations: 10
-
-Run 17
------
-Initial SSE: 92.0905
-
-Iteration 1: SSE = 68.6605
-Iteration 2: SSE = 57.1183
-Iteration 3: SSE = 49.7756
-Iteration 4: SSE = 48.9605
-Iteration 5: SSE = 48.9605
-Final SSE: 48.9605
-Number of Iterations: 5
-
-Run 18
------
-Initial SSE: 91.8251
-
-Iteration 1: SSE = 71.4296
-Iteration 2: SSE = 59.4256
-Iteration 3: SSE = 51.6724
-Iteration 4: SSE = 49.7439
+Iteration 1: SSE = 65.9112
+Iteration 2: SSE = 55.7455
+Iteration 3: SSE = 50.6489
+Iteration 4: SSE = 49.3338
 Iteration 5: SSE = 48.9703
 Iteration 6: SSE = 48.9703
 Final SSE: 48.9703
 Number of Iterations: 6
 
-Run 19
+Run 39
 -----
-Initial SSE: 88.5813
+Initial SSE: 87.7822
 
-Iteration 1: SSE = 63.2054
-Iteration 2: SSE = 55.8213
-Iteration 3: SSE = 49.9858
+Iteration 1: SSE = 61.4479
+Iteration 2: SSE = 50.5475
+Iteration 3: SSE = 49.3403
 Iteration 4: SSE = 49.0546
 Iteration 5: SSE = 48.9703
 Iteration 6: SSE = 48.9703
 Final SSE: 48.9703
 Number of Iterations: 6
 
-Run 20
+Run 40
 -----
-Initial SSE: 87.6895
+Initial SSE: 86.1251
 
-Iteration 1: SSE = 62.4183
-Iteration 2: SSE = 56.5486
-Iteration 3: SSE = 52.4278
-Iteration 4: SSE = 50.1691
-Iteration 5: SSE = 49.3814
-Iteration 6: SSE = 49.0338
+Iteration 1: SSE = 69.2258
+Iteration 2: SSE = 49.6393
+Iteration 3: SSE = 48.9605
+Iteration 4: SSE = 48.9605
+Final SSE: 48.9605
+Number of Iterations: 4
+
+Run 41
+-----
+Initial SSE: 86.6992
+
+Iteration 1: SSE = 57.4482
+Iteration 2: SSE = 50.9743
+Iteration 3: SSE = 49.0550
+Iteration 4: SSE = 48.9703
+Iteration 5: SSE = 48.9703
+Final SSE: 48.9703
+Number of Iterations: 5
+
+Run 42
+-----
+Initial SSE: 85.5037
+
+Iteration 1: SSE = 58.5675
+Iteration 2: SSE = 53.4824
+Iteration 3: SSE = 50.1129
+Iteration 4: SSE = 49.3028
+Iteration 5: SSE = 49.0338
+Iteration 6: SSE = 48.9854
 Iteration 7: SSE = 48.9854
-Iteration 8: SSE = 48.9854
 Final SSE: 48.9854
-Number of Iterations: 8
+Number of Iterations: 7
 
-Run 21
+Run 43
 -----
-Initial SSE: 90.6209
+Initial SSE: 90.4817
 
-Iteration 1: SSE = 59.1277
-Iteration 2: SSE = 49.2894
-Iteration 3: SSE = 49.0154
-Iteration 4: SSE = 49.0154
-Final SSE: 49.0154
-Number of Iterations: 4
+Iteration 1: SSE = 66.5232
+Iteration 2: SSE = 50.4831
+Iteration 3: SSE = 49.4843
+Iteration 4: SSE = 49.0176
+Iteration 5: SSE = 48.9703
+Iteration 6: SSE = 48.9703
+Final SSE: 48.9703
+Number of Iterations: 6
 
-Run 22
+Run 44
 -----
-Initial SSE: 92.1290
+Initial SSE: 89.4250
 
-Iteration 1: SSE = 75.8308
-Iteration 2: SSE = 65.0881
-Iteration 3: SSE = 63.0119
-Iteration 4: SSE = 57.0161
-Iteration 5: SSE = 53.5490
-Iteration 6: SSE = 50.3116
-Iteration 7: SSE = 49.4711
-Iteration 8: SSE = 49.0338
-Iteration 9: SSE = 48.9854
-Iteration 10: SSE = 48.9854
-Final SSE: 48.9854
-Number of Iterations: 10
-
-Run 23
------
-Initial SSE: 90.3887
-
-Iteration 1: SSE = 62.2961
-Iteration 2: SSE = 49.8863
-Iteration 3: SSE = 48.9725
-Iteration 4: SSE = 48.9725
-Final SSE: 48.9725
-Number of Iterations: 4
-
-Run 24
------
-Initial SSE: 91.2927
-
-Iteration 1: SSE = 77.1866
-Iteration 2: SSE = 50.9910
-Iteration 3: SSE = 49.7169
+Iteration 1: SSE = 71.0030
+Iteration 2: SSE = 52.4146
+Iteration 3: SSE = 50.0511
 Iteration 4: SSE = 49.1024
 Iteration 5: SSE = 49.0338
 Iteration 6: SSE = 48.9854
@@ -329,109 +556,696 @@ Iteration 7: SSE = 48.9854
 Final SSE: 48.9854
 Number of Iterations: 7
 
-Run 25
+Run 45
 -----
-Initial SSE: 92.0746
+Initial SSE: 88.8731
 
-Iteration 1: SSE = 84.8686
-Iteration 2: SSE = 54.9455
-Iteration 3: SSE = 50.2170
-Iteration 4: SSE = 49.0877
-Iteration 5: SSE = 48.9605
-Iteration 6: SSE = 48.9605
-Final SSE: 48.9605
+Iteration 1: SSE = 58.0970
+Iteration 2: SSE = 50.4713
+Iteration 3: SSE = 49.1024
+Iteration 4: SSE = 49.0338
+Iteration 5: SSE = 48.9854
+Iteration 6: SSE = 48.9854
+Final SSE: 48.9854
 Number of Iterations: 6
 
-Run 26
+Run 46
 -----
-Initial SSE: 88.5299
+Initial SSE: 89.1492
 
-Iteration 1: SSE = 65.6732
-Iteration 2: SSE = 52.8848
-Iteration 3: SSE = 49.4166
+Iteration 1: SSE = 55.4322
+Iteration 2: SSE = 49.3659
+Iteration 3: SSE = 48.9891
+Iteration 4: SSE = 48.9605
+Iteration 5: SSE = 48.9605
+Final SSE: 48.9605
+Number of Iterations: 5
+
+Run 47
+-----
+Initial SSE: 84.7348
+
+Iteration 1: SSE = 56.0549
+Iteration 2: SSE = 49.8285
+Iteration 3: SSE = 48.9891
+Iteration 4: SSE = 48.9605
+Iteration 5: SSE = 48.9605
+Final SSE: 48.9605
+Number of Iterations: 5
+
+Run 48
+-----
+Initial SSE: 88.9622
+
+Iteration 1: SSE = 55.9530
+Iteration 2: SSE = 50.0032
+Iteration 3: SSE = 49.1348
+Iteration 4: SSE = 49.0154
+Iteration 5: SSE = 49.0154
+Final SSE: 49.0154
+Number of Iterations: 5
+
+Run 49
+-----
+Initial SSE: 87.6803
+
+Iteration 1: SSE = 52.3478
+Iteration 2: SSE = 49.2508
+Iteration 3: SSE = 48.9725
+Iteration 4: SSE = 48.9725
+Final SSE: 48.9725
+Number of Iterations: 4
+
+Run 50
+-----
+Initial SSE: 83.0481
+
+Iteration 1: SSE = 50.9479
+Iteration 2: SSE = 48.9969
+Iteration 3: SSE = 48.9969
+Final SSE: 48.9969
+Number of Iterations: 3
+
+Run 51
+-----
+Initial SSE: 89.8120
+
+Iteration 1: SSE = 63.3074
+Iteration 2: SSE = 49.9912
+Iteration 3: SSE = 49.1169
+Iteration 4: SSE = 49.0064
+Iteration 5: SSE = 48.9750
+Iteration 6: SSE = 48.9540
+Iteration 7: SSE = 48.9540
+Final SSE: 48.9540
+Number of Iterations: 7
+
+Run 52
+-----
+Initial SSE: 85.0456
+
+Iteration 1: SSE = 66.0843
+Iteration 2: SSE = 61.0665
+Iteration 3: SSE = 55.3541
+Iteration 4: SSE = 51.4862
+Iteration 5: SSE = 49.6423
+Iteration 6: SSE = 48.9703
+Iteration 7: SSE = 48.9703
+Final SSE: 48.9703
+Number of Iterations: 7
+
+Run 53
+-----
+Initial SSE: 86.7225
+
+Iteration 1: SSE = 54.3767
+Iteration 2: SSE = 49.2775
+Iteration 3: SSE = 49.0097
+Iteration 4: SSE = 49.0097
+Final SSE: 49.0097
+Number of Iterations: 4
+
+Run 54
+-----
+Initial SSE: 84.0050
+
+Iteration 1: SSE = 62.7481
+Iteration 2: SSE = 56.1251
+Iteration 3: SSE = 50.8652
+Iteration 4: SSE = 49.4153
+Iteration 5: SSE = 48.9703
+Iteration 6: SSE = 48.9703
+Final SSE: 48.9703
+Number of Iterations: 6
+
+Run 55
+-----
+Initial SSE: 84.9119
+
+Iteration 1: SSE = 62.1937
+Iteration 2: SSE = 52.4510
+Iteration 3: SSE = 49.4727
+Iteration 4: SSE = 49.0154
+Iteration 5: SSE = 49.0154
+Final SSE: 49.0154
+Number of Iterations: 5
+
+Run 56
+-----
+Initial SSE: 86.9219
+
+Iteration 1: SSE = 66.5653
+Iteration 2: SSE = 59.9960
+Iteration 3: SSE = 52.9371
+Iteration 4: SSE = 50.2325
+Iteration 5: SSE = 49.1678
+Iteration 6: SSE = 48.9703
+Iteration 7: SSE = 48.9703
+Final SSE: 48.9703
+Number of Iterations: 7
+
+Run 57
+-----
+Initial SSE: 86.3991
+
+Iteration 1: SSE = 52.0143
+Iteration 2: SSE = 49.3352
+Iteration 3: SSE = 49.0176
 Iteration 4: SSE = 48.9703
 Iteration 5: SSE = 48.9703
 Final SSE: 48.9703
 Number of Iterations: 5
 
-Run 27
+Run 58
 -----
-Initial SSE: 84.9843
+Initial SSE: 90.6112
 
-Iteration 1: SSE = 63.1826
-Iteration 2: SSE = 60.7311
-Iteration 3: SSE = 54.0160
-Iteration 4: SSE = 49.8696
-Iteration 5: SSE = 49.0154
-Iteration 6: SSE = 49.0154
+Iteration 1: SSE = 63.8746
+Iteration 2: SSE = 50.4352
+Iteration 3: SSE = 49.0154
+Iteration 4: SSE = 49.0154
 Final SSE: 49.0154
+Number of Iterations: 4
+
+Run 59
+-----
+Initial SSE: 89.3015
+
+Iteration 1: SSE = 54.9460
+Iteration 2: SSE = 49.1686
+Iteration 3: SSE = 49.0102
+Iteration 4: SSE = 48.9888
+Iteration 5: SSE = 48.9888
+Final SSE: 48.9888
+Number of Iterations: 5
+
+Run 60
+-----
+Initial SSE: 91.1890
+
+Iteration 1: SSE = 64.7072
+Iteration 2: SSE = 49.1702
+Iteration 3: SSE = 49.0129
+Iteration 4: SSE = 48.9750
+Iteration 5: SSE = 48.9540
+Iteration 6: SSE = 48.9540
+Final SSE: 48.9540
 Number of Iterations: 6
 
-Run 28
+Run 61
 -----
-Initial SSE: 86.9261
+Initial SSE: 82.7627
 
-Iteration 1: SSE = 65.5940
-Iteration 2: SSE = 59.4317
-Iteration 3: SSE = 53.9634
-Iteration 4: SSE = 50.5406
-Iteration 5: SSE = 49.4711
+Iteration 1: SSE = 58.2861
+Iteration 2: SSE = 50.5615
+Iteration 3: SSE = 49.0915
+Iteration 4: SSE = 48.9605
+Iteration 5: SSE = 48.9605
+Final SSE: 48.9605
+Number of Iterations: 5
+
+Run 62
+-----
+Initial SSE: 91.1524
+
+Iteration 1: SSE = 68.6815
+Iteration 2: SSE = 52.5260
+Iteration 3: SSE = 49.2567
+Iteration 4: SSE = 49.0338
+Iteration 5: SSE = 48.9854
+Iteration 6: SSE = 48.9854
+Final SSE: 48.9854
+Number of Iterations: 6
+
+Run 63
+-----
+Initial SSE: 86.3846
+
+Iteration 1: SSE = 52.7474
+Iteration 2: SSE = 49.0731
+Iteration 3: SSE = 48.9946
+Iteration 4: SSE = 48.9946
+Final SSE: 48.9946
+Number of Iterations: 4
+
+Run 64
+-----
+Initial SSE: 84.9452
+
+Iteration 1: SSE = 63.6833
+Iteration 2: SSE = 54.3093
+Iteration 3: SSE = 49.6698
+Iteration 4: SSE = 49.0097
+Iteration 5: SSE = 49.0097
+Final SSE: 49.0097
+Number of Iterations: 5
+
+Run 65
+-----
+Initial SSE: 86.1970
+
+Iteration 1: SSE = 64.2100
+Iteration 2: SSE = 59.9053
+Iteration 3: SSE = 52.5166
+Iteration 4: SSE = 49.2897
+Iteration 5: SSE = 48.9605
+Iteration 6: SSE = 48.9605
+Final SSE: 48.9605
+Number of Iterations: 6
+
+Run 66
+-----
+Initial SSE: 90.9707
+
+Iteration 1: SSE = 80.8890
+Iteration 2: SSE = 77.1671
+Iteration 3: SSE = 71.1906
+Iteration 4: SSE = 60.5649
+Iteration 5: SSE = 51.8593
+Iteration 6: SSE = 49.7441
+Iteration 7: SSE = 48.9703
+Iteration 8: SSE = 48.9703
+Final SSE: 48.9703
+Number of Iterations: 8
+
+Run 67
+-----
+Initial SSE: 82.0542
+
+Iteration 1: SSE = 57.0166
+Iteration 2: SSE = 51.0979
+Iteration 3: SSE = 49.1340
+Iteration 4: SSE = 49.0154
+Iteration 5: SSE = 49.0154
+Final SSE: 49.0154
+Number of Iterations: 5
+
+Run 68
+-----
+Initial SSE: 84.9504
+
+Iteration 1: SSE = 67.8410
+Iteration 2: SSE = 61.5841
+Iteration 3: SSE = 59.4422
+Iteration 4: SSE = 56.8705
+Iteration 5: SSE = 54.0138
+Iteration 6: SSE = 51.1114
+Iteration 7: SSE = 49.7169
+Iteration 8: SSE = 49.1024
+Iteration 9: SSE = 49.0338
+Iteration 10: SSE = 48.9854
+Iteration 11: SSE = 48.9854
+Final SSE: 48.9854
+Number of Iterations: 11
+
+Run 69
+-----
+Initial SSE: 89.2284
+
+Iteration 1: SSE = 59.0754
+Iteration 2: SSE = 48.9605
+Iteration 3: SSE = 48.9605
+Final SSE: 48.9605
+Number of Iterations: 3
+
+Run 70
+-----
+Initial SSE: 84.2452
+
+Iteration 1: SSE = 64.6256
+Iteration 2: SSE = 55.0499
+Iteration 3: SSE = 50.5496
+Iteration 4: SSE = 49.5355
+Iteration 5: SSE = 49.0338
+Iteration 6: SSE = 48.9854
+Iteration 7: SSE = 48.9854
+Final SSE: 48.9854
+Number of Iterations: 7
+
+Run 71
+-----
+Initial SSE: 83.8411
+
+Iteration 1: SSE = 59.6457
+Iteration 2: SSE = 51.7477
+Iteration 3: SSE = 49.7497
+Iteration 4: SSE = 48.9605
+Iteration 5: SSE = 48.9605
+Final SSE: 48.9605
+Number of Iterations: 5
+
+Run 72
+-----
+Initial SSE: 89.0269
+
+Iteration 1: SSE = 64.6615
+Iteration 2: SSE = 61.6806
+Iteration 3: SSE = 54.7560
+Iteration 4: SSE = 50.0655
+Iteration 5: SSE = 49.0403
+Iteration 6: SSE = 48.9888
+Iteration 7: SSE = 48.9888
+Final SSE: 48.9888
+Number of Iterations: 7
+
+Run 73
+-----
+Initial SSE: 90.8772
+
+Iteration 1: SSE = 75.0026
+Iteration 2: SSE = 62.0866
+Iteration 3: SSE = 55.8367
+Iteration 4: SSE = 50.6052
+Iteration 5: SSE = 49.5355
 Iteration 6: SSE = 49.0338
 Iteration 7: SSE = 48.9854
 Iteration 8: SSE = 48.9854
 Final SSE: 48.9854
 Number of Iterations: 8
 
-Run 29
+Run 74
 -----
-Initial SSE: 87.9587
+Initial SSE: 89.8266
 
-Iteration 1: SSE = 59.8837
-Iteration 2: SSE = 50.2464
+Iteration 1: SSE = 66.3709
+Iteration 2: SSE = 56.4096
+Iteration 3: SSE = 49.2093
+Iteration 4: SSE = 48.9888
+Iteration 5: SSE = 48.9888
+Final SSE: 48.9888
+Number of Iterations: 5
+
+Run 75
+-----
+Initial SSE: 87.3490
+
+Iteration 1: SSE = 66.5903
+Iteration 2: SSE = 53.3976
+Iteration 3: SSE = 50.3521
+Iteration 4: SSE = 49.4095
+Iteration 5: SSE = 48.9605
+Iteration 6: SSE = 48.9605
+Final SSE: 48.9605
+Number of Iterations: 6
+
+Run 76
+-----
+Initial SSE: 87.7543
+
+Iteration 1: SSE = 70.5685
+Iteration 2: SSE = 62.3576
+Iteration 3: SSE = 52.0903
+Iteration 4: SSE = 49.2828
+Iteration 5: SSE = 48.9854
+Iteration 6: SSE = 48.9854
+Final SSE: 48.9854
+Number of Iterations: 6
+
+Run 77
+-----
+Initial SSE: 90.8906
+
+Iteration 1: SSE = 80.1253
+Iteration 2: SSE = 53.5930
+Iteration 3: SSE = 48.9605
+Iteration 4: SSE = 48.9605
+Final SSE: 48.9605
+Number of Iterations: 4
+
+Run 78
+-----
+Initial SSE: 85.0252
+
+Iteration 1: SSE = 58.9131
+Iteration 2: SSE = 50.7546
+Iteration 3: SSE = 49.0516
+Iteration 4: SSE = 49.0072
+Iteration 5: SSE = 48.9888
+Iteration 6: SSE = 48.9888
+Final SSE: 48.9888
+Number of Iterations: 6
+
+Run 79
+-----
+Initial SSE: 85.3826
+
+Iteration 1: SSE = 57.2211
+Iteration 2: SSE = 51.6269
+Iteration 3: SSE = 49.9587
+Iteration 4: SSE = 49.1024
+Iteration 5: SSE = 49.0338
+Iteration 6: SSE = 48.9854
+Iteration 7: SSE = 48.9854
+Final SSE: 48.9854
+Number of Iterations: 7
+
+Run 80
+-----
+Initial SSE: 88.0738
+
+Iteration 1: SSE = 61.0396
+Iteration 2: SSE = 52.0644
+Iteration 3: SSE = 49.9230
+Iteration 4: SSE = 49.1024
+Iteration 5: SSE = 49.0338
+Iteration 6: SSE = 48.9854
+Iteration 7: SSE = 48.9854
+Final SSE: 48.9854
+Number of Iterations: 7
+
+Run 81
+-----
+Initial SSE: 88.4720
+
+Iteration 1: SSE = 57.6301
+Iteration 2: SSE = 48.9854
+Iteration 3: SSE = 48.9854
+Final SSE: 48.9854
+Number of Iterations: 3
+
+Run 82
+-----
+Initial SSE: 85.8938
+
+Iteration 1: SSE = 65.5798
+Iteration 2: SSE = 63.0034
+Iteration 3: SSE = 54.6237
+Iteration 4: SSE = 49.5844
+Iteration 5: SSE = 48.9946
+Iteration 6: SSE = 48.9946
+Final SSE: 48.9946
+Number of Iterations: 6
+
+Run 83
+-----
+Initial SSE: 86.4219
+
+Iteration 1: SSE = 59.9247
+Iteration 2: SSE = 50.8383
+Iteration 3: SSE = 49.4153
+Iteration 4: SSE = 48.9703
+Iteration 5: SSE = 48.9703
+Final SSE: 48.9703
+Number of Iterations: 5
+
+Run 84
+-----
+Initial SSE: 89.8574
+
+Iteration 1: SSE = 71.2798
+Iteration 2: SSE = 52.1508
+Iteration 3: SSE = 49.2711
+Iteration 4: SSE = 48.9605
+Iteration 5: SSE = 48.9605
+Final SSE: 48.9605
+Number of Iterations: 5
+
+Run 85
+-----
+Initial SSE: 89.4025
+
+Iteration 1: SSE = 67.4007
+Iteration 2: SSE = 50.1770
+Iteration 3: SSE = 48.9605
+Iteration 4: SSE = 48.9605
+Final SSE: 48.9605
+Number of Iterations: 4
+
+Run 86
+-----
+Initial SSE: 89.4615
+
+Iteration 1: SSE = 64.2326
+Iteration 2: SSE = 55.9659
+Iteration 3: SSE = 50.9263
+Iteration 4: SSE = 49.7724
+Iteration 5: SSE = 49.1024
+Iteration 6: SSE = 49.0338
+Iteration 7: SSE = 48.9854
+Iteration 8: SSE = 48.9854
+Final SSE: 48.9854
+Number of Iterations: 8
+
+Run 87
+-----
+Initial SSE: 91.2872
+
+Iteration 1: SSE = 80.6938
+Iteration 2: SSE = 68.6569
+Iteration 3: SSE = 53.0373
+Iteration 4: SSE = 49.1272
+Iteration 5: SSE = 49.0338
+Iteration 6: SSE = 48.9854
+Iteration 7: SSE = 48.9854
+Final SSE: 48.9854
+Number of Iterations: 7
+
+Run 88
+-----
+Initial SSE: 89.6286
+
+Iteration 1: SSE = 64.3824
+Iteration 2: SSE = 50.5108
 Iteration 3: SSE = 49.0338
 Iteration 4: SSE = 48.9854
 Iteration 5: SSE = 48.9854
 Final SSE: 48.9854
 Number of Iterations: 5
 
-Run 30
+Run 89
 -----
-Initial SSE: 87.7532
+Initial SSE: 83.6296
 
-Iteration 1: SSE = 68.8777
-Iteration 2: SSE = 64.0095
-Iteration 3: SSE = 62.9713
-Iteration 4: SSE = 61.3009
-Iteration 5: SSE = 54.8788
-Iteration 6: SSE = 50.5496
-Iteration 7: SSE = 49.5355
-Iteration 8: SSE = 49.0338
-Iteration 9: SSE = 48.9854
-Iteration 10: SSE = 48.9854
+Iteration 1: SSE = 60.3239
+Iteration 2: SSE = 53.0673
+Iteration 3: SSE = 49.7531
+Iteration 4: SSE = 49.0403
+Iteration 5: SSE = 48.9888
+Iteration 6: SSE = 48.9888
+Final SSE: 48.9888
+Number of Iterations: 6
+
+Run 90
+-----
+Initial SSE: 84.2571
+
+Iteration 1: SSE = 53.2854
+Iteration 2: SSE = 49.4954
+Iteration 3: SSE = 49.0102
+Iteration 4: SSE = 48.9888
+Iteration 5: SSE = 48.9888
+Final SSE: 48.9888
+Number of Iterations: 5
+
+Run 91
+-----
+Initial SSE: 85.4756
+
+Iteration 1: SSE = 49.9725
+Iteration 2: SSE = 48.9605
+Iteration 3: SSE = 48.9605
+Final SSE: 48.9605
+Number of Iterations: 3
+
+Run 92
+-----
+Initial SSE: 88.4927
+
+Iteration 1: SSE = 70.9489
+Iteration 2: SSE = 62.1970
+Iteration 3: SSE = 53.3864
+Iteration 4: SSE = 50.3908
+Iteration 5: SSE = 49.3780
+Iteration 6: SSE = 48.9703
+Iteration 7: SSE = 48.9703
+Final SSE: 48.9703
+Number of Iterations: 7
+
+Run 93
+-----
+Initial SSE: 83.1720
+
+Iteration 1: SSE = 58.0340
+Iteration 2: SSE = 50.3442
+Iteration 3: SSE = 49.4725
+Iteration 4: SSE = 49.0338
+Iteration 5: SSE = 48.9854
+Iteration 6: SSE = 48.9854
 Final SSE: 48.9854
-Number of Iterations: 10
+Number of Iterations: 6
 
-Run 31
+Run 94
 -----
-Initial SSE: 84.8254
+Initial SSE: 87.3090
 
-Iteration 1: SSE = 55.7382
-Iteration 2: SSE = 50.2872
+Iteration 1: SSE = 62.7922
+Iteration 2: SSE = 55.0666
+Iteration 3: SSE = 51.4065
+Iteration 4: SSE = 49.7724
+Iteration 5: SSE = 49.1024
+Iteration 6: SSE = 49.0338
+Iteration 7: SSE = 48.9854
+Iteration 8: SSE = 48.9854
+Final SSE: 48.9854
+Number of Iterations: 8
+
+Run 95
+-----
+Initial SSE: 89.3002
+
+Iteration 1: SSE = 66.7303
+Iteration 2: SSE = 59.3486
+Iteration 3: SSE = 50.9334
+Iteration 4: SSE = 49.1175
+Iteration 5: SSE = 49.0154
+Iteration 6: SSE = 49.0154
+Final SSE: 49.0154
+Number of Iterations: 6
+
+Run 96
+-----
+Initial SSE: 86.9847
+
+Iteration 1: SSE = 60.3427
+Iteration 2: SSE = 50.5254
+Iteration 3: SSE = 49.1067
+Iteration 4: SSE = 48.9946
+Iteration 5: SSE = 48.9946
+Final SSE: 48.9946
+Number of Iterations: 5
+
+Run 97
+-----
+Initial SSE: 91.4015
+
+Iteration 1: SSE = 71.4143
+Iteration 2: SSE = 50.1108
+Iteration 3: SSE = 48.9918
+Iteration 4: SSE = 48.9918
+Final SSE: 48.9918
+Number of Iterations: 4
+
+Run 98
+-----
+Initial SSE: 83.8925
+
+Iteration 1: SSE = 56.2280
+Iteration 2: SSE = 50.2114
 Iteration 3: SSE = 49.2849
 Iteration 4: SSE = 48.9605
 Iteration 5: SSE = 48.9605
 Final SSE: 48.9605
 Number of Iterations: 5
 
-Run 32
+Run 99
 -----
-Initial SSE: 88.3927
+Initial SSE: 87.0350
 
-Iteration 1: SSE = 70.0271
-Iteration 2: SSE = 65.0647
-Iteration 3: SSE = 58.2585
-Iteration 4: SSE = 55.7798
-Iteration 5: SSE = 52.7127
+Iteration 1: SSE = 65.0029
+Iteration 2: SSE = 60.2111
+Iteration 3: SSE = 57.5276
+Iteration 4: SSE = 54.5223
+Iteration 5: SSE = 51.2850
 Iteration 6: SSE = 49.8502
 Iteration 7: SSE = 49.1024
 Iteration 8: SSE = 49.0338
@@ -440,914 +1254,22 @@ Iteration 10: SSE = 48.9854
 Final SSE: 48.9854
 Number of Iterations: 10
 
-Run 33
------
-Initial SSE: 82.1461
-
-Iteration 1: SSE = 62.7992
-Iteration 2: SSE = 54.3600
-Iteration 3: SSE = 50.4292
-Iteration 4: SSE = 49.5355
-Iteration 5: SSE = 49.0338
-Iteration 6: SSE = 48.9854
-Iteration 7: SSE = 48.9854
-Final SSE: 48.9854
-Number of Iterations: 7
-
-Run 34
------
-Initial SSE: 80.5321
-
-Iteration 1: SSE = 55.3701
-Iteration 2: SSE = 50.7049
-Iteration 3: SSE = 49.5355
-Iteration 4: SSE = 49.0338
-Iteration 5: SSE = 48.9854
-Iteration 6: SSE = 48.9854
-Final SSE: 48.9854
-Number of Iterations: 6
-
-Run 35
------
-Initial SSE: 85.5277
-
-Iteration 1: SSE = 61.6712
-Iteration 2: SSE = 56.3339
-Iteration 3: SSE = 52.3637
-Iteration 4: SSE = 50.1691
-Iteration 5: SSE = 49.3814
-Iteration 6: SSE = 49.0338
-Iteration 7: SSE = 48.9854
-Iteration 8: SSE = 48.9854
-Final SSE: 48.9854
-Number of Iterations: 8
-
-Run 36
------
-Initial SSE: 88.4504
-
-Iteration 1: SSE = 65.5776
-Iteration 2: SSE = 54.9985
-Iteration 3: SSE = 50.8417
-Iteration 4: SSE = 49.4971
-Iteration 5: SSE = 48.9703
-Iteration 6: SSE = 48.9703
-Final SSE: 48.9703
-Number of Iterations: 6
-
-Run 37
------
-Initial SSE: 90.5077
-
-Iteration 1: SSE = 75.3831
-Iteration 2: SSE = 58.6558
-Iteration 3: SSE = 49.9786
-Iteration 4: SSE = 49.0338
-Iteration 5: SSE = 48.9854
-Iteration 6: SSE = 48.9854
-Final SSE: 48.9854
-Number of Iterations: 6
-
-Run 38
------
-Initial SSE: 84.5763
-
-Iteration 1: SSE = 58.3174
-Iteration 2: SSE = 50.2048
-Iteration 3: SSE = 48.9605
-Iteration 4: SSE = 48.9605
-Final SSE: 48.9605
-Number of Iterations: 4
-
-Run 39
------
-Initial SSE: 85.4573
-
-Iteration 1: SSE = 64.0202
-Iteration 2: SSE = 58.2980
-Iteration 3: SSE = 53.7864
-Iteration 4: SSE = 50.7019
-Iteration 5: SSE = 49.7169
-Iteration 6: SSE = 49.1024
-Iteration 7: SSE = 49.0338
-Iteration 8: SSE = 48.9854
-Iteration 9: SSE = 48.9854
-Final SSE: 48.9854
-Number of Iterations: 9
-
-Run 40
------
-Initial SSE: 89.3817
-
-Iteration 1: SSE = 66.3511
-Iteration 2: SSE = 62.0986
-Iteration 3: SSE = 59.4036
-Iteration 4: SSE = 52.2336
-Iteration 5: SSE = 49.4074
-Iteration 6: SSE = 49.0154
-Iteration 7: SSE = 49.0154
-Final SSE: 49.0154
-Number of Iterations: 7
-
-Run 41
------
-Initial SSE: 85.2682
-
-Iteration 1: SSE = 63.7538
-Iteration 2: SSE = 61.8820
-Iteration 3: SSE = 61.5238
-Iteration 4: SSE = 60.5140
-Iteration 5: SSE = 53.7066
-Iteration 6: SSE = 50.0544
-Iteration 7: SSE = 49.1008
-Iteration 8: SSE = 48.9703
-Iteration 9: SSE = 48.9703
-Final SSE: 48.9703
-Number of Iterations: 9
-
-Run 42
------
-Initial SSE: 82.8278
-
-Iteration 1: SSE = 55.7746
-Iteration 2: SSE = 49.9525
-Iteration 3: SSE = 49.1913
-Iteration 4: SSE = 49.0338
-Iteration 5: SSE = 48.9854
-Iteration 6: SSE = 48.9854
-Final SSE: 48.9854
-Number of Iterations: 6
-
-Run 43
------
-Initial SSE: 89.8207
-
-Iteration 1: SSE = 61.4060
-Iteration 2: SSE = 52.9095
-Iteration 3: SSE = 49.9477
-Iteration 4: SSE = 49.1755
-Iteration 5: SSE = 48.9854
-Iteration 6: SSE = 48.9854
-Final SSE: 48.9854
-Number of Iterations: 6
-
-Run 44
------
-Initial SSE: 91.0129
-
-Iteration 1: SSE = 75.0906
-Iteration 2: SSE = 58.5862
-Iteration 3: SSE = 51.9091
-Iteration 4: SSE = 49.9641
-Iteration 5: SSE = 49.2209
-Iteration 6: SSE = 48.9854
-Iteration 7: SSE = 48.9854
-Final SSE: 48.9854
-Number of Iterations: 7
-
-Run 45
------
-Initial SSE: 87.7721
-
-Iteration 1: SSE = 63.2504
-Iteration 2: SSE = 53.6919
-Iteration 3: SSE = 50.3910
-Iteration 4: SSE = 49.3780
-Iteration 5: SSE = 48.9703
-Iteration 6: SSE = 48.9703
-Final SSE: 48.9703
-Number of Iterations: 6
-
-Run 46
------
-Initial SSE: 85.2017
-
-Iteration 1: SSE = 53.5404
-Iteration 2: SSE = 49.0663
-Iteration 3: SSE = 48.9605
-Iteration 4: SSE = 48.9605
-Final SSE: 48.9605
-Number of Iterations: 4
-
-Run 47
------
-Initial SSE: 83.6451
-
-Iteration 1: SSE = 62.9973
-Iteration 2: SSE = 56.8502
-Iteration 3: SSE = 53.9518
-Iteration 4: SSE = 50.4045
-Iteration 5: SSE = 49.4711
-Iteration 6: SSE = 49.0338
-Iteration 7: SSE = 48.9854
-Iteration 8: SSE = 48.9854
-Final SSE: 48.9854
-Number of Iterations: 8
-
-Run 48
------
-Initial SSE: 82.4234
-
-Iteration 1: SSE = 52.3997
-Iteration 2: SSE = 49.9116
-Iteration 3: SSE = 49.1008
-Iteration 4: SSE = 48.9703
-Iteration 5: SSE = 48.9703
-Final SSE: 48.9703
-Number of Iterations: 5
-
-Run 49
------
-Initial SSE: 82.8680
-
-Iteration 1: SSE = 52.1877
-Iteration 2: SSE = 49.1340
-Iteration 3: SSE = 49.0154
-Iteration 4: SSE = 49.0154
-Final SSE: 49.0154
-Number of Iterations: 4
-
-Run 50
------
-Initial SSE: 91.8014
-
-Iteration 1: SSE = 81.3495
-Iteration 2: SSE = 66.4044
-Iteration 3: SSE = 52.3185
-Iteration 4: SSE = 49.7358
-Iteration 5: SSE = 48.9605
-Iteration 6: SSE = 48.9605
-Final SSE: 48.9605
-Number of Iterations: 6
-
-Run 51
------
-Initial SSE: 90.2319
-
-Iteration 1: SSE = 67.2046
-Iteration 2: SSE = 54.9615
-Iteration 3: SSE = 50.5505
-Iteration 4: SSE = 49.3780
-Iteration 5: SSE = 48.9703
-Iteration 6: SSE = 48.9703
-Final SSE: 48.9703
-Number of Iterations: 6
-
-Run 52
------
-Initial SSE: 88.5249
-
-Iteration 1: SSE = 55.3976
-Iteration 2: SSE = 49.2641
-Iteration 3: SSE = 49.0176
-Iteration 4: SSE = 48.9703
-Iteration 5: SSE = 48.9703
-Final SSE: 48.9703
-Number of Iterations: 5
-
-Run 53
------
-Initial SSE: 86.9232
-
-Iteration 1: SSE = 67.1117
-Iteration 2: SSE = 63.7475
-Iteration 3: SSE = 61.9373
-Iteration 4: SSE = 55.9595
-Iteration 5: SSE = 50.6856
-Iteration 6: SSE = 49.0289
-Iteration 7: SSE = 48.9750
-Iteration 8: SSE = 48.9540
-Iteration 9: SSE = 48.9540
-Final SSE: 48.9540
-Number of Iterations: 9
-
-Run 54
------
-Initial SSE: 88.7920
-
-Iteration 1: SSE = 64.8440
-Iteration 2: SSE = 51.3828
-Iteration 3: SSE = 49.7724
-Iteration 4: SSE = 49.1024
-Iteration 5: SSE = 49.0338
-Iteration 6: SSE = 48.9854
-Iteration 7: SSE = 48.9854
-Final SSE: 48.9854
-Number of Iterations: 7
-
-Run 55
------
-Initial SSE: 86.5242
-
-Iteration 1: SSE = 56.6100
-Iteration 2: SSE = 49.7071
-Iteration 3: SSE = 48.9946
-Iteration 4: SSE = 48.9946
-Final SSE: 48.9946
-Number of Iterations: 4
-
-Run 56
------
-Initial SSE: 86.9724
-
-Iteration 1: SSE = 64.4046
-Iteration 2: SSE = 60.7900
-Iteration 3: SSE = 52.8886
-Iteration 4: SSE = 49.5801
-Iteration 5: SSE = 49.0102
-Iteration 6: SSE = 48.9888
-Iteration 7: SSE = 48.9888
-Final SSE: 48.9888
-Number of Iterations: 7
-
-Run 57
------
-Initial SSE: 90.2499
-
-Iteration 1: SSE = 55.2634
-Iteration 2: SSE = 49.7017
-Iteration 3: SSE = 48.9605
-Iteration 4: SSE = 48.9605
-Final SSE: 48.9605
-Number of Iterations: 4
-
-Run 58
------
-Initial SSE: 88.4932
-
-Iteration 1: SSE = 64.7255
-Iteration 2: SSE = 50.4221
-Iteration 3: SSE = 49.0749
-Iteration 4: SSE = 49.0056
-Iteration 5: SSE = 48.9857
-Iteration 6: SSE = 48.9857
-Final SSE: 48.9857
-Number of Iterations: 6
-
-Run 59
------
-Initial SSE: 86.7169
-
-Iteration 1: SSE = 67.4362
-Iteration 2: SSE = 51.6117
-Iteration 3: SSE = 49.2720
-Iteration 4: SSE = 48.9946
-Iteration 5: SSE = 48.9946
-Final SSE: 48.9946
-Number of Iterations: 5
-
-Run 60
------
-Initial SSE: 88.5266
-
-Iteration 1: SSE = 57.6701
-Iteration 2: SSE = 49.9924
-Iteration 3: SSE = 49.0317
-Iteration 4: SSE = 48.9888
-Iteration 5: SSE = 48.9888
-Final SSE: 48.9888
-Number of Iterations: 5
-
-Run 61
------
-Initial SSE: 79.7899
-
-Iteration 1: SSE = 52.3091
-Iteration 2: SSE = 49.3896
-Iteration 3: SSE = 48.9605
-Iteration 4: SSE = 48.9605
-Final SSE: 48.9605
-Number of Iterations: 4
-
-Run 62
------
-Initial SSE: 90.0988
-
-Iteration 1: SSE = 66.4517
-Iteration 2: SSE = 60.4372
-Iteration 3: SSE = 52.8624
-Iteration 4: SSE = 50.4840
-Iteration 5: SSE = 49.3478
-Iteration 6: SSE = 49.0176
-Iteration 7: SSE = 48.9703
-Iteration 8: SSE = 48.9703
-Final SSE: 48.9703
-Number of Iterations: 8
-
-Run 63
------
-Initial SSE: 87.3998
-
-Iteration 1: SSE = 67.1487
-Iteration 2: SSE = 58.8509
-Iteration 3: SSE = 51.0105
-Iteration 4: SSE = 49.3764
-Iteration 5: SSE = 49.0338
-Iteration 6: SSE = 48.9854
-Iteration 7: SSE = 48.9854
-Final SSE: 48.9854
-Number of Iterations: 7
-
-Run 64
------
-Initial SSE: 82.5898
-
-Iteration 1: SSE = 62.6782
-Iteration 2: SSE = 51.5058
-Iteration 3: SSE = 49.3120
-Iteration 4: SSE = 48.9946
-Iteration 5: SSE = 48.9946
-Final SSE: 48.9946
-Number of Iterations: 5
-
-Run 65
------
-Initial SSE: 86.0886
-
-Iteration 1: SSE = 64.1416
-Iteration 2: SSE = 62.7595
-Iteration 3: SSE = 61.4459
-Iteration 4: SSE = 58.7293
-Iteration 5: SSE = 55.8073
-Iteration 6: SSE = 52.7051
-Iteration 7: SSE = 50.0192
-Iteration 8: SSE = 49.1024
-Iteration 9: SSE = 49.0338
-Iteration 10: SSE = 48.9854
-Iteration 11: SSE = 48.9854
-Final SSE: 48.9854
-Number of Iterations: 11
-
-Run 66
------
-Initial SSE: 88.4154
-
-Iteration 1: SSE = 66.6170
-Iteration 2: SSE = 62.8894
-Iteration 3: SSE = 56.8709
-Iteration 4: SSE = 50.2896
-Iteration 5: SSE = 49.1913
-Iteration 6: SSE = 49.0338
-Iteration 7: SSE = 48.9854
-Iteration 8: SSE = 48.9854
-Final SSE: 48.9854
-Number of Iterations: 8
-
-Run 67
------
-Initial SSE: 89.9483
-
-Iteration 1: SSE = 61.9693
-Iteration 2: SSE = 54.3388
-Iteration 3: SSE = 51.3307
-Iteration 4: SSE = 49.7979
-Iteration 5: SSE = 49.1024
-Iteration 6: SSE = 49.0338
-Iteration 7: SSE = 48.9854
-Iteration 8: SSE = 48.9854
-Final SSE: 48.9854
-Number of Iterations: 8
-
-Run 68
------
-Initial SSE: 87.6821
-
-Iteration 1: SSE = 60.4407
-Iteration 2: SSE = 52.5673
-Iteration 3: SSE = 49.9641
-Iteration 4: SSE = 49.2209
-Iteration 5: SSE = 48.9854
-Iteration 6: SSE = 48.9854
-Final SSE: 48.9854
-Number of Iterations: 6
-
-Run 69
------
-Initial SSE: 84.0422
-
-Iteration 1: SSE = 58.3402
-Iteration 2: SSE = 50.8298
-Iteration 3: SSE = 49.2711
-Iteration 4: SSE = 48.9605
-Iteration 5: SSE = 48.9605
-Final SSE: 48.9605
-Number of Iterations: 5
-
-Run 70
------
-Initial SSE: 90.1342
-
-Iteration 1: SSE = 66.3021
-Iteration 2: SSE = 62.2130
-Iteration 3: SSE = 61.1351
-Iteration 4: SSE = 54.8860
-Iteration 5: SSE = 50.3350
-Iteration 6: SSE = 49.0703
-Iteration 7: SSE = 48.9854
-Iteration 8: SSE = 48.9854
-Final SSE: 48.9854
-Number of Iterations: 8
-
-Run 71
------
-Initial SSE: 87.1816
-
-Iteration 1: SSE = 65.4173
-Iteration 2: SSE = 64.0073
-Iteration 3: SSE = 63.7106
-Iteration 4: SSE = 62.6603
-Iteration 5: SSE = 59.7587
-Iteration 6: SSE = 58.2308
-Iteration 7: SSE = 56.5124
-Iteration 8: SSE = 53.7889
-Iteration 9: SSE = 50.9905
-Iteration 10: SSE = 49.7724
-Iteration 11: SSE = 49.1024
-Iteration 12: SSE = 49.0338
-Iteration 13: SSE = 48.9854
-Iteration 14: SSE = 48.9854
-Final SSE: 48.9854
-Number of Iterations: 14
-
-Run 72
------
-Initial SSE: 87.2714
-
-Iteration 1: SSE = 60.0590
-Iteration 2: SSE = 49.4045
-Iteration 3: SSE = 49.0102
-Iteration 4: SSE = 48.9888
-Iteration 5: SSE = 48.9888
-Final SSE: 48.9888
-Number of Iterations: 5
-
-Run 73
------
-Initial SSE: 86.6424
-
-Iteration 1: SSE = 65.9507
-Iteration 2: SSE = 60.3324
-Iteration 3: SSE = 55.8228
-Iteration 4: SSE = 51.6791
-Iteration 5: SSE = 49.7837
-Iteration 6: SSE = 49.0546
-Iteration 7: SSE = 48.9703
-Iteration 8: SSE = 48.9703
-Final SSE: 48.9703
-Number of Iterations: 8
-
-Run 74
------
-Initial SSE: 87.7660
-
-Iteration 1: SSE = 63.5002
-Iteration 2: SSE = 55.4492
-Iteration 3: SSE = 51.0115
-Iteration 4: SSE = 49.4843
-Iteration 5: SSE = 49.0176
-Iteration 6: SSE = 48.9703
-Iteration 7: SSE = 48.9703
-Final SSE: 48.9703
-Number of Iterations: 7
-
-Run 75
------
-Initial SSE: 81.3375
-
-Iteration 1: SSE = 50.5167
-Iteration 2: SSE = 49.0176
-Iteration 3: SSE = 48.9703
-Iteration 4: SSE = 48.9703
-Final SSE: 48.9703
-Number of Iterations: 4
-
-Run 76
------
-Initial SSE: 81.9623
-
-Iteration 1: SSE = 58.7480
-Iteration 2: SSE = 52.2545
-Iteration 3: SSE = 49.8743
-Iteration 4: SSE = 48.9703
-Iteration 5: SSE = 48.9703
-Final SSE: 48.9703
-Number of Iterations: 5
-
-Run 77
------
-Initial SSE: 89.7798
-
-Iteration 1: SSE = 70.9717
-Iteration 2: SSE = 54.0664
-Iteration 3: SSE = 49.8502
-Iteration 4: SSE = 49.1024
-Iteration 5: SSE = 49.0338
-Iteration 6: SSE = 48.9854
-Iteration 7: SSE = 48.9854
-Final SSE: 48.9854
-Number of Iterations: 7
-
-Run 78
------
-Initial SSE: 87.8457
-
-Iteration 1: SSE = 58.7705
-Iteration 2: SSE = 50.6889
-Iteration 3: SSE = 49.4843
-Iteration 4: SSE = 49.0176
-Iteration 5: SSE = 48.9703
-Iteration 6: SSE = 48.9703
-Final SSE: 48.9703
-Number of Iterations: 6
-
-Run 79
------
-Initial SSE: 86.0997
-
-Iteration 1: SSE = 64.9480
-Iteration 2: SSE = 55.8147
-Iteration 3: SSE = 50.7372
-Iteration 4: SSE = 49.4843
-Iteration 5: SSE = 49.0176
-Iteration 6: SSE = 48.9703
-Iteration 7: SSE = 48.9703
-Final SSE: 48.9703
-Number of Iterations: 7
-
-Run 80
------
-Initial SSE: 86.9976
-
-Iteration 1: SSE = 66.2346
-Iteration 2: SSE = 56.4475
-Iteration 3: SSE = 51.0066
-Iteration 4: SSE = 49.4536
-Iteration 5: SSE = 48.9703
-Iteration 6: SSE = 48.9703
-Final SSE: 48.9703
-Number of Iterations: 6
-
-Run 81
------
-Initial SSE: 85.8394
-
-Iteration 1: SSE = 57.3650
-Iteration 2: SSE = 50.1089
-Iteration 3: SSE = 49.1067
-Iteration 4: SSE = 48.9946
-Iteration 5: SSE = 48.9946
-Final SSE: 48.9946
-Number of Iterations: 5
-
-Run 82
------
-Initial SSE: 88.1324
-
-Iteration 1: SSE = 66.2022
-Iteration 2: SSE = 55.1048
-Iteration 3: SSE = 50.1953
-Iteration 4: SSE = 49.0749
-Iteration 5: SSE = 49.0056
-Iteration 6: SSE = 48.9857
-Iteration 7: SSE = 48.9857
-Final SSE: 48.9857
-Number of Iterations: 7
-
-Run 83
------
-Initial SSE: 89.2955
-
-Iteration 1: SSE = 72.0174
-Iteration 2: SSE = 54.5720
-Iteration 3: SSE = 50.6604
-Iteration 4: SSE = 49.4843
-Iteration 5: SSE = 49.0176
-Iteration 6: SSE = 48.9703
-Iteration 7: SSE = 48.9703
-Final SSE: 48.9703
-Number of Iterations: 7
-
-Run 84
------
-Initial SSE: 80.5002
-
-Iteration 1: SSE = 55.2276
-Iteration 2: SSE = 50.1256
-Iteration 3: SSE = 49.0903
-Iteration 4: SSE = 49.0154
-Iteration 5: SSE = 49.0154
-Final SSE: 49.0154
-Number of Iterations: 5
-
-Run 85
------
-Initial SSE: 86.0958
-
-Iteration 1: SSE = 63.4080
-Iteration 2: SSE = 57.2373
-Iteration 3: SSE = 52.2025
-Iteration 4: SSE = 50.2168
-Iteration 5: SSE = 49.2849
-Iteration 6: SSE = 48.9605
-Iteration 7: SSE = 48.9605
-Final SSE: 48.9605
-Number of Iterations: 7
-
-Run 86
------
-Initial SSE: 88.3124
-
-Iteration 1: SSE = 60.3096
-Iteration 2: SSE = 50.5445
-Iteration 3: SSE = 49.2849
-Iteration 4: SSE = 48.9605
-Iteration 5: SSE = 48.9605
-Final SSE: 48.9605
-Number of Iterations: 5
-
-Run 87
------
-Initial SSE: 81.9631
-
-Iteration 1: SSE = 65.8308
-Iteration 2: SSE = 54.5060
-Iteration 3: SSE = 50.0702
-Iteration 4: SSE = 49.0176
-Iteration 5: SSE = 48.9703
-Iteration 6: SSE = 48.9703
-Final SSE: 48.9703
-Number of Iterations: 6
-
-Run 88
------
-Initial SSE: 84.5941
-
-Iteration 1: SSE = 61.0913
-Iteration 2: SSE = 50.8541
-Iteration 3: SSE = 49.2849
-Iteration 4: SSE = 48.9605
-Iteration 5: SSE = 48.9605
-Final SSE: 48.9605
-Number of Iterations: 5
-
-Run 89
------
-Initial SSE: 87.2285
-
-Iteration 1: SSE = 60.1211
-Iteration 2: SSE = 52.0254
-Iteration 3: SSE = 49.7492
-Iteration 4: SSE = 49.1024
-Iteration 5: SSE = 49.0338
-Iteration 6: SSE = 48.9854
-Iteration 7: SSE = 48.9854
-Final SSE: 48.9854
-Number of Iterations: 7
-
-Run 90
------
-Initial SSE: 89.1860
-
-Iteration 1: SSE = 58.1338
-Iteration 2: SSE = 50.5398
-Iteration 3: SSE = 49.2711
-Iteration 4: SSE = 48.9605
-Iteration 5: SSE = 48.9605
-Final SSE: 48.9605
-Number of Iterations: 5
-
-Run 91
------
-Initial SSE: 89.0733
-
-Iteration 1: SSE = 75.6994
-Iteration 2: SSE = 69.3279
-Iteration 3: SSE = 56.2358
-Iteration 4: SSE = 51.4567
-Iteration 5: SSE = 49.7837
-Iteration 6: SSE = 49.0546
-Iteration 7: SSE = 48.9703
-Iteration 8: SSE = 48.9703
-Final SSE: 48.9703
-Number of Iterations: 8
-
-Run 92
------
-Initial SSE: 87.0061
-
-Iteration 1: SSE = 67.5162
-Iteration 2: SSE = 56.4999
-Iteration 3: SSE = 53.0939
-Iteration 4: SSE = 50.1290
-Iteration 5: SSE = 49.2209
-Iteration 6: SSE = 48.9854
-Iteration 7: SSE = 48.9854
-Final SSE: 48.9854
-Number of Iterations: 7
-
-Run 93
------
-Initial SSE: 90.6177
-
-Iteration 1: SSE = 68.9455
-Iteration 2: SSE = 50.8944
-Iteration 3: SSE = 49.1307
-Iteration 4: SSE = 49.0176
-Iteration 5: SSE = 48.9703
-Iteration 6: SSE = 48.9703
-Final SSE: 48.9703
-Number of Iterations: 6
-
-Run 94
------
-Initial SSE: 89.0423
-
-Iteration 1: SSE = 64.7356
-Iteration 2: SSE = 53.2492
-Iteration 3: SSE = 50.0372
-Iteration 4: SSE = 49.1913
-Iteration 5: SSE = 49.0338
-Iteration 6: SSE = 48.9854
-Iteration 7: SSE = 48.9854
-Final SSE: 48.9854
-Number of Iterations: 7
-
-Run 95
------
-Initial SSE: 81.1843
-
-Iteration 1: SSE = 56.3931
-Iteration 2: SSE = 50.1996
-Iteration 3: SSE = 49.0903
-Iteration 4: SSE = 49.0154
-Iteration 5: SSE = 49.0154
-Final SSE: 49.0154
-Number of Iterations: 5
-
-Run 96
------
-Initial SSE: 86.2291
-
-Iteration 1: SSE = 53.2785
-Iteration 2: SSE = 49.4815
-Iteration 3: SSE = 49.0155
-Iteration 4: SSE = 48.9946
-Iteration 5: SSE = 48.9946
-Final SSE: 48.9946
-Number of Iterations: 5
-
-Run 97
------
-Initial SSE: 82.0960
-
-Iteration 1: SSE = 55.2641
-Iteration 2: SSE = 49.9071
-Iteration 3: SSE = 49.0403
-Iteration 4: SSE = 48.9888
-Iteration 5: SSE = 48.9888
-Final SSE: 48.9888
-Number of Iterations: 5
-
-Run 98
------
-Initial SSE: 90.7899
-
-Iteration 1: SSE = 78.1495
-Iteration 2: SSE = 65.6666
-Iteration 3: SSE = 52.5264
-Iteration 4: SSE = 49.7358
-Iteration 5: SSE = 48.9605
-Iteration 6: SSE = 48.9605
-Final SSE: 48.9605
-Number of Iterations: 6
-
-Run 99
------
-Initial SSE: 84.8080
-
-Iteration 1: SSE = 52.8574
-Iteration 2: SSE = 49.7623
-Iteration 3: SSE = 49.1024
-Iteration 4: SSE = 49.0338
-Iteration 5: SSE = 48.9854
-Iteration 6: SSE = 48.9854
-Final SSE: 48.9854
-Number of Iterations: 6
-
 Run 100
 -----
-Initial SSE: 85.5433
+Initial SSE: 91.1025
 
-Iteration 1: SSE = 53.7700
-Iteration 2: SSE = 50.0909
-Iteration 3: SSE = 49.1811
-Iteration 4: SSE = 48.9605
-Iteration 5: SSE = 48.9605
-Final SSE: 48.9605
+Iteration 1: SSE = 71.8446
+Iteration 2: SSE = 50.2236
+Iteration 3: SSE = 49.0338
+Iteration 4: SSE = 48.9854
+Iteration 5: SSE = 48.9854
+Final SSE: 48.9854
 Number of Iterations: 5
 
 SUMMARY STATISTICS (Random Partition)
-Average Initial SSE: 87.0524
-Average Final SSE: 48.9796
-Average Iterations: 6.46
-Best Run: 53 with Final SSE = 48.9540
+Average Initial SSE: 87.2639
+Average Final SSE: 48.9790
+Average Iterations: 5.66
+Best Run: 15 with Final SSE = 48.9540
+
+SUMMARY: BestInitSSE=78.9447, BestFinalSSE=48.9540, BestIter=3
