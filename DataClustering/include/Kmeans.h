@@ -34,13 +34,15 @@ public:
 	bool readData();
 	// Normalizes the dataset using min-max normalization to [0,1] range.
 	// Normalizes across columns (attributes), not rows.
-	void normalizeData();
+	void minmaxNormalize();
 	// Prints all data points to standard output.
 	void printData() const;
 	// Dumps the dataset to a file for verification.
 	void dumpDataToFile(const std::string& filename) const;
 	// Selects K random centers and returns them.
-	std::vector<Point> selectCentroids();
+	std::vector<Point> selectRandomCentroids();
+	// selects K random centers using the random partition method and returns them.
+	std::vector<Point> selectRandomPartitionCentroids();
 	// Implements the K-means algorithm.
 	void runKmeans();
 	// Implements the K-means algorithm with singleton cluster handling for coincident centers.

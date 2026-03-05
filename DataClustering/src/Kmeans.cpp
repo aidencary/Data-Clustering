@@ -1,4 +1,5 @@
 #include "../include/Kmeans.h"
+#include "Kmeans.h"
 
 Kmeans::Kmeans(
 	const std::string& file_name,
@@ -54,7 +55,7 @@ void Kmeans::printData() const {
 	}
 }
 
-void Kmeans::normalizeData() {
+void Kmeans::minmaxNormalize() {
 	// Min-max normalization to [0,1] range
 	// Formula: v' = (v - min(A)) / (max(A) - min(A))
 	// Normalize across columns (attributes), not rows
@@ -132,7 +133,7 @@ void Kmeans::dumpDataToFile(const std::string& filename) const {
 	std::cout << "Data dumped to: " << filename << std::endl;
 }
 
-std::vector<Point> Kmeans::selectCentroids() {
+std::vector<Point> Kmeans::selectRandomCentroids() {
 	// Step 1 of K-means Algorithm: Select K points as initial centroids
 	// Centroids are selected uniformly at random from the dataset using C++11 <random> library
 	std::random_device rd; // seed source for the random number engine
@@ -153,6 +154,13 @@ std::vector<Point> Kmeans::selectCentroids() {
 			centers.push_back(dataset_[random_index]);
 		}
 	}
+	return centers;
+}
+
+std::vector<Point> Kmeans::selectRandomPartitionCentroids() {
+	std::vector<int> selected_indices;
+	std::vector<Point> centers;
+
 	return centers;
 }
 
