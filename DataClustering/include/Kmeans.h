@@ -43,8 +43,12 @@ public:
 	std::vector<Point> selectRandomCentroids();
 	// selects K random centers using the random partition method and returns them.
 	std::vector<Point> selectRandomPartitionCentroids();
+	// Helper method to calculate SSE given centroids.
+	double calculateSSE(const std::vector<Point>& centroids, std::vector<int>& assignments);
 	// Implements the K-means algorithm.
 	void runKmeans();
+	// Implements the K-means algorithm with detailed metrics tracking for initialization comparison.
+	void runKmeansWithMetrics(bool use_random_partition = false);
 	// Implements the K-means algorithm with singleton cluster handling for coincident centers.
 	void runKmeansCoincident();
 	// Test method for Iris Bezdek dataset: checks if SSE is at or below global optimum (which should not be possible).

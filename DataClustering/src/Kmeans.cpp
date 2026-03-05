@@ -158,10 +158,97 @@ std::vector<Point> Kmeans::selectRandomCentroids() {
 }
 
 std::vector<Point> Kmeans::selectRandomPartitionCentroids() {
-	std::vector<int> selected_indices;
+	// Random Partition initialization method:
+	// 1. Assign each point to a cluster selected uniformly at random
+	// 2. Take the centroids of these initial clusters as the initial centers
+	std::random_device rd; // seed source for the random number engine
+	std::mt19937 gen(rd()); // Mersenne Twister engine seeded with rd()
+	std::uniform_int_distribution<> dis(0, num_clusters_ - 1);
+	
+	// Step 1: Randomly assign each point to a cluster
+	std::vector<int> assignments(num_of_points_);
+	for (int i = 0; i < num_of_points_; ++i) {
+		assignments[i] = dis(gen);
+	}
+	
+	// Step 2: Compute centroid of each cluster
+	// Initialize sums for each cluster and dimension
+	std::vector<std::vector<double>> sums(
+		num_clusters_,
+		std::vector<double>(dimensionality_, 0.0)
+	);
+	std::vector<int> cluster_sizes(num_clusters_, 0);
+	
+	// Accumulate sums and counts
+	for (int i = 0; i < num_of_points_; ++i) {
+		// Get the cluster assignment for this point
+		int cluster = assignments[i];
+		// Update cluster size
+		cluster_sizes[cluster]++;
+		// Add this point's dimensions to its cluster sum
+		for (int d = 0; d < dimensionality_; ++d) {
+			sums[cluster][d] += dataset_[i].getVal(d);
+		}
+	}
+	
+	// Step 3: Calculate centroids
 	std::vector<Point> centers;
-
+	// Calculate mean for each dimension to get new center, handling empty clusters by assigning a random point from the dataset
+	for (int k = 0; k < num_clusters_; ++k) {
+		Point center;
+		// If cluster has points assigned, calculate the mean.
+		// Otherwise, assign a random point from the dataset as the center
+		for (int d = 0; d < dimensionality_; ++d) {
+			if (cluster_sizes[k] > 0) {
+				center.addDimension(sums[k][d] / cluster_sizes[k]);
+			} else {
+				// Handle empty clusters using a random point from the dataset
+				std::uniform_int_distribution<> point_dis(0, num_of_points_ - 1);
+				int random_point = point_dis(gen);
+				center.addDimension(dataset_[random_point].getVal(d));
+			}
+		}
+		centers.push_back(center);
+	}
+	
 	return centers;
+}
+
+double Kmeans::calculateSSE(const std::vector<Point>& centroids, std::vector<int>& assignments) {
+	// Assign each point to nearest centroid and calculate SSE
+	for (int i = 0; i < num_of_points_; ++i) {
+		// Calculate squared Euclidean distance to each centroid and find the nearest one
+		double min_distance = std::numeric_limits<double>::max();
+		int nearest_cluster = 0;
+		
+		// Loop through each centroid to find the nearest one for this point
+		for (int k = 0; k < num_clusters_; ++k) {
+			double squared_dist = 0.0;
+			// Calculate squared distance from this point to the centroid
+			for (int d = 0; d < dimensionality_; ++d) {
+				double diff = dataset_[i].getVal(d) - centroids[k].getVal(d);
+				squared_dist += diff * diff;
+			}
+			// Update nearest cluster if this centroid is closer
+			if (squared_dist < min_distance) {
+				min_distance = squared_dist;
+				nearest_cluster = k;
+			}
+		}
+		assignments[i] = nearest_cluster;
+	}
+	
+	// Calculate SSE
+	double sse = 0.0;
+	for (int i = 0; i < num_of_points_; ++i) {
+		int cluster = assignments[i];
+		for (int d = 0; d < dimensionality_; ++d) {
+			// Calculate squared error contribution of this point to its assigned cluster
+			double diff = dataset_[i].getVal(d) - centroids[cluster].getVal(d);
+			sse += diff * diff;
+		}
+	}
+	return sse;
 }
 
 bool Kmeans::checkIrisBezdekOptimum(double currentSSE) const {
@@ -208,7 +295,7 @@ void Kmeans::runKmeans() {
 		}
 
 		// Step 1: Select K points as initial centroids
-		std::vector<Point> centroids = selectCentroids();
+		std::vector<Point> centroids = selectRandomCentroids();
 		
 		// Vector to hold cluster assignments for each point
 		std::vector<int> assignments(num_of_points_);
@@ -380,7 +467,7 @@ void Kmeans::runKmeansCoincident() {
 		}
 
 		// Step 1: Select K points as initial centroids
-		std::vector<Point> centroids = selectCentroids();
+		std::vector<Point> centroids = selectRandomCentroids();
 		
 		// Vector to hold cluster assignments for each point
 		std::vector<int> assignments(num_of_points_);
@@ -602,3 +689,4 @@ void Kmeans::runKmeansCoincident() {
 	*/
 
 }
+
