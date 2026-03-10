@@ -3,7 +3,7 @@ Author: Aiden Cary
 Professor: Dr. Emre Celebi
 CSCI 4372 Data Clustering
 Phase 3
-Date: 1 March 2026
+Date: 11 March 2026
 
 Programming Practices: https://google.github.io/styleguide/cppguide.html
 
@@ -23,7 +23,7 @@ Phase 2 Examples:
 ./main.exe vehicle.txt 4 100 0.0001 100
 ./main.exe wine.txt 3 100 0.0001 100
 ./main.exe yeast.txt 10 100 0.0001 100
-Phase 3 Examples:
+Phase 3 Examples (removed iris_bezdek_mod.txt):
 ./main.exe ecoli.txt 8 100 0.0001 100
 ./main.exe glass.txt 6 100 0.0001 100
 ./main.exe ionosphere.txt 2 100 0.0001 100

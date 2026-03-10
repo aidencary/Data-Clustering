@@ -1,5 +1,4 @@
 #include "../include/Kmeans.h"
-#include "Kmeans.h"
 
 Kmeans::Kmeans(
 	const std::string& file_name,
@@ -23,13 +22,13 @@ bool Kmeans::readData() {
 		input_file.open(path_with_prefix);
 		
 		if (!input_file.is_open()) {
-			std::cerr << "Error opening file: " << file_name_ << " or " << path_with_prefix << std::endl;
+			std::cerr << "Error opening file: " << file_name_ << " or " << path_with_prefix << "\n";
 			return false;
 		}
 	}
 
 	if (!(input_file >> num_of_points_ >> dimensionality_)) {
-		std::cerr << "Error reading number of points and dimensionality." << std::endl;
+		std::cerr << "Error reading number of points and dimensionality." << "\n";
 		return false;
 	}
 
@@ -38,7 +37,7 @@ bool Kmeans::readData() {
 		for (int d = 0; d < dimensionality_; ++d) {
 			double val;
 			if (!(input_file >> val)) {
-				std::cerr << "Error reading data point values." << std::endl;
+				std::cerr << "Error reading data point values." << "\n";
 				return false;
 			}
 			point.addDimension(val);
@@ -63,7 +62,7 @@ void Kmeans::minmaxNormalize() {
 
 	// Handle empty dataset
 	if (num_of_points_ == 0 || dimensionality_ == 0) {
-		std::cerr << "Cannot normalize empty dataset." << std::endl;
+		std::cerr << "Cannot normalize empty dataset." << "\n";
 		return;
 	}
 
@@ -83,9 +82,9 @@ void Kmeans::minmaxNormalize() {
 		// Calculate range
 		double range = max_val - min_val;
 
-		// Normalize all values for this attribute
-		// Handle division by zero: if range is 0, all values are the same
-		// In this case, we can set all normalized values to 0.5 (or any value in [0,1])
+		// Normalize all values for this attribute.
+		// Handle division by zero: if range is 0, all values are identical.
+		// In this case set all normalized values to 0.0 (a valid choice in [0,1]).
 		// In C++, dividing by zero for a double results in infinity or NaN (not a number) and does not crash the program,
 		// but it will produce invalid results that propagate through the calculations.
 		if (range == 0.0) {
@@ -110,12 +109,12 @@ void Kmeans::dumpDataToFile(const std::string& filename) const {
 	
 	// Check if file opened successfully
 	if (!output_file.is_open()) {
-		std::cerr << "Error opening file for writing: " << filename << std::endl;
+		std::cerr << "Error opening file for writing: " << filename << "\n";
 		return;
 	}
 
 	// Write the header (number of points and dimensionality)
-	output_file << num_of_points_ << " " << dimensionality_ << std::endl;
+	output_file << num_of_points_ << " " << dimensionality_ << "\n";
 
 	// Write each point
 	output_file << std::fixed << std::setprecision(15);
@@ -128,11 +127,11 @@ void Kmeans::dumpDataToFile(const std::string& filename) const {
 				output_file << " ";
 			}
 		}
-		output_file << std::endl;
+		output_file << "\n";
 	}
 
 	output_file.close();
-	std::cout << "Data dumped to: " << filename << std::endl;
+	std::cout << "Data dumped to: " << filename << "\n";
 }
 
 std::vector<Point> Kmeans::selectRandomCentroids() {
@@ -146,7 +145,7 @@ std::vector<Point> Kmeans::selectRandomCentroids() {
 	std::vector<Point> centers;
 
 	// Loop until we have found K unique centers
-	while (selected_indices.size() < (size_t)num_clusters_) {
+	while (selected_indices.size() < static_cast<size_t>(num_clusters_)) {
 		// Select index uniformly at random
 		int random_index = dis(gen);
 
@@ -199,15 +198,19 @@ std::vector<Point> Kmeans::selectRandomPartitionCentroids() {
 	for (int k = 0; k < num_clusters_; ++k) {
 		Point center;
 		// If cluster has points assigned, calculate the mean.
-		// Otherwise, assign a random point from the dataset as the center
+		// Otherwise, assign a random point from the dataset as the center.
+		// The fallback point is selected once per empty cluster so all dimensions
+		// come from the same point (avoids a "Frankenstein" centroid).
+		int fallback_point = -1;
+		if (cluster_sizes[k] == 0) {
+			std::uniform_int_distribution<> point_dis(0, num_of_points_ - 1);
+			fallback_point = point_dis(gen);
+		}
 		for (int d = 0; d < dimensionality_; ++d) {
 			if (cluster_sizes[k] > 0) {
 				center.addDimension(sums[k][d] / cluster_sizes[k]);
 			} else {
-				// Handle empty clusters using a random point from the dataset
-				std::uniform_int_distribution<> point_dis(0, num_of_points_ - 1);
-				int random_point = point_dis(gen);
-				center.addDimension(dataset_[random_point].getVal(d));
+				center.addDimension(dataset_[fallback_point].getVal(d));
 			}
 		}
 		centers.push_back(center);
@@ -253,17 +256,17 @@ double Kmeans::calculateSSE(const std::vector<Point>& centroids, std::vector<int
 	return sse;
 }
 
-bool Kmeans::checkIrisBezdekOptimum(double currentSSE) const {
+bool Kmeans::checkIrisBezdekOptimum(double current_sse) const {
 	// Test condition for the Iris Bezdek dataset
 	// Check if SSE is lower than the known global optimum
-	if (currentSSE < 78.8514) {
-		std::cerr << "Lower than global optimum for Iris Bezdek dataset, something is wrong." << std::endl;
+	if (current_sse < 78.8514) {
+		std::cerr << "Lower than global optimum for Iris Bezdek dataset, something is wrong.\n";
 	}
-	
+
 	// Perfect Clustering Check for Iris Bezdek dataset
-	double rounded_sse = std::round(currentSSE * 10000.0) / 10000.0;
+	double rounded_sse = std::round(current_sse * 10000.0) / 10000.0;
 	if (rounded_sse == 78.8514) {
-		std::cout << "----\nGlobal opt (78.8514) reached\n----" << std::endl;
+		std::cout << "----\nGlobal opt (78.8514) reached\n----\n";
 		return true; // Perfect clustering - signal to break
 	}
 	return false;
@@ -280,7 +283,7 @@ void Kmeans::runKmeans() {
 	std::ofstream output_file(output_file_name);
 	
 	if (!output_file.is_open()) {
-		std::cerr << "Error: Could not create output file: " << output_file_name << std::endl;
+		std::cerr << "Error: Could not create output file: " << output_file_name << "\n";
 	}
 
 	// Track best run across all executions
@@ -289,11 +292,11 @@ void Kmeans::runKmeans() {
 	
 	// Run the K-means algorithm for the specified number of runs
 	for (int run = 0; run < num_of_runs_; ++run) {
-		std::cout << "Run " << (run + 1) << std::endl;
-		std::cout << "-----" << std::endl;
+		std::cout << "Run " << (run + 1) << "\n";
+		std::cout << "-----" << "\n";
 		if (output_file.is_open()) {
-			output_file << "Run " << (run + 1) << std::endl;
-			output_file << "-----" << std::endl;
+			output_file << "Run " << (run + 1) << "\n";
+			output_file << "-----" << "\n";
 		}
 
 		// Step 1: Select K points as initial centroids
@@ -383,9 +386,9 @@ void Kmeans::runKmeans() {
 				}
 			}
 			
-			std::cout << "Iteration " << (iteration + 1) << ": SSE = " << std::fixed << std::setprecision(4) << current_sse << std::endl;
+			std::cout << "Iteration " << (iteration + 1) << ": SSE = " << std::fixed << std::setprecision(4) << current_sse << "\n";
 			if (output_file.is_open()) {
-				output_file << "Iteration " << (iteration + 1) << ": SSE = " << std::fixed << std::setprecision(4) << current_sse << std::endl;
+				output_file << "Iteration " << (iteration + 1) << ": SSE = " << std::fixed << std::setprecision(4) << current_sse << "\n";
 			}
 
 			/* Uncomment to enable Iris Bezdek dataset test
@@ -411,9 +414,9 @@ void Kmeans::runKmeans() {
 		}
 		
 		// Add newline after last iteration of the run
-		std::cout << std::endl;
+		std::cout << "\n";
 		if (output_file.is_open()) {
-			output_file << std::endl;
+			output_file << "\n";
 		}
 		
 		// Track if this run achieved the best SSE
@@ -424,7 +427,7 @@ void Kmeans::runKmeans() {
 	}
 	
 	// Display best run after all runs complete
-	std::cout << "\nBest Run: " << best_run << ": SSE = " << std::fixed << std::setprecision(4) << best_sse << std::endl;
+	std::cout << "\nBest Run: " << best_run << ": SSE = " << std::fixed << std::setprecision(4) << best_sse << "\n";
 	if (output_file.is_open()) {
 		output_file << "\nBest Run: " << best_run << ": SSE = " << std::fixed << std::setprecision(4) << best_sse;
 		output_file.close();
@@ -433,10 +436,10 @@ void Kmeans::runKmeans() {
 	/* Write best run to best_runs.txt file
 	std::ofstream best_runs_file("../output/best_runs.txt", std::ios::app);
 	if (best_runs_file.is_open()) {
-		best_runs_file << file_name_ << ": Best Run = " << best_run << ", SSE = " << std::fixed << std::setprecision(4) << best_sse << std::endl;
+		best_runs_file << file_name_ << ": Best Run = " << best_run << ", SSE = " << std::fixed << std::setprecision(4) << best_sse << "\n";
 		best_runs_file.close();
 	} else {
-		std::cerr << "Error: Could not open best_runs.txt file" << std::endl;
+		std::cerr << "Error: Could not open best_runs.txt file" << "\n";
 	}
 	*/
 
@@ -452,7 +455,7 @@ void Kmeans::runKmeansCoincident() {
 	std::ofstream output_file(output_file_name);
 	
 	if (!output_file.is_open()) {
-		std::cerr << "Error: Could not create output file: " << output_file_name << std::endl;
+		std::cerr << "Error: Could not create output file: " << output_file_name << "\n";
 	}
 
 	// Track best run across all executions
@@ -461,11 +464,11 @@ void Kmeans::runKmeansCoincident() {
 	
 	// Run the K-means algorithm for the specified number of runs
 	for (int run = 0; run < num_of_runs_; ++run) {
-		std::cout << "Run " << (run + 1) << std::endl;
-		std::cout << "-----" << std::endl;
+		std::cout << "Run " << (run + 1) << "\n";
+		std::cout << "-----" << "\n";
 		if (output_file.is_open()) {
-			output_file << "Run " << (run + 1) << std::endl;
-			output_file << "-----" << std::endl;
+			output_file << "Run " << (run + 1) << "\n";
+			output_file << "-----" << "\n";
 		}
 
 		// Step 1: Select K points as initial centroids
@@ -524,14 +527,14 @@ void Kmeans::runKmeansCoincident() {
 				
 				/*
 				// Print that we have singleton clusters and are handling them
-				std::cout << "Handling " << singleton_clusters.size() << " singleton cluster(s)..." << std::endl;
+				std::cout << "Handling " << singleton_clusters.size() << " singleton cluster(s)..." << "\n";
 				if (output_file.is_open()) {
-					output_file << "Handling " << singleton_clusters.size() << " singleton cluster(s)..." << std::endl;
+					output_file << "Handling " << singleton_clusters.size() << " singleton cluster(s)..." << "\n";
 				}
 				*/
 				
 
-				for (int s = 0; s < (int)singleton_clusters.size(); ++s) {
+				for (int s = 0; s < static_cast<int>(singleton_clusters.size()); ++s) {
 					int singleton_cluster_id = singleton_clusters[s];
 					
 					// Find the point with maximum contribution to error in non-singleton clusters
@@ -632,9 +635,9 @@ void Kmeans::runKmeansCoincident() {
 				}
 			}
 			
-			std::cout << "Iteration " << (iteration + 1) << ": SSE = " << std::fixed << std::setprecision(4) << current_sse << std::endl;
+			std::cout << "Iteration " << (iteration + 1) << ": SSE = " << std::fixed << std::setprecision(4) << current_sse << "\n";
 			if (output_file.is_open()) {
-				output_file << "Iteration " << (iteration + 1) << ": SSE = " << std::fixed << std::setprecision(4) << current_sse << std::endl;
+				output_file << "Iteration " << (iteration + 1) << ": SSE = " << std::fixed << std::setprecision(4) << current_sse << "\n";
 			}
 
 			/* Uncomment to enable Iris Bezdek dataset test
@@ -660,9 +663,9 @@ void Kmeans::runKmeansCoincident() {
 		}
 		
 		// Add newline after last iteration of the run
-		std::cout << std::endl;
+		std::cout << "\n";
 		if (output_file.is_open()) {
-			output_file << std::endl;
+			output_file << "\n";
 		}
 		
 		// Track if this run achieved the best SSE
@@ -673,7 +676,7 @@ void Kmeans::runKmeansCoincident() {
 	}
 	
 	// Display best run after all runs complete
-	std::cout << "Best Run: " << best_run << ": SSE = " << std::fixed << std::setprecision(4) << best_sse << std::endl;
+	std::cout << "Best Run: " << best_run << ": SSE = " << std::fixed << std::setprecision(4) << best_sse << "\n";
 	if (output_file.is_open()) {
 		output_file << "Best Run: " << best_run << ": SSE = " << std::fixed << std::setprecision(4) << best_sse;
 		output_file.close();
@@ -683,10 +686,10 @@ void Kmeans::runKmeansCoincident() {
 	// Write best run to best_runs.txt file
 	std::ofstream best_runs_file("../output/best_runs.txt", std::ios::app);
 	if (best_runs_file.is_open()) {
-		best_runs_file << file_name_ << ": Best Run = " << best_run << ", SSE = " << std::fixed << std::setprecision(4) << best_sse << std::endl;
+		best_runs_file << file_name_ << ": Best Run = " << best_run << ", SSE = " << std::fixed << std::setprecision(4) << best_sse << "\n";
 		best_runs_file.close();
 	} else {
-		std::cerr << "Error: Could not open best_runs.txt file" << std::endl;
+		std::cerr << "Error: Could not open best_runs.txt file" << "\n";
 	}
 	*/
 
@@ -705,27 +708,29 @@ void Kmeans::runKmeansWithMetrics(const std::string& initialization_method, cons
 	* It is an efficiency measure independent of programming language, implementation style, compiler, andCPU architecture. 
 	*/
 
-	// Create output file in the output folder
-	std::string method_name = initialization_method;
-	
 	// Create output file in the output folder with method name in the filename
 	std::string output_file_name;
 	if (initialization_method == "Random Partition") {
+		std::filesystem::create_directories("../output_random_partition");
 		output_file_name = "../output_random_partition/output_" + file_name_;
-	} else {
+	} else if (initialization_method == "Random Selection") {
+		std::filesystem::create_directories("../output_random_selection");
 		output_file_name = "../output_random_selection/output_" + file_name_;
+	} else {
+		std::cerr << "Error: Invalid initialization method: " << initialization_method << "\n";
+		return;
 	}
 
 	std::ofstream output_file(output_file_name);
 	
 	if (!output_file.is_open()) {
-		std::cerr << "Error: Could not create output file: " << output_file_name << std::endl;
+		std::cerr << "Error: Could not create output file: " << output_file_name << "\n";
 	}
 
-	std::cout << "Initialization Method: " << method_name << "\n" << std::endl;
+	std::cout << "Initialization Method: " << initialization_method << "\n" << "\n";
 
 	if (output_file.is_open()) {
-		output_file << "Initialization Method: " << method_name << "\n" << std::endl;
+		output_file << "Initialization Method: " << initialization_method << "\n" << "\n";
 	}
 
 	// Track best run across all executions
@@ -739,20 +744,24 @@ void Kmeans::runKmeansWithMetrics(const std::string& initialization_method, cons
 	
 	// Run the K-means algorithm for the specified number of runs
 	for (int run = 0; run < num_of_runs_; ++run) {
-		std::cout << "Run " << (run + 1) << std::endl;
-		std::cout << "-----" << std::endl;
+		std::cout << "Run " << (run + 1) << "\n";
+		std::cout << "-----" << "\n";
 		if (output_file.is_open()) {
-			output_file << "Run " << (run + 1) << std::endl;
-			output_file << "-----" << std::endl;
+			output_file << "Run " << (run + 1) << "\n";
+			output_file << "-----" << "\n";
 		}
 
 		// Step 1: Select K points as initial centroids
 		std::vector<Point> centroids;
 		if (initialization_method == "Random Partition") {
 			centroids = selectRandomPartitionCentroids();
-		} else {
+		} else if (initialization_method == "Random Selection") {
 			centroids = selectRandomCentroids();
+		} else {
+			std::cerr << "Error: Invalid initialization method: " << initialization_method << "\n";
+			return;
 		}
+
 		
 		// Vector to hold cluster assignments for each point
 		std::vector<int> assignments(num_of_points_);
@@ -769,9 +778,9 @@ void Kmeans::runKmeansWithMetrics(const std::string& initialization_method, cons
 		}
 		
 		// Display initial SSE for this run
-		std::cout << "Initial SSE: " << std::fixed << std::setprecision(4) << initial_sse << "\n" << std::endl;
+		std::cout << "Initial SSE: " << std::fixed << std::setprecision(4) << initial_sse << "\n" << "\n";
 		if (output_file.is_open()) {
-			output_file << "Initial SSE: " << std::fixed << std::setprecision(4) << initial_sse << "\n" << std::endl;
+			output_file << "Initial SSE: " << std::fixed << std::setprecision(4) << initial_sse << "\n" << "\n";
 		}
 
 		// Step 2: Repeat until convergence
@@ -859,9 +868,9 @@ void Kmeans::runKmeansWithMetrics(const std::string& initialization_method, cons
 				}
 			}
 			
-			std::cout << "Iteration " << iteration_count << ": SSE = " << std::fixed << std::setprecision(4) << current_sse << std::endl;
+			std::cout << "Iteration " << iteration_count << ": SSE = " << std::fixed << std::setprecision(4) << current_sse << "\n";
 			if (output_file.is_open()) {
-				output_file << "Iteration " << iteration_count << ": SSE = " << std::fixed << std::setprecision(4) << current_sse << std::endl;
+				output_file << "Iteration " << iteration_count << ": SSE = " << std::fixed << std::setprecision(4) << current_sse << "\n";
 			}
 
 			// Step 5: Check if SSE improvement is below the convergence threshold
@@ -884,11 +893,11 @@ void Kmeans::runKmeansWithMetrics(const std::string& initialization_method, cons
 		total_final_sse += current_sse;
 		total_iterations += iteration_count;
 		
-		std::cout << "Final SSE: " << std::fixed << std::setprecision(4) << current_sse << std::endl;
-		std::cout << "Number of Iterations: " << iteration_count << "\n" << std::endl;
+		std::cout << "Final SSE: " << std::fixed << std::setprecision(4) << current_sse << "\n";
+		std::cout << "Number of Iterations: " << iteration_count << "\n" << "\n";
 		if (output_file.is_open()) {
-			output_file << "Final SSE: " << std::fixed << std::setprecision(4) << current_sse << std::endl;
-			output_file << "Number of Iterations: " << iteration_count << "\n" << std::endl;
+			output_file << "Final SSE: " << std::fixed << std::setprecision(4) << current_sse << "\n";
+			output_file << "Number of Iterations: " << iteration_count << "\n" << "\n";
 		}
 		
 		// Track if this run achieved the best SSE
@@ -903,31 +912,32 @@ void Kmeans::runKmeansWithMetrics(const std::string& initialization_method, cons
 		}
 	}
 	
-	// Display best run after all runs complete
-	std::cout << "SUMMARY STATISTICS (" << method_name << ")" << std::endl;
-	std::cout << "Average Initial SSE: " << std::fixed << std::setprecision(4) << (total_initial_sse / num_of_runs_) << std::endl;
-	std::cout << "Average Final SSE: " << std::fixed << std::setprecision(4) << (total_final_sse / num_of_runs_) << std::endl;
-	std::cout << "Average Iterations: " << std::fixed << std::setprecision(2) << (static_cast<double>(total_iterations) / num_of_runs_) << std::endl;
-	std::cout << "Best Run: " << best_run << " with Final SSE = " << std::fixed << std::setprecision(4) << best_final_sse << std::endl;
+	// Display summary statistics after all runs complete
+	std::cout << "SUMMARY STATISTICS (" << initialization_method << ")" << "\n";
+	std::cout << "Average Initial SSE: " << std::fixed << std::setprecision(4) << (total_initial_sse / num_of_runs_) << "\n";
+	std::cout << "Average Final SSE: " << std::fixed << std::setprecision(4) << (total_final_sse / num_of_runs_) << "\n";
+	std::cout << "Average Iterations: " << std::fixed << std::setprecision(2) << (static_cast<double>(total_iterations) / num_of_runs_) << "\n";
+	std::cout << "Best Run: " << best_run << " with Final SSE = " << std::fixed << std::setprecision(4) << best_final_sse << "\n";
 	std::cout << "\nSUMMARY: BestInitSSE=" << std::fixed << std::setprecision(4) << best_initial_sse 
 	          << ", BestFinalSSE=" << std::fixed << std::setprecision(4) << best_final_sse 
-	          << ", BestIter=" << best_iterations << std::endl;
+	          << ", BestIter=" << best_iterations << "\n";
 
 	
 	if (output_file.is_open()) {
-		output_file << "SUMMARY STATISTICS (" << method_name << ")" << std::endl;
-		output_file << "Average Initial SSE: " << std::fixed << std::setprecision(4) << (total_initial_sse / num_of_runs_) << std::endl;
-		output_file << "Average Final SSE: " << std::fixed << std::setprecision(4) << (total_final_sse / num_of_runs_) << std::endl;
-		output_file << "Average Iterations: " << std::fixed << std::setprecision(2) << (static_cast<double>(total_iterations) / num_of_runs_) << std::endl;
-		output_file << "Best Run: " << best_run << " with Final SSE = " << std::fixed << std::setprecision(4) << best_final_sse << std::endl;
+		output_file << "SUMMARY STATISTICS (" << initialization_method << ")" << "\n";
+		output_file << "Average Initial SSE: " << std::fixed << std::setprecision(4) << (total_initial_sse / num_of_runs_) << "\n";
+		output_file << "Average Final SSE: " << std::fixed << std::setprecision(4) << (total_final_sse / num_of_runs_) << "\n";
+		output_file << "Average Iterations: " << std::fixed << std::setprecision(2) << (static_cast<double>(total_iterations) / num_of_runs_) << "\n";
+		output_file << "Best Run: " << best_run << " with Final SSE = " << std::fixed << std::setprecision(4) << best_final_sse << "\n";
 		output_file << "\nSUMMARY: BestInitSSE=" << std::fixed << std::setprecision(4) << best_initial_sse 
 		            << ", BestFinalSSE=" << std::fixed << std::setprecision(4) << best_final_sse 
-		            << ", BestIter=" << best_iterations << std::endl;
+		            << ", BestIter=" << best_iterations << "\n";
 		output_file.close();
 	}
 	
-	// Write results to CSV file for easy Excel import
-	std::string csv_file_path = "../phase3_results.csv";
+	// Write results to CSV file (will move to a Excel file later)
+	std::filesystem::create_directories("../output_sheets");
+	std::string csv_file_path = "../output_sheets/phase3_results.csv";
 	bool file_exists = false;
 	
 	// Check if file exists by trying to open it for reading
@@ -942,10 +952,10 @@ void Kmeans::runKmeansWithMetrics(const std::string& initialization_method, cons
 	if (csv_file.is_open()) {
 		// Write header if file is new
 		if (!file_exists) {
-			csv_file << "Dataset,Normalization Method,Initialization Method,Best Initial SSE,Best Final SSE,Best Iterations" << std::endl;
+			csv_file << "Dataset,Normalization Method,Initialization Method,Best Initial SSE,Best Final SSE,Best Iterations" << "\n";
 		}
 		
-		// Extract dataset name from file_name_ (remove .txt extension)
+		// Extract dataset name from the file name (remove .txt extension)
 		std::string dataset_name = file_name_;
 		size_t dot_pos = dataset_name.find(".txt");
 		if (dot_pos != std::string::npos) {
@@ -955,14 +965,14 @@ void Kmeans::runKmeansWithMetrics(const std::string& initialization_method, cons
 		// Write data row
 		csv_file << dataset_name << ","
 		         << normalization_method << ","
-		         << method_name << ","
+		         << initialization_method << ","
 		         << std::fixed << std::setprecision(4) << best_initial_sse << ","
 		         << std::fixed << std::setprecision(4) << best_final_sse << ","
-		         << best_iterations << std::endl;
+		         << best_iterations << "\n";
 		
 		csv_file.close();
-		std::cout << "Results appended to " << csv_file_path << std::endl;
+		std::cout << "Results are written to " << csv_file_path << "\n";
 	} else {
-		std::cerr << "Warning: Could not write to CSV file: " << csv_file_path << std::endl;
+		std::cerr << "Error: Could not write to CSV file: " << csv_file_path << "\n";
 	}
 }

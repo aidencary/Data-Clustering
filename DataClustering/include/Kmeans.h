@@ -1,6 +1,6 @@
 #pragma once
 
-#include <ctime>
+#include <filesystem>
 #include <fstream>
 #include <iostream>
 #include <iomanip>
@@ -41,7 +41,7 @@ public:
 	void dumpDataToFile(const std::string& filename) const;
 	// Selects K random centers and returns them.
 	std::vector<Point> selectRandomCentroids();
-	// selects K random centers using the random partition method and returns them.
+	// Selects K random centers using the random partition method and returns them.
 	std::vector<Point> selectRandomPartitionCentroids();
 	// Helper method to calculate SSE given centroids.
 	double calculateSSE(const std::vector<Point>& centroids, std::vector<int>& assignments);
@@ -53,7 +53,7 @@ public:
 	void runKmeansCoincident();
 	// Test method for Iris Bezdek dataset: checks if SSE is at or below global optimum (which should not be possible).
 	// Returns true if perfect clustering (78.8514) is reached and algorithm should break.
-	bool checkIrisBezdekOptimum(double currentSSE) const;
+	bool checkIrisBezdekOptimum(double current_sse) const;
 	// Returns true if value is found in vec.
 	template <typename T>
 	bool contains(const std::vector<T>& vec, const T& value) {
