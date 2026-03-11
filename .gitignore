@@ -370,7 +370,6 @@ FodyWeavers.xsd
 # Generated run output files (recreated on each run)
 DataClustering/output_random_partition/
 DataClustering/output_random_selection/
-DataClustering/output_sheets/
 DataClustering/normalized_data/
 
 # Generated results CSV (recreated on each run)
