@@ -11,18 +11,6 @@ How to Compile: Use a C++17 compatible compiler
 Navigate to the directory containing main.cpp (src) and run the following command:
 Compile (using g++): g++ main.cpp ../src/Kmeans.cpp ../src/Point.cpp -o main.exe -std=c++17 -I../include -O2
 Run: ./main.exe <filename> <K> <I> <T> <R>
-Phase 2 Examples:
-./main.exe ecoli.txt 8 100 0.0001 100
-./main.exe glass.txt 6 100 0.0001 100
-./main.exe ionosphere.txt 2 100 0.0001 100
-./main.exe iris_bezdek_mod.txt 3 100 0.0001 100
-./main.exe iris_bezdek.txt 3 100 0.0001 100
-./main.exe landsat.txt 6 100 0.0001 100
-./main.exe letter_recognition.txt 26 100 0.0001 100
-./main.exe segmentation.txt 7 100 0.0001 100
-./main.exe vehicle.txt 4 100 0.0001 100
-./main.exe wine.txt 3 100 0.0001 100
-./main.exe yeast.txt 10 100 0.0001 100
 Phase 3 Examples (removed iris_bezdek_mod.txt):
 ./main.exe ecoli.txt 8 100 0.0001 100
 ./main.exe glass.txt 6 100 0.0001 100

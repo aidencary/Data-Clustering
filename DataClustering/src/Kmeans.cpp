@@ -134,7 +134,7 @@ void Kmeans::dumpDataToFile(const std::string& filename) const {
 	std::cout << "Data dumped to: " << filename << "\n";
 }
 
-std::vector<Point> Kmeans::selectRandomCentroids() {
+std::vector<Point> Kmeans::selectRandomSelectionCentroids() {
 	// Step 1 of K-means Algorithm: Select K points as initial centroids
 	// Centroids are selected uniformly at random from the dataset using C++11 <random> library
 	std::random_device rd; // seed source for the random number engine
@@ -199,9 +199,8 @@ std::vector<Point> Kmeans::selectRandomPartitionCentroids() {
 		Point center;
 		// If cluster has points assigned, calculate the mean.
 		// Otherwise, assign a random point from the dataset as the center.
-		// The fallback point is selected once per empty cluster so all dimensions
-		// come from the same point (avoids a "Frankenstein" centroid).
-		int fallback_point = -1;
+		// The fallback point is selected once per empty cluster so all dimensions come from the same point
+		int fallback_point = -1; // The index of the random point to use if this cluster is empty
 		if (cluster_sizes[k] == 0) {
 			std::uniform_int_distribution<> point_dis(0, num_of_points_ - 1);
 			fallback_point = point_dis(gen);
@@ -300,7 +299,7 @@ void Kmeans::runKmeans() {
 		}
 
 		// Step 1: Select K points as initial centroids
-		std::vector<Point> centroids = selectRandomCentroids();
+		std::vector<Point> centroids = selectRandomSelectionCentroids();
 		
 		// Vector to hold cluster assignments for each point
 		std::vector<int> assignments(num_of_points_);
@@ -472,7 +471,7 @@ void Kmeans::runKmeansCoincident() {
 		}
 
 		// Step 1: Select K points as initial centroids
-		std::vector<Point> centroids = selectRandomCentroids();
+		std::vector<Point> centroids = selectRandomSelectionCentroids();
 		
 		// Vector to hold cluster assignments for each point
 		std::vector<int> assignments(num_of_points_);
@@ -703,9 +702,6 @@ void Kmeans::runKmeansWithMetrics(const std::string& initialization_method, cons
 	* Final SSE: This is the SSE value computed after the clustering phase. 
 	* It gives us a measure of the effectiveness of an initialization method when its output is refined by kmeans.
 	* Note that this is the objective function of the k-means algorithm
-	* Number of Iterations: This is the number of times k-means iterates until reaching
-	* convergence when initialized by a particular initialization method. 
-	* It is an efficiency measure independent of programming language, implementation style, compiler, andCPU architecture. 
 	*/
 
 	// Create output file in the output folder with method name in the filename
@@ -756,7 +752,7 @@ void Kmeans::runKmeansWithMetrics(const std::string& initialization_method, cons
 		if (initialization_method == "Random Partition") {
 			centroids = selectRandomPartitionCentroids();
 		} else if (initialization_method == "Random Selection") {
-			centroids = selectRandomCentroids();
+			centroids = selectRandomSelectionCentroids();
 		} else {
 			std::cerr << "Error: Invalid initialization method: " << initialization_method << "\n";
 			return;

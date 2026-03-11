@@ -40,10 +40,10 @@ public:
 	// Dumps the dataset to a file for verification.
 	void dumpDataToFile(const std::string& filename) const;
 	// Selects K random centers and returns them.
-	std::vector<Point> selectRandomCentroids();
+	std::vector<Point> selectRandomSelectionCentroids();
 	// Selects K random centers using the random partition method and returns them.
 	std::vector<Point> selectRandomPartitionCentroids();
-	// Helper method to calculate SSE given centroids.
+	// Assigns each point to its nearest centroid and calculates SSE.
 	double calculateSSE(const std::vector<Point>& centroids, std::vector<int>& assignments);
 	// Implements the K-means algorithm.
 	void runKmeans();
