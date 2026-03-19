@@ -182,8 +182,9 @@ std::vector<Point> Kmeans::selectRandomPartitionCentroids() {
 	
 	// Accumulate sums and counts
 	for (int i = 0; i < num_of_points_; ++i) {
-		// Get the cluster assignment for this point
-		int cluster = assignments[i];
+		// Get the cluster assignment for this point using the same random generator and distribution
+		// to reduce both time and memory overhead by not storing the random cluster assignment for each point in a separate vector.
+		 int cluster = dis(gen);
 		// Update cluster size
 		cluster_sizes[cluster]++;
 		// Add this point's dimensions to its cluster sum
