@@ -1,9 +1,11 @@
 #pragma once
 
+#include <cmath>
 #include <filesystem>
 #include <fstream>
 #include <iostream>
 #include <iomanip>
+#include <limits>
 #include <random>
 #include <string>
 #include <vector>

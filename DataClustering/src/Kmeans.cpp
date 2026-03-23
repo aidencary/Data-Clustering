@@ -951,14 +951,14 @@ void Kmeans::runKmeansWithMetrics(const std::string& initialization_method, cons
 		if (!file_exists) {
 			csv_file << "Dataset,Normalization Method,Initialization Method,Best Initial SSE,Best Final SSE,Best Iterations" << "\n";
 		}
-		
+
 		// Extract dataset name from the file name (remove .txt extension)
 		std::string dataset_name = file_name_;
 		size_t dot_pos = dataset_name.find(".txt");
 		if (dot_pos != std::string::npos) {
 			dataset_name = dataset_name.substr(0, dot_pos);
 		}
-		
+
 		// Write data row
 		csv_file << dataset_name << ","
 		         << normalization_method << ","
@@ -966,10 +966,20 @@ void Kmeans::runKmeansWithMetrics(const std::string& initialization_method, cons
 		         << std::fixed << std::setprecision(4) << best_initial_sse << ","
 		         << std::fixed << std::setprecision(4) << best_final_sse << ","
 		         << best_iterations << "\n";
-		
+
 		csv_file.close();
 		std::cout << "Results are written to " << csv_file_path << "\n";
 	} else {
 		std::cerr << "Error: Could not write to CSV file: " << csv_file_path << "\n";
+	}
+}
+
+// Prints an error to stderr if the value is out of range.
+void Kmeans::checkSilhouetteRange(double s, int point_index) {
+	// Silhouette values must always be in [-1, 1]
+	if (s < -1.0 || s > 1.0) {
+		std::cerr << "Error: Silhouette value " << s
+		          << " for point " << point_index
+		          << " is outside [-1, 1]. There is a bug!.\n";
 	}
 }
