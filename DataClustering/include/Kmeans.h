@@ -62,4 +62,26 @@ public:
 		}
 		return false;
 	}
+
+	// Runs the internal validation sweep over K = Kmin..Kmax.
+	// For each K, runs k-means R times (random partition init), takes the best run,
+	// and computes the CH and SW indices. Reports estimated cluster counts.
+	void runInternalValidation();
+
+	// Computes the Calinski-Harabasz (CH) index for the given partition.
+	// CH(K) = [tr(Sb) / (K-1)] / [SSE / (N-K)]
+	// tr(Sw) = SSE (already computed by k-means, per Hint #1 in the spec)
+	double computeCH(
+		const std::vector<Point>& centroids,
+		const std::vector<int>& assignments,
+		double sse,
+		int k);
+
+	// Computes the Silhouette Width (SW) index for the given partition.
+	// SW(K) = mean over all points of s(i), where s(i) = (b(i) - a(i)) / max(a(i), b(i))
+	double computeSW(const std::vector<int>& assignments, int k);
+
+	// Validates that a silhouette value is within [-1, 1].
+	// Prints an error message if it falls outside this range (indicates a bug).
+	void checkSilhouetteRange(double s, int point_index);
 };
