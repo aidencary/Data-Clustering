@@ -983,3 +983,73 @@ void Kmeans::checkSilhouetteRange(double s, int point_index) {
 		          << " is outside [-1, 1]. There is a bug!.\n";
 	}
 }
+
+
+// Computes the Calinski-Harabasz (CH) index for the given partition.
+// Reference: Zaki & Meira Jr., "Data Mining and Machine Learning", 2nd ed.
+//            Section 17.3 (Relative Measures), pg 453
+//            https://dataminingbook.info/book_html/chap17/book.html (see Example 17.8)
+// Book formula: CH(K) = [tr(S_B) / (K-1)] / [tr(S_W) / (N-K)]
+// Since tr(S_W) = SSE -> CH(K) = [tr(Sb) / (K-1)] / [SSE / (N-K)]
+// tr(Sb) = sum over dimensions j of: sum over clusters k of: n_k * (mu_k_j - mu_j)^2
+double Kmeans::computeCH(
+	const std::vector<Point>& centroids,
+	const std::vector<int>& assignments,
+	double sse,
+	int k)
+{
+	// Step 1: Count how many points belong to each cluster
+	std::vector<int> cluster_sizes(k, 0);
+	for (int i = 0; i < num_of_points_; ++i) {
+		// Increment size counter for the cluster this point belongs to
+		cluster_sizes[assignments[i]]++;
+	}
+
+	// Step 2: Compute the overall mean of the entire dataset for each dimension
+	std::vector<double> overall_mean(dimensionality_, 0.0);
+	for (int i = 0; i < num_of_points_; ++i) {
+		// Accumulate the sum for each dimension
+		for (int d = 0; d < dimensionality_; ++d) {
+			overall_mean[d] += dataset_[i].getVal(d);
+		}
+	}
+	// Divide each accumulated sum by N to get the mean
+	for (int d = 0; d < dimensionality_; ++d) {
+		overall_mean[d] /= num_of_points_;
+	}
+
+	// Step 3: Compute tr(Sb) which is the trace of the between-cluster scatter matrix.
+	// Only the diagonal elements of Sb are needed.
+	// Diagonal element j of Sb = sum over clusters k of: n_k * (mu_k_j - mu_j)^2
+	double trace_sb = 0.0;
+	for (int d = 0; d < dimensionality_; ++d) {
+		// Accumulate the contribution of each cluster to diagonal element j
+		for (int ki = 0; ki < k; ++ki) {
+			double diff = centroids[ki].getVal(d) - overall_mean[d];
+			// Multiply squared difference by cluster size (weight by n_k)
+			trace_sb += cluster_sizes[ki] * diff * diff;
+		}
+	}
+
+	// Step 4: tr(Sw) = SSE — use the passed-in value directly (per Hint #1)
+	double trace_sw = sse;
+
+	// Debug print to verify intermediate values during development
+	std::cout << "[DEBUG] CH: trace_sb=" << trace_sb
+	          << ", trace_sw=" << trace_sw
+	          << ", K=" << k
+	          << ", N=" << num_of_points_ << "\n";
+
+	// Step 5: Compute CH(K) = [tr(Sb) / (K-1)] / [tr(Sw) / (N-K)]
+	// Guard against degenerate case where tr(Sw) = 0 (all points on their centroids)
+	if (trace_sw == 0.0) {
+		std::cerr << "Warning: tr(Sw) = 0 for K=" << k << "; CH is undefined.\n";
+		return 0.0;
+	}
+	double ch = (trace_sb / (k - 1)) / (trace_sw / (num_of_points_ - k));
+
+	// Debug print
+	std::cout << "[DEBUG] CH(" << k << ") = " << ch << "\n";
+
+	return ch;
+}
