@@ -987,7 +987,7 @@ void Kmeans::checkSilhouetteRange(double s, int point_index) {
 
 // Computes the Calinski-Harabasz (CH) index for the given partition.
 // Reference: Zaki & Meira Jr., "Data Mining and Machine Learning", 2nd ed.
-//            Section 17.3 (Relative Measures), pg 453
+//            Section 17.3 (Relative Measures), pg 452-453
 //            https://dataminingbook.info/book_html/chap17/book.html (see Example 17.8)
 // Book formula: CH(K) = [tr(S_B) / (K-1)] / [tr(S_W) / (N-K)]
 // Since tr(S_W) = SSE -> CH(K) = [tr(Sb) / (K-1)] / [SSE / (N-K)]
@@ -1034,11 +1034,12 @@ double Kmeans::computeCH(
 	// Step 4: tr(Sw) = SSE — use the passed-in value directly (per Hint #1)
 	double trace_sw = sse;
 
-	// Debug print to verify intermediate values during development
+	// Debug print to verify intermediate values
 	std::cout << "[DEBUG] CH: trace_sb=" << trace_sb
 	          << ", trace_sw=" << trace_sw
 	          << ", K=" << k
 	          << ", N=" << num_of_points_ << "\n";
+	
 
 	// Step 5: Compute CH(K) = [tr(Sb) / (K-1)] / [tr(Sw) / (N-K)]
 	// Guard against degenerate case where tr(Sw) = 0 (all points on their centroids)
@@ -1052,4 +1053,333 @@ double Kmeans::computeCH(
 	std::cout << "[DEBUG] CH(" << k << ") = " << ch << "\n";
 
 	return ch;
+}
+
+
+// Computes the Silhouette Width (SW) index for the given partition.
+// Reference: Zaki & Meira Jr., "Data Mining and Machine Learning", 2nd ed.
+//            Section 17.2 (Internal Measures), pg. 446-447
+//            Eq. 17.45 (per-point silhouette s_i), Eq. 17.46 (overall SC)
+//            https://dataminingbook.info/book_html/chap17/book.html
+//
+// Book notation mapped to this implementation:
+//   mu_in(x_i)      = mean distance from x_i to all other points in its own cluster
+//                   = a_i in this code
+//                   = sum_{x_j in C_i, j!=i} ||x_i - x_j|| / (n_i - 1)
+//                   — if |C_i| = 1 (singleton), mu_in is undefined; s_i = 0 by convention
+//
+//   mu_out_min(x_i) = mean distance from x_i to points in the nearest OTHER cluster
+//                   = b_i in my code
+//                   = min_{j != cluster_i} { sum_{y in C_j} ||x_i - y|| / n_j }
+//
+//   			 s_i = (mu_out_min(x_i) - mu_in(x_i)) / max{mu_out_min(x_i), mu_in(x_i)}
+//                     in [-1, 1]: close to +1 = well-clustered, close to -1 = mis-clustered
+//
+//   SC (Eq. 17.46)  = (1/n) * sum_{i=1}^{n} s_i   - overall silhouette width
+//
+// Note: ||x_i - x_j|| is Euclidean distance (with sqrt), NOT squared distance.
+//       Using squared distance would invalidate the [-1, 1] range of s_i.
+double Kmeans::computeSW(const std::vector<int>& assignments, int k) {
+	// Step 1: Precompute cluster sizes
+	std::vector<int> cluster_sizes(k, 0);
+	for (int i = 0; i < num_of_points_; ++i) {
+		cluster_sizes[assignments[i]]++;
+	}
+
+	// Step 2: Compute silhouette value for each point and accumulate the total
+	double total_silhouette = 0.0;
+	for (int i = 0; i < num_of_points_; ++i) {
+		int ci = assignments[i];
+
+		// Step 2a: If point i is the only member of its cluster, s(i) = 0 by convention
+		if (cluster_sizes[ci] == 1) {
+			// Debug: print first singleton silhouette for visibility
+			if (i < 5) {
+				std::cout << "[DEBUG] Point " << i << " is singleton, s(i)=0\n";
+			}
+			// Validate before adding
+			checkSilhouetteRange(0.0, i);
+			// No contribution to total
+			continue;
+		}
+
+		// Step 2b: Compute a(i) - mean distance to all other points in same cluster
+		double sum_a = 0.0;
+		for (int j = 0; j < num_of_points_; ++j) {
+			// Only consider other points in the same cluster
+			if (j != i && assignments[j] == ci) {
+				// Euclidean distance (with sqrt, as required for silhouette)
+				double sq_dist = 0.0;
+				for (int d = 0; d < dimensionality_; ++d) {
+					double diff = dataset_[i].getVal(d) - dataset_[j].getVal(d);
+					sq_dist += diff * diff;
+				}
+				sum_a += std::sqrt(sq_dist);
+			}
+		}
+		// Divide by (|C_i| - 1) since we exclude point i itself
+		double a_i = sum_a / (cluster_sizes[ci] - 1);
+
+		// Step 2c: Compute b(i) - min mean distance to any other cluster
+		double b_i = std::numeric_limits<double>::max();
+		for (int ki = 0; ki < k; ++ki) {
+			// Skip point i's own cluster
+			if (ki == ci) continue;
+			// Skip empty clusters (shouldn't happen after k-means, but guard anyway)
+			if (cluster_sizes[ki] == 0) continue;
+
+			// Compute mean distance from point i to all points in cluster ki
+			double sum_b = 0.0;
+			for (int j = 0; j < num_of_points_; ++j) {
+				if (assignments[j] == ki) {
+					// Euclidean distance (with sqrt)
+					double sq_dist = 0.0;
+					for (int d = 0; d < dimensionality_; ++d) {
+						double diff = dataset_[i].getVal(d) - dataset_[j].getVal(d);
+						sq_dist += diff * diff;
+					}
+					sum_b += std::sqrt(sq_dist);
+				}
+			}
+			// Mean distance from i to cluster ki
+			double mean_b = sum_b / cluster_sizes[ki];
+			// Keep the minimum across all other clusters
+			if (mean_b < b_i) {
+				b_i = mean_b;
+			}
+		}
+
+		// Step 2d: Compute s(i) = (b(i) - a(i)) / max(a(i), b(i))
+		double max_ab = (a_i > b_i) ? a_i : b_i;
+		double s_i = 0.0;
+		if (max_ab > 0.0) {
+			s_i = (b_i - a_i) / max_ab;
+		}
+
+		// Debug: print first few silhouette values during development
+		if (i < 5) {
+			std::cout << "[DEBUG] Point " << i
+			          << ": a=" << a_i
+			          << ", b=" << b_i
+			          << ", s=" << s_i << "\n";
+		}
+
+		// Validate that s(i) is in [-1, 1] — any violation indicates a bug
+		checkSilhouetteRange(s_i, i);
+
+		total_silhouette += s_i;
+	}
+
+	// Step 3: SW(K) = mean silhouette over all N points
+	double sw = total_silhouette / num_of_points_;
+
+	// Debug print
+	std::cout << "[DEBUG] SW(" << k << ") = " << sw << "\n";
+
+	return sw;
+}
+
+// Runs the internal validation sweep over K = Kmin..Kmax.
+// Reference: Zaki & Meira Jr., "Data Mining and Machine Learning", Chapter 17
+//            https://dataminingbook.info/book_html/chap17/book.html
+// For each K, runs k-means R times using random partition initialization,
+// selects the best run (lowest final SSE), and computes CH and SW indices.
+// Reports a table of results and writes a CSV file to ../output_phase4/.
+void Kmeans::runInternalValidation() {
+	// Step 1: Determine K range
+	// Kmin is always 2 (at least 2 clusters needed for these indices)
+	// Kmax = round(sqrt(N/2))
+	int k_min = 2;
+	int k_max = static_cast<int>(std::round(std::sqrt(num_of_points_ / 2.0)));
+
+	std::cout << "Running internal validation: Kmin=" << k_min
+	          << ", Kmax=" << k_max
+	          << ", N=" << num_of_points_ << "\n\n";
+
+	// Prepare output directory and CSV file
+	std::filesystem::create_directories("../output_phase4");
+	std::string csv_path = "../output_phase4/results_" + file_name_ + ".csv";
+	std::ofstream csv_file(csv_path);
+	if (!csv_file.is_open()) {
+		std::cerr << "Error: Could not create output file: " << csv_path << "\n";
+	}
+
+	// Write CSV header
+	if (csv_file.is_open()) {
+		csv_file << "K,CH,SW\n";
+	}
+
+	// Vectors to store the CH and SW value for each K value tested
+	std::vector<double> ch_values;
+	std::vector<double> sw_values;
+	std::vector<int> k_values;
+
+	// Step 2: Sweep K from Kmin to Kmax
+	for (int k = k_min; k <= k_max; ++k) {
+		std::cout << "--- Computing K=" << k << " ---\n";
+
+		// Set the number of clusters for this iteration of the sweep
+		num_clusters_ = k;
+
+		// Track the best run for this K
+		double best_sse = std::numeric_limits<double>::max();
+		std::vector<Point> best_centroids;
+		std::vector<int> best_assignments(num_of_points_);
+
+		// Step 2a: Run k-means R times and keep the run with the lowest final SSE
+		for (int run = 0; run < num_of_runs_; ++run) {
+			// Initialize centroids using random partition method (required for 4372 students)
+			std::vector<Point> centroids = selectRandomPartitionCentroids();
+			std::vector<int> assignments(num_of_points_);
+
+			// Run k-means until convergence or max iterations
+			double previous_sse = std::numeric_limits<double>::max();
+			double current_sse = 0.0;
+
+			for (int iteration = 0; iteration < max_iterations_; ++iteration) {
+				// Step 3: Assign each point to its nearest centroid
+				for (int i = 0; i < num_of_points_; ++i) {
+					double min_dist = std::numeric_limits<double>::max();
+					int nearest = 0;
+					// Find the centroid closest to point i (squared Euclidean distance)
+					for (int ki = 0; ki < k; ++ki) {
+						double sq_dist = 0.0;
+						for (int d = 0; d < dimensionality_; ++d) {
+							double diff = dataset_[i].getVal(d) - centroids[ki].getVal(d);
+							sq_dist += diff * diff;
+						}
+						if (sq_dist < min_dist) {
+							min_dist = sq_dist;
+							nearest = ki;
+						}
+					}
+					assignments[i] = nearest;
+				}
+
+				// Step 4: Recompute centroids as the mean of their assigned points
+				std::vector<std::vector<double>> sums(k, std::vector<double>(dimensionality_, 0.0));
+				std::vector<int> cluster_sizes(k, 0);
+				for (int i = 0; i < num_of_points_; ++i) {
+					// Accumulate sums and counts per cluster
+					int ci = assignments[i];
+					cluster_sizes[ci]++;
+					for (int d = 0; d < dimensionality_; ++d) {
+						sums[ci][d] += dataset_[i].getVal(d);
+					}
+				}
+				std::vector<Point> new_centroids;
+				for (int ki = 0; ki < k; ++ki) {
+					Point new_center;
+					for (int d = 0; d < dimensionality_; ++d) {
+						// If cluster is empty, retain old centroid position
+						if (cluster_sizes[ki] > 0) {
+							new_center.addDimension(sums[ki][d] / cluster_sizes[ki]);
+						} else {
+							new_center.addDimension(centroids[ki].getVal(d));
+						}
+					}
+					new_centroids.push_back(new_center);
+				}
+				centroids = new_centroids;
+
+				// Compute SSE for this iteration
+				current_sse = 0.0;
+				for (int i = 0; i < num_of_points_; ++i) {
+					int ci = assignments[i];
+					for (int d = 0; d < dimensionality_; ++d) {
+						double diff = dataset_[i].getVal(d) - centroids[ci].getVal(d);
+						current_sse += diff * diff;
+					}
+				}
+
+				// Step 5: Check convergence — stop if improvement is below threshold
+				if (previous_sse != std::numeric_limits<double>::max()) {
+					if (current_sse == previous_sse) {
+						break; // No improvement — fully converged
+					}
+					double relative_improvement = (previous_sse - current_sse) / previous_sse;
+					if (relative_improvement < convergence_threshold_) {
+						break; // Below convergence threshold
+					}
+				}
+				previous_sse = current_sse;
+			}
+
+			// Step 2b: Keep this run's result if it produced the lowest SSE so far
+			if (current_sse < best_sse) {
+				best_sse = current_sse;
+				best_centroids = centroids;
+				best_assignments = assignments;
+				std::cout << "[DEBUG] New best SSE for K=" << k
+				          << " at run " << (run + 1)
+				          << ": SSE=" << best_sse << "\n";
+			}
+		}
+
+		std::cout << "[DEBUG] Best SSE for K=" << k << ": " << best_sse << "\n";
+
+		// Step 2c: Compute CH and SW on the best run's partition
+		double ch = computeCH(best_centroids, best_assignments, best_sse, k);
+		double sw = computeSW(best_assignments, k);
+
+		// Store results for this K
+		k_values.push_back(k);
+		ch_values.push_back(ch);
+		sw_values.push_back(sw);
+
+		// Write this K's results to the CSV file
+		if (csv_file.is_open()) {
+			csv_file << k << ","
+			         << std::fixed << std::setprecision(6) << ch << ","
+			         << std::fixed << std::setprecision(6) << sw << "\n";
+		}
+
+		std::cout << "K=" << k
+		          << "  CH=" << std::fixed << std::setprecision(6) << ch
+		          << "  SW=" << std::fixed << std::setprecision(6) << sw << "\n\n";
+	}
+
+	// Step 3: Find the K that maximizes CH and the K that maximizes SW
+	int best_k_ch = k_min;
+	int best_k_sw = k_min;
+	double max_ch = ch_values[0];
+	double max_sw = sw_values[0];
+
+	for (int idx = 1; idx < static_cast<int>(k_values.size()); ++idx) {
+		// CH is a maximization index - pick the K with the highest CH
+		if (ch_values[idx] > max_ch) {
+			max_ch = ch_values[idx];
+			best_k_ch = k_values[idx];
+		}
+		// SW is a maximization index - pick the K with the highest SW
+		if (sw_values[idx] > max_sw) {
+			max_sw = sw_values[idx];
+			best_k_sw = k_values[idx];
+		}
+	}
+
+	// Step 4: Print the final results table to stdout
+	std::cout << "Final Results:\n";
+	std::cout << std::setw(5) << "K"
+	          << std::setw(15) << "CH"
+	          << std::setw(15) << "SW" << "\n";
+	std::cout << std::string(35, '-') << "\n";
+	for (int idx = 0; idx < static_cast<int>(k_values.size()); ++idx) {
+		// Mark the estimated K for each index with an asterisk
+		std::string ch_marker = (k_values[idx] == best_k_ch) ? " *" : "";
+		std::string sw_marker = (k_values[idx] == best_k_sw) ? " *" : "";
+		std::cout << std::setw(5) << k_values[idx]
+		          << std::setw(15) << std::fixed << std::setprecision(6) << ch_values[idx] << ch_marker
+		          << std::setw(15) << std::fixed << std::setprecision(6) << sw_values[idx] << sw_marker << "\n";
+	}
+	std::cout << "\nEstimated K (CH): " << best_k_ch << "  (CH=" << max_ch << ")\n";
+	std::cout << "Estimated K (SW): " << best_k_sw << "  (SW=" << max_sw << ")\n";
+
+	// Append summary to the CSV file
+	if (csv_file.is_open()) {
+		csv_file << "\nBest K (CH)," << best_k_ch << "\n";
+		csv_file << "Best K (SW)," << best_k_sw << "\n";
+		csv_file.close();
+		std::cout << "\nResults written to " << csv_path << "\n";
+	}
 }
