@@ -1198,7 +1198,12 @@ void Kmeans::runInternalValidation() {
 
 	// Prepare output directory and CSV file
 	std::filesystem::create_directories("../output_phase4");
-	std::string csv_path = "../output_phase4/results_" + file_name_ + ".csv";
+	std::string base_name = file_name_;
+	auto dot_pos = base_name.rfind('.');
+	if (dot_pos != std::string::npos) {
+		base_name = base_name.substr(0, dot_pos);
+	}
+	std::string csv_path = "../output_phase4/results_" + base_name + ".csv";
 	std::ofstream csv_file(csv_path);
 	if (!csv_file.is_open()) {
 		std::cerr << "Error: Could not create output file: " << csv_path << "\n";
