@@ -184,7 +184,7 @@ std::vector<Point> Kmeans::selectRandomPartitionCentroids() {
 	for (int i = 0; i < num_of_points_; ++i) {
 		// Get the cluster assignment for this point using the same random generator and distribution
 		// to reduce both time and memory overhead by not storing the random cluster assignment for each point in a separate vector.
-		 int cluster = dis(gen);
+		int cluster = dis(gen);
 		// Update cluster size
 		cluster_sizes[cluster]++;
 		// Add this point's dimensions to its cluster sum
@@ -1034,13 +1034,6 @@ double Kmeans::computeCH(
 	// Step 4: tr(Sw) = SSE — use the passed-in value directly (per Hint #1)
 	double trace_sw = sse;
 
-	// Debug print to verify intermediate values
-	std::cout << "[DEBUG] CH: trace_sb=" << trace_sb
-	          << ", trace_sw=" << trace_sw
-	          << ", K=" << k
-	          << ", N=" << num_of_points_ << "\n";
-	
-
 	// Step 5: Compute CH(K) = [tr(Sb) / (K-1)] / [tr(Sw) / (N-K)]
 	// Guard against degenerate case where tr(Sw) = 0 (all points on their centroids)
 	if (trace_sw == 0.0) {
@@ -1048,9 +1041,6 @@ double Kmeans::computeCH(
 		return 0.0;
 	}
 	double ch = (trace_sb / (k - 1)) / (trace_sw / (num_of_points_ - k));
-
-	// Debug print
-	std::cout << "[DEBUG] CH(" << k << ") = " << ch << "\n";
 
 	return ch;
 }
@@ -1093,13 +1083,7 @@ double Kmeans::computeSW(const std::vector<int>& assignments, int k) {
 
 		// Step 2a: If point i is the only member of its cluster, s(i) = 0 by convention
 		if (cluster_sizes[ci] == 1) {
-			// Debug: print first singleton silhouette for visibility
-			if (i < 5) {
-				std::cout << "[DEBUG] Point " << i << " is singleton, s(i)=0\n";
-			}
-			// Validate before adding
 			checkSilhouetteRange(0.0, i);
-			// No contribution to total
 			continue;
 		}
 
@@ -1156,14 +1140,6 @@ double Kmeans::computeSW(const std::vector<int>& assignments, int k) {
 			s_i = (b_i - a_i) / max_ab;
 		}
 
-		// Debug: print first few silhouette values during development
-		if (i < 5) {
-			std::cout << "[DEBUG] Point " << i
-			          << ": a=" << a_i
-			          << ", b=" << b_i
-			          << ", s=" << s_i << "\n";
-		}
-
 		// Validate that s(i) is in [-1, 1] — any violation indicates a bug
 		checkSilhouetteRange(s_i, i);
 
@@ -1172,9 +1148,6 @@ double Kmeans::computeSW(const std::vector<int>& assignments, int k) {
 
 	// Step 3: SW(K) = mean silhouette over all N points
 	double sw = total_silhouette / num_of_points_;
-
-	// Debug print
-	std::cout << "[DEBUG] SW(" << k << ") = " << sw << "\n";
 
 	return sw;
 }
@@ -1233,7 +1206,7 @@ void Kmeans::runInternalValidation() {
 
 		// Step 2a: Run k-means R times and keep the run with the lowest final SSE
 		for (int run = 0; run < num_of_runs_; ++run) {
-			// Initialize centroids using random partition method (required for 4372 students)
+			// Initialize centroids using random partition method
 			std::vector<Point> centroids = selectRandomPartitionCentroids();
 			std::vector<int> assignments(num_of_points_);
 
@@ -1315,13 +1288,8 @@ void Kmeans::runInternalValidation() {
 				best_sse = current_sse;
 				best_centroids = centroids;
 				best_assignments = assignments;
-				std::cout << "[DEBUG] New best SSE for K=" << k
-				          << " at run " << (run + 1)
-				          << ": SSE=" << best_sse << "\n";
 			}
 		}
-
-		std::cout << "[DEBUG] Best SSE for K=" << k << ": " << best_sse << "\n";
 
 		// Step 2c: Compute CH and SW on the best run's partition
 		double ch = computeCH(best_centroids, best_assignments, best_sse, k);
@@ -1335,13 +1303,13 @@ void Kmeans::runInternalValidation() {
 		// Write this K's results to the CSV file
 		if (csv_file.is_open()) {
 			csv_file << k << ","
-			         << std::fixed << std::setprecision(6) << ch << ","
-			         << std::fixed << std::setprecision(6) << sw << "\n";
+			         << std::fixed << std::setprecision(4) << ch << ","
+			         << std::fixed << std::setprecision(4) << sw << "\n";
 		}
 
 		std::cout << "K=" << k
-		          << "  CH=" << std::fixed << std::setprecision(6) << ch
-		          << "  SW=" << std::fixed << std::setprecision(6) << sw << "\n\n";
+		          << "  CH=" << std::fixed << std::setprecision(4) << ch
+		          << "  SW=" << std::fixed << std::setprecision(4) << sw << "\n\n";
 	}
 
 	// Step 3: Find the K that maximizes CH and the K that maximizes SW
@@ -1374,8 +1342,8 @@ void Kmeans::runInternalValidation() {
 		std::string ch_marker = (k_values[idx] == best_k_ch) ? " *" : "";
 		std::string sw_marker = (k_values[idx] == best_k_sw) ? " *" : "";
 		std::cout << std::setw(5) << k_values[idx]
-		          << std::setw(15) << std::fixed << std::setprecision(6) << ch_values[idx] << ch_marker
-		          << std::setw(15) << std::fixed << std::setprecision(6) << sw_values[idx] << sw_marker << "\n";
+		          << std::setw(15) << std::fixed << std::setprecision(4) << ch_values[idx] << ch_marker
+		          << std::setw(15) << std::fixed << std::setprecision(4) << sw_values[idx] << sw_marker << "\n";
 	}
 	std::cout << "\nEstimated K (CH): " << best_k_ch << "  (CH=" << max_ch << ")\n";
 	std::cout << "Estimated K (SW): " << best_k_sw << "  (SW=" << max_sw << ")\n";
@@ -1383,7 +1351,7 @@ void Kmeans::runInternalValidation() {
 	// Append summary to the CSV file
 	if (csv_file.is_open()) {
 		csv_file << "\nBest K (CH)," << best_k_ch << "\n";
-		csv_file << "Best K (SW)," << best_k_sw << "\n";
+		csv_file << "Best K (SW)," << best_k_sw;
 		csv_file.close();
 		std::cout << "\nResults written to " << csv_path << "\n";
 	}
