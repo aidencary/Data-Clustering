@@ -988,7 +988,8 @@ void Kmeans::checkSilhouetteRange(double s, int point_index) {
 // Computes the Calinski-Harabasz (CH) index for the given partition.
 // Reference: Zaki & Meira Jr., "Data Mining and Machine Learning", 2nd ed.
 //            Section 17.3 (Relative Measures), pg 452-453
-//            https://dataminingbook.info/book_html/chap17/book.html (see Example 17.8)
+//            Eq. 17.49 Calinski-Harabasz variance ratio criterion for a given value of k
+//            https://dataminingbook.info/book_html/chap17/book.html 
 // Book formula: CH(K) = [tr(S_B) / (K-1)] / [tr(S_W) / (N-K)]
 // Since tr(S_W) = SSE -> CH(K) = [tr(Sb) / (K-1)] / [SSE / (N-K)]
 // tr(Sb) = sum over dimensions j of: sum over clusters k of: n_k * (mu_k_j - mu_j)^2
@@ -1031,7 +1032,7 @@ double Kmeans::computeCH(
 		}
 	}
 
-	// Step 4: tr(Sw) = SSE — use the passed-in value directly (per Hint #1)
+	// Step 4: tr(Sw) = SSE
 	double trace_sw = sse;
 
 	// Step 5: Compute CH(K) = [tr(Sb) / (K-1)] / [tr(Sw) / (N-K)]
@@ -1040,6 +1041,8 @@ double Kmeans::computeCH(
 		std::cerr << "Warning: tr(Sw) = 0 for K=" << k << "; CH is undefined.\n";
 		return 0.0;
 	}
+
+	// Calculate the CH index using the formula
 	double ch = (trace_sb / (k - 1)) / (trace_sw / (num_of_points_ - k));
 
 	return ch;
@@ -1053,10 +1056,10 @@ double Kmeans::computeCH(
 //            https://dataminingbook.info/book_html/chap17/book.html
 //
 // Book notation mapped to this implementation:
-//   mu_in(x_i)      = mean distance from x_i to all other points in its own cluster
-//                   = a_i in this code
+//        mu_in(x_i) = mean distance from x_i to all other points in its own cluster
+//                   = a_i in my code
 //                   = sum_{x_j in C_i, j!=i} ||x_i - x_j|| / (n_i - 1)
-//                   — if |C_i| = 1 (singleton), mu_in is undefined; s_i = 0 by convention
+//                   - if |C_i| = 1 (singleton), mu_in is undefined; s_i = 0 by convention
 //
 //   mu_out_min(x_i) = mean distance from x_i to points in the nearest OTHER cluster
 //                   = b_i in my code
@@ -1065,7 +1068,7 @@ double Kmeans::computeCH(
 //   			 s_i = (mu_out_min(x_i) - mu_in(x_i)) / max{mu_out_min(x_i), mu_in(x_i)}
 //                     in [-1, 1]: close to +1 = well-clustered, close to -1 = mis-clustered
 //
-//   SC (Eq. 17.46)  = (1/n) * sum_{i=1}^{n} s_i   - overall silhouette width
+//   SC (Eq. 17.46)  = (1/n) * sum_{i=1}^{n} s_i - overall silhouette width
 //
 // Note: ||x_i - x_j|| is Euclidean distance (with sqrt), NOT squared distance.
 //       Using squared distance would invalidate the [-1, 1] range of s_i.
@@ -1152,7 +1155,7 @@ double Kmeans::computeSW(const std::vector<int>& assignments, int k) {
 	return sw;
 }
 
-// Runs the internal validation sweep over K = Kmin..Kmax.
+// Runs the internal validation sweep over K = 2 to Kmax, where Kmax = round(sqrt(N/2))
 // Reference: Zaki & Meira Jr., "Data Mining and Machine Learning", Chapter 17
 //            https://dataminingbook.info/book_html/chap17/book.html
 // For each K, runs k-means R times using random partition initialization,
@@ -1270,10 +1273,11 @@ void Kmeans::runInternalValidation() {
 					}
 				}
 
-				// Step 5: Check convergence — stop if improvement is below threshold
+				// Step 5: Check convergence
+				// Stop if improvement is below threshold
 				if (previous_sse != std::numeric_limits<double>::max()) {
 					if (current_sse == previous_sse) {
-						break; // No improvement — fully converged
+						break; // No improvement (fully converged)
 					}
 					double relative_improvement = (previous_sse - current_sse) / previous_sse;
 					if (relative_improvement < convergence_threshold_) {
@@ -1319,12 +1323,12 @@ void Kmeans::runInternalValidation() {
 	double max_sw = sw_values[0];
 
 	for (int idx = 1; idx < static_cast<int>(k_values.size()); ++idx) {
-		// CH is a maximization index - pick the K with the highest CH
+		// CH is a maximization index so it picks the K with the highest CH
 		if (ch_values[idx] > max_ch) {
 			max_ch = ch_values[idx];
 			best_k_ch = k_values[idx];
 		}
-		// SW is a maximization index - pick the K with the highest SW
+		// SW is a maximization index so it picks the K with the highest SW
 		if (sw_values[idx] > max_sw) {
 			max_sw = sw_values[idx];
 			best_k_sw = k_values[idx];
