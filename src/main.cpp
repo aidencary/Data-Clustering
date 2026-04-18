@@ -2,24 +2,24 @@
 Author: Aiden Cary
 Professor: Dr. Emre Celebi
 CSCI 4372 Data Clustering
-Phase 4
-Date: 1 April 2026
+Phase 5
+Date: 17 April 2026
 
 Programming Practices: https://google.github.io/styleguide/cppguide.html
 
 How to Compile: Use a C++17 compatible compiler
 Navigate to the directory containing main.cpp (src) and run the following command:
-Compile (using g++): g++ main.cpp ../src/Kmeans.cpp ../src/Point.cpp -o main.exe -std=c++17 -I../include -O2
+Compile (using g++): g++ main.cpp Kmeans.cpp Point.cpp -o main.exe -std=c++17 -I../include -O2
 Run: ./main.exe <filename> <I> <T> <R>
-Phase 4 Examples:
+Phase 5 Examples:
 ./main.exe ecoli.txt 100 0.0001 100
-./main.exe glass.txt 100 0.0001 100
 ./main.exe ionosphere.txt 100 0.0001 100
 ./main.exe iris_bezdek.txt 100 0.0001 100
 ./main.exe landsat.txt 100 0.0001 100
 ./main.exe letter_recognition.txt 100 0.0001 100
-./main.exe segmentation.txt 100 0.0001 100
-./main.exe vehicle.txt 100 0.0001 100
+./main.exe mfeat-fou.txt 100 0.0001 100
+./main.exe optdigits.txt 100 0.0001 100
+./main.exe ruspini.txt 100 0.0001 100
 ./main.exe wine.txt 100 0.0001 100
 ./main.exe yeast.txt 100 0.0001 100
 */
@@ -32,8 +32,8 @@ Phase 4 Examples:
 // Print expected parameters message
 void printExpectedParameters(const char* program_name)
 {
-    // K is no longer a parameter 
-    // K is swept automatically from Kmin=2 to Kmax=round(sqrt(N/2))
+    // K is no longer a parameter
+    // For Phase 5, K is the true cluster count read from the data file header
     std::cerr
         << "  Only 4 parameters expected: " << program_name << " <F> <I> <T> <R>\n"
         << "  <F>: data file name\n"
@@ -106,7 +106,8 @@ argv - Argument vector for four command line arguments (not hard-coded):
 <I>: maximum number of iterations (positive integer)
 <T>: convergence threshold (non-negative real)
 <R>: number of runs (positive integer)
-Note: K is no longer a user-supplied argument. The program sweeps K from Kmin=2 to Kmax=round(sqrt(N/2)).
+Note: K is no longer a user-supplied argument. For Phase 5, K is read from the third
+integer on the first line of the data file (the true cluster count).
 */
 int main(int argc, char* argv[])
 {
@@ -137,8 +138,8 @@ int main(int argc, char* argv[])
     // Print the parameters so the user can verify them
     printParameters(data_file_name, max_iterations, convergence_threshold, num_runs);
 
-    // Construct Kmeans with a placeholder K=2; the sweep in runInternalValidation
-    // will override num_clusters_ for each K value in the range [Kmin, Kmax]
+    // Construct Kmeans with a placeholder K=2; runExternalValidation sets
+    // num_clusters_ to the true cluster count loaded from the data file.
     Kmeans k_means(
         data_file_name,
         2,
@@ -146,18 +147,18 @@ int main(int argc, char* argv[])
         convergence_threshold,
         num_runs);
 
-    // Read the dataset from file
-    if (!k_means.readData())
+    // Read the Phase 5 labeled dataset (header: N D+1 K_true; each row ends in a label).
+    if (!k_means.readLabeledData())
     {
         return 1;
     }
 
-    // Phase 4: Normalize data using min-max method, then run internal validation sweep
+    // Phase 5: Normalize data using min-max method, then run external validation.
     k_means.minmaxNormalize();
 
-    // Run the internal validation sweep over K = Kmin..Kmax,
-    // computing CH and SW for each K and reporting estimated cluster counts
-    k_means.runInternalValidation();
+    // Run k-means R times at K = K_true, computing Rand and Jaccard each run
+    // and reporting the best value of each index for this dataset.
+    k_means.runExternalValidation();
 
     return 0;
 }

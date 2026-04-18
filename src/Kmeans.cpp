@@ -1425,3 +1425,257 @@ void Kmeans::runInternalValidation() {
 		std::cout << "\nResults written to " << csv_path << "\n";
 	}
 }
+
+// Counts the four point-pair categories needed by both external indices.
+// Reference: Zaki & Meira Jr., "Data Mining and Machine Learning", 2nd ed.
+//            Section 17.1 (External Measures), pg. 436-437
+//            https://dataminingbook.info/book_html/chap17/book.html
+// TP: pairs together in both partitions; FN: together in T only;
+// FP: together in C only;                 TN: apart in both.
+// Naive O(N^2) pair enumeration is sufficient for the Phase 5 datasets.
+static void countPairCategories(
+	const std::vector<int>& assignments,
+	const std::vector<int>& true_labels,
+	long long& tp,
+	long long& fn,
+	long long& fp,
+	long long& tn)
+{
+	tp = 0;
+	fn = 0;
+	fp = 0;
+	tn = 0;
+
+	const int n = static_cast<int>(assignments.size());
+	// Enumerate each unordered pair (i, j) exactly once.
+	for (int i = 0; i < n; ++i) {
+		for (int j = i + 1; j < n; ++j) {
+			bool same_c = (assignments[i] == assignments[j]);
+			bool same_t = (true_labels[i] == true_labels[j]);
+			if (same_c && same_t) {
+				++tp;
+			} else if (!same_c && same_t) {
+				++fn;
+			} else if (same_c && !same_t) {
+				++fp;
+			} else {
+				++tn;
+			}
+		}
+	}
+}
+
+// Computes the Rand statistic for the given partition vs. true_labels_.
+// Reference: Zaki & Meira Jr., "Data Mining and Machine Learning", 2nd ed.
+//            Section 17.1 (External Measures), pg. 437
+//            Eq. 17.21 Rand Statistic
+//            https://dataminingbook.info/book_html/chap17/book.html
+// Formula: Rand = (TP + TN) / N_pairs, where N_pairs = n(n-1)/2.
+// Symmetric index; a perfect clustering yields Rand = 1.
+double Kmeans::computeRand(const std::vector<int>& assignments) {
+	long long tp = 0, fn = 0, fp = 0, tn = 0;
+	countPairCategories(assignments, true_labels_, tp, fn, fp, tn);
+
+	// N_pairs is the sum of all four categories (= n(n-1)/2).
+	long long total_pairs = tp + fn + fp + tn;
+	if (total_pairs == 0) {
+		// Only possible when N < 2; treat as perfect agreement by convention.
+		return 1.0;
+	}
+	return static_cast<double>(tp + tn) / static_cast<double>(total_pairs);
+}
+
+// Computes the Jaccard coefficient for the given partition vs. true_labels_.
+// Reference: Zaki & Meira Jr., "Data Mining and Machine Learning", 2nd ed.
+//            Section 17.1 (External Measures), pg. 436
+//            Eq. 17.20 Jaccard Coefficient
+//            https://dataminingbook.info/book_html/chap17/book.html
+// Formula: Jaccard = TP / (TP + FN + FP). Ignores true negatives, so the
+// index is asymmetric and emphasizes agreement on together-pairs only.
+double Kmeans::computeJaccard(const std::vector<int>& assignments) {
+	long long tp = 0, fn = 0, fp = 0, tn = 0;
+	countPairCategories(assignments, true_labels_, tp, fn, fp, tn);
+
+	long long denom = tp + fn + fp;
+	if (denom == 0) {
+		// Degenerate: no together-pairs in either partition (e.g. all singletons
+		// in both C and T). Treat as perfect agreement.
+		return 1.0;
+	}
+	return static_cast<double>(tp) / static_cast<double>(denom);
+}
+
+// Runs k-means R times at K = num_true_clusters_ using the random-selection
+// initialization from Phase 1, computes Rand and Jaccard against the true
+// labels after each run, and reports the best (max) value of each index.
+// Reference: Zaki & Meira Jr., "Data Mining and Machine Learning", Chapter 17
+//            https://dataminingbook.info/book_html/chap17/book.html
+void Kmeans::runExternalValidation() {
+	// K for this phase is the true-cluster count from the data file.
+	num_clusters_ = num_true_clusters_;
+	const int k = num_clusters_;
+
+	std::cout << "Running external validation: K=" << k
+	          << ", N=" << num_of_points_
+	          << ", R=" << num_of_runs_ << "\n\n";
+
+	// Prepare per-dataset CSV in ../output_phase5/.
+	std::filesystem::create_directories("../output_phase5");
+	std::string base_name = file_name_;
+	auto dot_pos = base_name.rfind('.');
+	if (dot_pos != std::string::npos) {
+		base_name = base_name.substr(0, dot_pos);
+	}
+	std::string csv_path = "../output_phase5/results_" + base_name + ".csv";
+	std::ofstream csv_file(csv_path);
+	if (!csv_file.is_open()) {
+		std::cerr << "Error: Could not create output file: " << csv_path << "\n";
+	}
+	if (csv_file.is_open()) {
+		csv_file << "Run,Rand,Jaccard\n";
+	}
+
+	// Track best Rand and best Jaccard independently across all R runs.
+	double best_rand = -1.0;
+	double best_jaccard = -1.0;
+	int best_rand_run = 0;
+	int best_jaccard_run = 0;
+
+	for (int run = 0; run < num_of_runs_; ++run) {
+		// Step 1: random-selection initialization (Phase 1 method).
+		std::vector<Point> centroids = selectRandomSelectionCentroids();
+		std::vector<int> assignments(num_of_points_);
+
+		// Step 2: standard k-means assign/update loop with convergence check.
+		double previous_sse = std::numeric_limits<double>::max();
+		double current_sse = 0.0;
+
+		for (int iteration = 0; iteration < max_iterations_; ++iteration) {
+			// Assignment step: nearest centroid by squared Euclidean distance.
+			for (int i = 0; i < num_of_points_; ++i) {
+				double min_dist = std::numeric_limits<double>::max();
+				int nearest = 0;
+				for (int ki = 0; ki < k; ++ki) {
+					double sq_dist = 0.0;
+					for (int d = 0; d < dimensionality_; ++d) {
+						double diff = dataset_[i].getVal(d) - centroids[ki].getVal(d);
+						sq_dist += diff * diff;
+					}
+					if (sq_dist < min_dist) {
+						min_dist = sq_dist;
+						nearest = ki;
+					}
+				}
+				assignments[i] = nearest;
+			}
+
+			// Update step: recompute each centroid as the mean of its points.
+			std::vector<std::vector<double>> sums(k, std::vector<double>(dimensionality_, 0.0));
+			std::vector<int> cluster_sizes(k, 0);
+			for (int i = 0; i < num_of_points_; ++i) {
+				int ci = assignments[i];
+				cluster_sizes[ci]++;
+				for (int d = 0; d < dimensionality_; ++d) {
+					sums[ci][d] += dataset_[i].getVal(d);
+				}
+			}
+			std::vector<Point> new_centroids;
+			for (int ki = 0; ki < k; ++ki) {
+				Point new_center;
+				for (int d = 0; d < dimensionality_; ++d) {
+					if (cluster_sizes[ki] > 0) {
+						new_center.addDimension(sums[ki][d] / cluster_sizes[ki]);
+					} else {
+						// Empty cluster: keep the previous centroid position.
+						new_center.addDimension(centroids[ki].getVal(d));
+					}
+				}
+				new_centroids.push_back(new_center);
+			}
+			centroids = new_centroids;
+
+			// SSE for this iteration (drives the convergence check only).
+			current_sse = 0.0;
+			for (int i = 0; i < num_of_points_; ++i) {
+				int ci = assignments[i];
+				for (int d = 0; d < dimensionality_; ++d) {
+					double diff = dataset_[i].getVal(d) - centroids[ci].getVal(d);
+					current_sse += diff * diff;
+				}
+			}
+
+			// Convergence: no change, or relative improvement below threshold.
+			if (previous_sse != std::numeric_limits<double>::max()) {
+				if (current_sse == previous_sse) {
+					break;
+				}
+				double relative_improvement = (previous_sse - current_sse) / previous_sse;
+				if (relative_improvement < convergence_threshold_) {
+					break;
+				}
+			}
+			previous_sse = current_sse;
+		}
+
+		// Step 3: evaluate the external indices on this run's partition.
+		double rand_val = computeRand(assignments);
+		double jaccard_val = computeJaccard(assignments);
+
+		if (csv_file.is_open()) {
+			csv_file << (run + 1) << ","
+			         << std::fixed << std::setprecision(4) << rand_val << ","
+			         << std::fixed << std::setprecision(4) << jaccard_val << "\n";
+		}
+
+		// Track the best of each index independently.
+		if (rand_val > best_rand) {
+			best_rand = rand_val;
+			best_rand_run = run + 1;
+		}
+		if (jaccard_val > best_jaccard) {
+			best_jaccard = jaccard_val;
+			best_jaccard_run = run + 1;
+		}
+
+		std::cout << "Run " << (run + 1)
+		          << "  Rand=" << std::fixed << std::setprecision(4) << rand_val
+		          << "  Jaccard=" << std::fixed << std::setprecision(4) << jaccard_val << "\n";
+	}
+
+	// Final per-dataset summary.
+	std::cout << "\nBest Rand: "    << std::fixed << std::setprecision(4) << best_rand
+	          << " (Run " << best_rand_run << ")\n";
+	std::cout << "Best Jaccard: "   << std::fixed << std::setprecision(4) << best_jaccard
+	          << " (Run " << best_jaccard_run << ")\n";
+
+	if (csv_file.is_open()) {
+		csv_file << "\nBest Rand," << std::fixed << std::setprecision(4) << best_rand << "\n";
+		csv_file << "Best Jaccard," << std::fixed << std::setprecision(4) << best_jaccard << "\n";
+		csv_file.close();
+		std::cout << "Results written to " << csv_path << "\n";
+	}
+
+	// Aggregate one row per dataset into ../output_sheets/phase5_results.csv.
+	std::filesystem::create_directories("../output_sheets");
+	std::string agg_path = "../output_sheets/phase5_results.csv";
+	bool agg_exists = false;
+	{
+		std::ifstream check_file(agg_path);
+		if (check_file.good()) {
+			agg_exists = true;
+		}
+	}
+	std::ofstream agg_file(agg_path, std::ios::app);
+	if (agg_file.is_open()) {
+		if (!agg_exists) {
+			agg_file << "Dataset,Best Rand,Best Jaccard\n";
+		}
+		agg_file << base_name << ","
+		         << std::fixed << std::setprecision(4) << best_rand << ","
+		         << std::fixed << std::setprecision(4) << best_jaccard << "\n";
+		agg_file.close();
+		std::cout << "Aggregated row appended to " << agg_path << "\n";
+	} else {
+		std::cerr << "Error: Could not append to " << agg_path << "\n";
+	}
+}
