@@ -49,6 +49,70 @@ bool Kmeans::readData() {
 	return true;
 }
 
+// Reads Phase 5 labeled data files.
+// Header: "N D+1 K_true" (three integers).
+// Each subsequent line: D doubles followed by a single int in [0, K_true - 1]
+// denoting the true cluster label of that point.
+bool Kmeans::readLabeledData() {
+	std::ifstream input_file(file_name_);
+
+	// Fall back to ../phase5_data_sets/ when the bare file name does not resolve.
+	if (!input_file.is_open()) {
+		std::string path_with_prefix = "../phase5_data_sets/" + file_name_;
+		input_file.open(path_with_prefix);
+
+		if (!input_file.is_open()) {
+			std::cerr << "Error opening file: " << file_name_ << " or " << path_with_prefix << "\n";
+			return false;
+		}
+	}
+
+	// Parse the 3-integer header: N, D+1 (attributes + label), K_true.
+	int dimensionality_plus_one = 0;
+	if (!(input_file >> num_of_points_ >> dimensionality_plus_one >> num_true_clusters_)) {
+		std::cerr << "Error reading labeled-data header (expected N D+1 K_true).\n";
+		return false;
+	}
+	dimensionality_ = dimensionality_plus_one - 1;
+
+	if (dimensionality_ <= 0 || num_true_clusters_ <= 0 || num_of_points_ <= 0) {
+		std::cerr << "Invalid header values: N=" << num_of_points_
+		          << ", D+1=" << dimensionality_plus_one
+		          << ", K_true=" << num_true_clusters_ << "\n";
+		return false;
+	}
+
+	// Allocate the true-label vector once so indexed assignment is safe below.
+	true_labels_.assign(num_of_points_, 0);
+
+	for (int i = 0; i < num_of_points_; ++i) {
+		Point point;
+		for (int d = 0; d < dimensionality_; ++d) {
+			double val;
+			if (!(input_file >> val)) {
+				std::cerr << "Error reading data point values.\n";
+				return false;
+			}
+			point.addDimension(val);
+		}
+		// Read the trailing true-cluster label for this point.
+		int label;
+		if (!(input_file >> label)) {
+			std::cerr << "Error reading true cluster label for point " << i << ".\n";
+			return false;
+		}
+		if (label < 0 || label >= num_true_clusters_) {
+			std::cerr << "True label " << label << " for point " << i
+			          << " is outside [0, " << (num_true_clusters_ - 1) << "].\n";
+			return false;
+		}
+		true_labels_[i] = label;
+		dataset_.push_back(point);
+	}
+	input_file.close();
+	return true;
+}
+
 void Kmeans::printData() const {
 	for (const auto& point : dataset_) {
 		point.print();
