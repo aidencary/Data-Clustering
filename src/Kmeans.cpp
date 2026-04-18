@@ -12,7 +12,8 @@ Kmeans::Kmeans(
 	  convergence_threshold_(convergence_threshold),
 	  num_of_runs_(num_of_runs),
 	  num_of_points_(0),
-	  dimensionality_(0) {}
+	  dimensionality_(0),
+	  num_true_clusters_(0) {}
 
 bool Kmeans::readData() {
 	std::ifstream input_file(file_name_);

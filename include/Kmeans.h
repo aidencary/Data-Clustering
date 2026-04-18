@@ -22,7 +22,9 @@ private:
 	double convergence_threshold_;
 	int num_of_points_;
 	int dimensionality_;
+	int num_true_clusters_;
 	std::vector<Point> dataset_;
+	std::vector<int> true_labels_;
 
 public:
 	// Constructor
@@ -34,6 +36,9 @@ public:
 		int num_of_runs);
 	// Reads data from the file specified in the constructor.
 	bool readData();
+	// Reads Phase 5 labeled data: header is "N D+1 K_true";
+	// each point line ends with an integer true cluster label in [0, K_true - 1].
+	bool readLabeledData();
 	// Normalizes the dataset using min-max normalization to [0,1] range.
 	// Normalizes across columns (attributes), not rows.
 	void minmaxNormalize();
@@ -86,4 +91,15 @@ public:
 	// Validates that a silhouette value is within [-1, 1].
 	// Prints an error message if it falls outside this range (indicates a bug).
 	void checkSilhouetteRange(double s, int point_index);
+
+	// Runs k-means R times at K = num_true_clusters_ using random-selection
+	// initialization, computes Rand and Jaccard vs. the true labels on each run,
+	// and reports the best value of each index across the R runs.
+	void runExternalValidation();
+
+	// Computes the Rand statistic for the given partition vs. true_labels_.
+	double computeRand(const std::vector<int>& assignments);
+
+	// Computes the Jaccard coefficient for the given partition vs. true_labels_.
+	double computeJaccard(const std::vector<int>& assignments);
 };
