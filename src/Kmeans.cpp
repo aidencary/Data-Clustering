@@ -49,14 +49,13 @@ bool Kmeans::readData() {
 	return true;
 }
 
-// Reads Phase 5 labeled data files.
-// Header: "N D+1 K_true" (three integers).
-// Each subsequent line: D doubles followed by a single int in [0, K_true - 1]
-// denoting the true cluster label of that point.
+// Reads the Phase 5 labeled data format.
+// Header: N D+1 K_true (three integers).
+// Each subsequent line: D doubles + one int true cluster label in [0, K_true - 1].
 bool Kmeans::readLabeledData() {
 	std::ifstream input_file(file_name_);
 
-	// Fall back to ../phase5_data_sets/ when the bare file name does not resolve.
+	// Try the phase5 datasets directory if the bare filename isn't found
 	if (!input_file.is_open()) {
 		std::string path_with_prefix = "../phase5_data_sets/" + file_name_;
 		input_file.open(path_with_prefix);
@@ -67,12 +66,13 @@ bool Kmeans::readLabeledData() {
 		}
 	}
 
-	// Parse the 3-integer header: N, D+1 (attributes + label), K_true.
+	// Read the header: N, D+1, K_true
 	int dimensionality_plus_one = 0;
 	if (!(input_file >> num_of_points_ >> dimensionality_plus_one >> num_true_clusters_)) {
 		std::cerr << "Error reading labeled-data header (expected N D+1 K_true).\n";
 		return false;
 	}
+	// The D+1 value includes the trailing label, so actual D = D+1 - 1
 	dimensionality_ = dimensionality_plus_one - 1;
 
 	if (dimensionality_ <= 0 || num_true_clusters_ <= 0 || num_of_points_ <= 0) {
@@ -82,7 +82,7 @@ bool Kmeans::readLabeledData() {
 		return false;
 	}
 
-	// Allocate the true-label vector once so indexed assignment is safe below.
+	// Reserve space for one label per point
 	true_labels_.assign(num_of_points_, 0);
 
 	for (int i = 0; i < num_of_points_; ++i) {
@@ -95,7 +95,7 @@ bool Kmeans::readLabeledData() {
 			}
 			point.addDimension(val);
 		}
-		// Read the trailing true-cluster label for this point.
+		// Read the true cluster label that follows the D attribute values
 		int label;
 		if (!(input_file >> label)) {
 			std::cerr << "Error reading true cluster label for point " << i << ".\n";
@@ -1426,13 +1426,14 @@ void Kmeans::runInternalValidation() {
 	}
 }
 
-// Counts the four point-pair categories needed by both external indices.
+// Counts the four point-pair categories (TP, FN, FP, TN) shared by Rand and Jaccard.
 // Reference: Zaki & Meira Jr., "Data Mining and Machine Learning", 2nd ed.
 //            Section 17.1 (External Measures), pg. 436-437
 //            https://dataminingbook.info/book_html/chap17/book.html
-// TP: pairs together in both partitions; FN: together in T only;
-// FP: together in C only;                 TN: apart in both.
-// Naive O(N^2) pair enumeration is sufficient for the Phase 5 datasets.
+// TP: pairs together in both C and T
+// FN: pairs together in T only
+// FP: pairs together in C only
+// TN: pairs apart in both
 static void countPairCategories(
 	const std::vector<int>& assignments,
 	const std::vector<int>& true_labels,
@@ -1447,7 +1448,7 @@ static void countPairCategories(
 	tn = 0;
 
 	const int n = static_cast<int>(assignments.size());
-	// Enumerate each unordered pair (i, j) exactly once.
+	// Iterate over each unordered pair (i, j) with i < j so each pair is counted once
 	for (int i = 0; i < n; ++i) {
 		for (int j = i + 1; j < n; ++j) {
 			bool same_c = (assignments[i] == assignments[j]);
@@ -1470,16 +1471,16 @@ static void countPairCategories(
 //            Section 17.1 (External Measures), pg. 437
 //            Eq. 17.21 Rand Statistic
 //            https://dataminingbook.info/book_html/chap17/book.html
-// Formula: Rand = (TP + TN) / N_pairs, where N_pairs = n(n-1)/2.
-// Symmetric index; a perfect clustering yields Rand = 1.
+// Rand = (TP + TN) / N_pairs, where N_pairs = n(n-1)/2
+// Symmetric index; a perfect clustering gives Rand = 1
 double Kmeans::computeRand(const std::vector<int>& assignments) {
 	long long tp = 0, fn = 0, fp = 0, tn = 0;
 	countPairCategories(assignments, true_labels_, tp, fn, fp, tn);
 
-	// N_pairs is the sum of all four categories (= n(n-1)/2).
+	// Total pairs = TP + FN + FP + TN = n(n-1)/2
 	long long total_pairs = tp + fn + fp + tn;
 	if (total_pairs == 0) {
-		// Only possible when N < 2; treat as perfect agreement by convention.
+		// Only possible when N < 2 (no pairs exist)
 		return 1.0;
 	}
 	return static_cast<double>(tp + tn) / static_cast<double>(total_pairs);
@@ -1490,28 +1491,27 @@ double Kmeans::computeRand(const std::vector<int>& assignments) {
 //            Section 17.1 (External Measures), pg. 436
 //            Eq. 17.20 Jaccard Coefficient
 //            https://dataminingbook.info/book_html/chap17/book.html
-// Formula: Jaccard = TP / (TP + FN + FP). Ignores true negatives, so the
-// index is asymmetric and emphasizes agreement on together-pairs only.
+// Jaccard = TP / (TP + FN + FP)
+// Ignores TN, so it is asymmetric in true positives vs. true negatives
 double Kmeans::computeJaccard(const std::vector<int>& assignments) {
 	long long tp = 0, fn = 0, fp = 0, tn = 0;
 	countPairCategories(assignments, true_labels_, tp, fn, fp, tn);
 
 	long long denom = tp + fn + fp;
 	if (denom == 0) {
-		// Degenerate: no together-pairs in either partition (e.g. all singletons
-		// in both C and T). Treat as perfect agreement.
+		// No together-pairs in either partition (all singletons in both C and T)
 		return 1.0;
 	}
 	return static_cast<double>(tp) / static_cast<double>(denom);
 }
 
-// Runs k-means R times at K = num_true_clusters_ using the random-selection
-// initialization from Phase 1, computes Rand and Jaccard against the true
-// labels after each run, and reports the best (max) value of each index.
+// Runs k-means R times at K = num_true_clusters_ using random-selection
+// initialization (Phase 1 method), computes Rand and Jaccard against the
+// true labels on each run, and reports the best value of each index.
 // Reference: Zaki & Meira Jr., "Data Mining and Machine Learning", Chapter 17
 //            https://dataminingbook.info/book_html/chap17/book.html
 void Kmeans::runExternalValidation() {
-	// K for this phase is the true-cluster count from the data file.
+	// K for Phase 5 is the true cluster count read from the data file header
 	num_clusters_ = num_true_clusters_;
 	const int k = num_clusters_;
 
@@ -1546,7 +1546,7 @@ void Kmeans::runExternalValidation() {
 		std::vector<Point> centroids = selectRandomSelectionCentroids();
 		std::vector<int> assignments(num_of_points_);
 
-		// Step 2: standard k-means assign/update loop with convergence check.
+		// Step 2: k-means assign/update loop with the convergence check from Phase 4
 		double previous_sse = std::numeric_limits<double>::max();
 		double current_sse = 0.0;
 
@@ -1594,7 +1594,7 @@ void Kmeans::runExternalValidation() {
 			}
 			centroids = new_centroids;
 
-			// SSE for this iteration (drives the convergence check only).
+			// Compute SSE for this iteration (used only for the convergence check)
 			current_sse = 0.0;
 			for (int i = 0; i < num_of_points_; ++i) {
 				int ci = assignments[i];

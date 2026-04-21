@@ -66,7 +66,7 @@ bool setParameters(
         return false;
     }
     /*
-    <F>: Upper Limit = N/A, Lower Limit = file must exist and be readable (handled in Kmeans::readData())
+    <F>: Upper Limit = N/A, Lower Limit = file must exist and be readable (handled in Kmeans::readLabeledData())
     <I>: Upper Limit = N/A, Lower Limit = 1 (must be positive)
     <T>: Upper Limit = N/A, Lower Limit = 0.0 (must be non-negative) and less than 1.0 (must be less than 1.0 to make sense as a relative improvement threshold)
     <R>: Upper Limit = N/A, Lower Limit = 1 (must be positive)
@@ -101,8 +101,8 @@ Arguments:
 argc - Argument count
 argv - Argument vector for four command line arguments (not hard-coded):
 <F>: name of the data file
-	- First line of F contains the number of Points N (positive integer) and the dimensionality of each point (D)
-    - Each of the subsequent lines contains one data point in blank separated format
+	- First line of F contains three integers: N (number of points), D+1 (number of attributes + 1), and K_true (number of true clusters)
+    - Each subsequent line contains one data point in blank separated format, ending with an integer true cluster label in [0, K_true - 1]
 <I>: maximum number of iterations (positive integer)
 <T>: convergence threshold (non-negative real)
 <R>: number of runs (positive integer)
