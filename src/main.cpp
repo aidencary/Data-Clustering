@@ -12,16 +12,16 @@ Navigate to the directory containing main.cpp (src) and run the following comman
 Compile (using g++): g++ main.cpp Kmeans.cpp Point.cpp -o main.exe -std=c++17 -I../include -O2
 Run: ./main.exe <filename> <I> <T> <R>
 Phase 5 Examples:
-./main.exe ecoli.txt 100 0.0001 100
-./main.exe ionosphere.txt 100 0.0001 100
-./main.exe iris_bezdek.txt 100 0.0001 100
-./main.exe landsat.txt 100 0.0001 100
-./main.exe letter_recognition.txt 100 0.0001 100
-./main.exe mfeat-fou.txt 100 0.0001 100
-./main.exe optdigits.txt 100 0.0001 100
-./main.exe ruspini.txt 100 0.0001 100
-./main.exe wine.txt 100 0.0001 100
-./main.exe yeast.txt 100 0.0001 100
+./main.exe ecoli.txt 100 0.001 100
+./main.exe ionosphere.txt 100 0.001 100
+./main.exe iris_bezdek.txt 100 0.001 100
+./main.exe landsat.txt 100 0.001 100
+./main.exe letter_recognition.txt 100 0.001 100
+./main.exe mfeat-fou.txt 100 0.001 100
+./main.exe optdigits.txt 100 0.001 100
+./main.exe ruspini.txt 100 0.001 100
+./main.exe wine.txt 100 0.001 100
+./main.exe yeast.txt 100 0.001 100
 */
 #include <iostream>
 #include <string>

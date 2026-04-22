@@ -1,11 +1,11 @@
 Dataset,Best Rand,Best Jaccard
-ecoli,0.8864,0.6353
+ecoli,0.8806,0.6237
 ionosphere,0.5889,0.5384
-iris_bezdek,0.8737,0.6823
-landsat,0.8577,0.4455
-letter_recognition,0.9348,0.0982
-mfeat-fou,0.9054,0.3743
-optdigits,0.9568,0.6474
+iris_bezdek,0.8859,0.7060
+landsat,0.8607,0.4947
+letter_recognition,0.9342,0.0977
+mfeat-fou,0.9033,0.3570
+optdigits,0.9572,0.6498
 ruspini,1.0000,1.0000
-wine,0.9620,0.8929
-yeast,0.7539,0.1903
+wine,0.9551,0.8743
+yeast,0.7541,0.2030
