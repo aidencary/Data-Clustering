@@ -1594,7 +1594,7 @@ void Kmeans::runExternalValidation() {
 			}
 			centroids = new_centroids;
 
-			// Compute SSE for this iteration (used only for the convergence check)
+			// SSE for this iteration (drives the convergence check only).
 			current_sse = 0.0;
 			for (int i = 0; i < num_of_points_; ++i) {
 				int ci = assignments[i];
