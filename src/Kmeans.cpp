@@ -998,8 +998,8 @@ void Kmeans::runKmeansWithMetrics(const std::string& initialization_method, cons
 	}
 	
 	// Write results to CSV file (will move to a Excel file later)
-	std::filesystem::create_directories("../output_sheets");
-	std::string csv_file_path = "../output_sheets/phase3_results.csv";
+	std::filesystem::create_directories("../output_phase3");
+	std::string csv_file_path = "../output_phase3/phase3_results.csv";
 	bool file_exists = false;
 	
 	// Check if file exists by trying to open it for reading
@@ -1655,9 +1655,9 @@ void Kmeans::runExternalValidation() {
 		std::cout << "Results written to " << csv_path << "\n";
 	}
 
-	// Aggregate one row per dataset into ../output_sheets/phase5_results.csv.
-	std::filesystem::create_directories("../output_sheets");
-	std::string agg_path = "../output_sheets/phase5_results.csv";
+	// Aggregate one row per dataset into ../output_phase5/phase5_results.csv
+	std::filesystem::create_directories("../output_phase5");
+	std::string agg_path = "../output_phase5/phase5_results.csv";
 	bool agg_exists = false;
 	{
 		std::ifstream check_file(agg_path);
